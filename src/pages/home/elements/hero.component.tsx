@@ -5,10 +5,10 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { ButtonMainComponent } from "../../../common/buttons.component";
-import Parking from "../../../pictures/home_parking.svg";
-import ArrowIcon from "../../../pictures/icons/arrow.svg";
-import TitleBg from "../../../pictures/title_bg.svg";
+import { ButtonMainComponent } from "common/buttons.component";
+import Parking from "pictures/home_parking.svg";
+import ArrowIcon from "pictures/icons/arrow.svg";
+import TitleBg from "pictures/title_bg.svg";
 
 export const HeroComponent = (): JSX.Element => {
   const theme = useTheme();
