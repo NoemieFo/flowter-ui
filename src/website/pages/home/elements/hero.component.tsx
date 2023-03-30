@@ -8,7 +8,7 @@ import {
 import { ButtonMainComponent } from "common/buttons.component";
 import Parking from "pictures/home_parking.svg";
 import ArrowIcon from "pictures/icons/arrow.svg";
-import TitleBg from "pictures/title_bg.svg";
+import Scribble from "pictures/scribble.svg";
 
 export const HeroComponent = (): JSX.Element => {
   const theme = useTheme();
@@ -58,7 +58,7 @@ export const HeroComponent = (): JSX.Element => {
             marginLeft: "-35px",
             zIndex: "-10",
           }}
-          src={TitleBg}
+          src={Scribble}
         />
       )}
     </HeroHeader>
