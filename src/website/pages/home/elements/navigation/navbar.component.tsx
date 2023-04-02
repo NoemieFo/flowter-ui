@@ -13,12 +13,12 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import { websiteRoutes } from "website/routes";
+import { websiteRoutes } from "website/constants/routes";
 import { PhoneMenuComponent } from "./phoneMenu.component";
 
 export const Navbar = () => {
   const theme = useTheme();
-  const isPhoneDisplay = useMediaQuery(theme.breakpoints.down("lg"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const handleIsOpen = (value: boolean) => setIsOpen(value);
@@ -67,9 +67,7 @@ export const Navbar = () => {
   );
 
   return (
-    <AppBar position="static">
-      {isPhoneDisplay ? phoneNavbar : desktopNavbar}
-    </AppBar>
+    <AppBar position="static">{isDesktop ? desktopNavbar : phoneNavbar}</AppBar>
   );
 };
 

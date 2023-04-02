@@ -43,7 +43,8 @@ export const SectionTitleCompact = ({
       <Typography variant="h2">{text}</Typography>
       <Image
         src={ScribbleCompact}
-        style={{ marginTop: scribbleVerticalOffset ?? "-40px", width: "150px" }}
+        style={{ marginTop: scribbleVerticalOffset ?? "-40px" }}
+        width="150px"
       />
     </TitleElements>
     // </TitleContainer>

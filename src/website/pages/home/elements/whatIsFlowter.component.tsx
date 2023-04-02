@@ -7,18 +7,18 @@ import {
 } from "@mui/material";
 import { MoreInformationButton } from "common/buttons.component";
 import { SectionTitle } from "common/titles.component";
-import { websiteRoutes } from "website/routes";
+import { websiteRoutes } from "website/constants/routes";
 
-export const WhatIsFlowter = () => {
+export const WhatIsFlowter = (): JSX.Element => {
   const theme = useTheme();
-  const isPhoneDisplay = useMediaQuery(theme.breakpoints.down("sm"));
+  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
     <WhatIsFlowterSection>
       <SectionTitle
         text="C'est quoi flowter ?"
         scribbleColor={theme.palette.pink.light}
-        scribbleWidth={isPhoneDisplay ? "250px" : "300px"}
+        scribbleWidth={isPhone ? "250px" : "300px"}
       />
       <Typography variant="subtitle2">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim

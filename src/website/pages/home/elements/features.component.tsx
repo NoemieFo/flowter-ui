@@ -13,86 +13,43 @@ import {
 import { SectionTitle } from "common/titles.component";
 import Image from "mui-image";
 import Features from "pictures/features.svg";
-import FollowMaintenance from "pictures/follow_maintenance.svg";
-import HandleUsers from "pictures/handle_users.svg";
-import ManageFleet from "pictures/manage_your_fleet.svg";
-import PlanRides from "pictures/plan_rides.svg";
-import VisualizeStats from "pictures/visualize_stats.svg";
+
 import { lightGrey } from "theme";
-import { websiteRoutes } from "website/routes";
+import { features } from "website/constants/features";
 
-export interface Feature {
-  title: string;
-  img: FeatureImg;
-  description: string;
-  path: string;
-}
-
-export interface FeatureImg {
-  path: string;
-  description: string;
-}
-
-const features: Feature[] = [
-  {
-    title: "Planifiez des trajets",
-    img: { path: PlanRides, description: "planification de trajets" },
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
-    path: websiteRoutes["features"].path,
-  },
-  {
-    title: "Gérez votre parc",
-    img: { path: ManageFleet, description: "gestion de parc" },
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
-    path: websiteRoutes["features"].path,
-  },
-  {
-    title: "Visualisez des statistiques",
-    img: {
-      path: VisualizeStats,
-      description: "visualisation de statistiques",
-    },
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
-    path: websiteRoutes["features"].path,
-  },
-  {
-    title: "Suivez l’entretien",
-    img: { path: FollowMaintenance, description: "suivi de l'entretien" },
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
-    path: websiteRoutes["features"].path,
-  },
-  {
-    title: "Gérez les utilisateurs",
-    img: { path: HandleUsers, description: "gestion des utilisateurs" },
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
-    path: websiteRoutes["features"].path,
-  },
-];
-
-export const FeaturesSection = () => {
+export const FeaturesSection = (): JSX.Element => {
   const theme = useTheme();
-  const isPhoneDisplay = useMediaQuery(theme.breakpoints.down("sm"));
+  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <FeaturesContainer component={"div"}>
-      {isPhoneDisplay && (
+    <FeaturesContainer
+      component={"div"}
+      rowGap="30px"
+      bgcolor={lightGrey}
+      textAlign={"center"}
+      padding={"50px 40px"}
+    >
+      {isPhone && (
         <Image
           src={Features}
           alt="fonctionnalités"
           style={{ marginTop: "-170px", marginBottom: "20px" }}
         />
       )}
-      <FeaturesContent component={"div"}>
+      <Box
+        component={"div"}
+        display="flex"
+        flexDirection="column"
+        maxWidth="1200px"
+        margin="auto"
+        marginBottom="20px"
+        rowGap="30px"
+      >
         <div>
           <SectionTitle
             text="Fonctionnalités"
             scribbleColor={theme.palette.purple.light}
-            scribbleWidth={isPhoneDisplay ? "230px" : "300px"}
+            scribbleWidth={isPhone ? "230px" : "300px"}
           />
           <Typography variant="subtitle2" paragraph>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia
@@ -111,7 +68,7 @@ export const FeaturesSection = () => {
           {features.map((feature, index) => (
             <Grid item xs={2} sm={4} md={4} key={index}>
               <CardContainer>
-                {!isPhoneDisplay && (
+                {!isPhone && (
                   <Image
                     src={feature.img.path}
                     alt={feature.img.description}
@@ -125,20 +82,14 @@ export const FeaturesSection = () => {
                 <Typography variant="body1" color="black">
                   {feature.description}
                 </Typography>
-                {!isPhoneDisplay && (
-                  <MoreInformationButton path={feature.path} />
-                )}
+                {!isPhone && <MoreInformationButton path={feature.path} />}
               </CardContainer>
             </Grid>
           ))}
         </Grid>
-      </FeaturesContent>
+      </Box>
       <ButtonSecondaryComponent
-        text={
-          isPhoneDisplay
-            ? "Voir toutes les fonctionnalités"
-            : "Découvrir toutes les fonctionnalités"
-        }
+        text={`${isPhone ? "Voir" : "Découvrir"} toutes les fonctionnalités`}
         color="purple"
       />
     </FeaturesContainer>
@@ -146,11 +97,6 @@ export const FeaturesSection = () => {
 };
 
 const FeaturesContainer = styled(Box)(({ theme }) => ({
-  backgroundColor: lightGrey,
-  padding: "50px 40px",
-  textAlign: "center",
-  rowGap: "30px",
-
   [theme.breakpoints.down("sm")]: {
     padding: " 40px 20px 40px 20px",
     display: "flex",
@@ -158,15 +104,6 @@ const FeaturesContainer = styled(Box)(({ theme }) => ({
     alignItems: "flex-start",
     marginTop: "100px",
   },
-}));
-
-const FeaturesContent = styled(Box)(() => ({
-  display: "flex",
-  flexDirection: "column",
-  maxWidth: "1200px",
-  margin: "auto",
-  marginBottom: "20px",
-  rowGap: "30px",
 }));
 
 const CardContainer = styled(Box)(({ theme }) => ({

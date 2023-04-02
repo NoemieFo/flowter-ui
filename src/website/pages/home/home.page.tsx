@@ -1,45 +1,42 @@
-import { Box, styled, useMediaQuery, useTheme } from "@mui/material";
+import { Box, useMediaQuery, useTheme } from "@mui/material";
 import PricesMobile from "pictures/prices_mobile.svg";
 import { FeaturesSection } from "./elements/features.component";
+import { Footer } from "./elements/footer.component";
 import { HeroComponent } from "./elements/hero.component";
 import { PricesSection } from "./elements/prices.component";
 import { WhatIsFlowter } from "./elements/whatIsFlowter.component";
 
 export const HomePage = (): JSX.Element => {
   const theme = useTheme();
-  const isPhoneDisplay = useMediaQuery(theme.breakpoints.down("sm"));
+  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
     <>
-      <HeroWrapper>
+      <Box
+        height={isDesktop ? "calc(100vh - 64px)" : "auto"}
+        width="100%"
+        maxWidth="2000px"
+        margin="auto"
+      >
         <HeroComponent />
-      </HeroWrapper>
+      </Box>
       <WhatIsFlowter />
       <FeaturesSection />
       <PricesSection />
-      {isPhoneDisplay && (
+      {isPhone && (
         <img
           src={PricesMobile}
           alt="tarifs"
           style={{
-            width: "65%",
+            width: "245px",
             position: "absolute",
             right: "0",
             marginTop: "-60px",
           }}
         />
       )}
+      <Footer />
     </>
   );
 };
-
-const HeroWrapper = styled(Box)(() => ({
-  height: "calc(100vh - 64px)",
-  width: "100%",
-  maxWidth: "2000px",
-  margin: "auto",
-
-  "@media (max-width:960px)": {
-    height: "auto",
-  },
-}));

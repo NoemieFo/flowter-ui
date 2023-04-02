@@ -4,28 +4,28 @@ import { SectionTitleCompact } from "common/titles.component";
 import Image from "mui-image";
 import Prices from "pictures/prices.svg";
 import { theme } from "theme";
-import { websiteRoutes } from "website/routes";
+import { websiteRoutes } from "website/constants/routes";
 
-export const PricesSection = () => {
-  const isPhoneDisplay = useMediaQuery(theme.breakpoints.down("sm"));
+export const PricesSection = (): JSX.Element => {
+  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <PricesContainer>
+    <PricesContainer component={"div"}>
       <Grid
         container
         spacing={8}
         alignItems="center"
-        columns={{ xs: 1, sm: 8, md: 12 }}
+        columns={{ xs: 1, sm: 12 }}
       >
-        {!isPhoneDisplay && (
-          <Grid item xs={6} md={4}>
-            <Image src={Prices} alt="tarifs" />
+        {!isPhone && (
+          <Grid item xs={4}>
+            <Image src={Prices} alt="tarifs" style={{ maxWidth: "300px" }} />
           </Grid>
         )}
-        <Grid item xs={6} md={8} className="prices-right-column">
+        <Grid item xs={8} className="prices-right-column">
           <SectionTitleCompact
             text="Tarifs"
-            scribbleVerticalOffset={isPhoneDisplay ? "-35px" : undefined}
+            scribbleVerticalOffset={isPhone ? "-35px" : undefined}
           />
           <Typography variant="body1">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia
@@ -34,7 +34,7 @@ export const PricesSection = () => {
             sit amet tortor ullamcorper, vel tincidunt metus feugiat.
           </Typography>
           <ButtonSecondaryComponent
-            text={isPhoneDisplay ? "Voir les tarifs" : "Découvrir les tarifs"}
+            text={isPhone ? "Voir les tarifs" : "Découvrir les tarifs"}
             color="orange"
             path={websiteRoutes["prices"].path}
           />
@@ -58,6 +58,6 @@ const PricesContainer = styled(Box)(() => ({
   },
 
   [theme.breakpoints.down("sm")]: {
-    padding: " 50px 20px 40px 20px",
+    padding: "50px 20px 40px 20px",
   },
 }));

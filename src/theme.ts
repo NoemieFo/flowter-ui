@@ -49,14 +49,32 @@ declare module "@mui/material/Button" {
   }
 }
 
+declare module "@mui/material/styles" {
+  interface BreakpointOverrides {
+    xs: true;
+    sm: true;
+    md: true;
+    lg: true;
+    xl: true;
+  }
+}
+
+enum Breakpoints {
+  xs = 0,
+  sm = 600,
+  md = 960,
+  lg = 1200,
+  xl = 1536,
+}
+
 export const theme = createTheme({
   breakpoints: {
     values: {
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1536,
+      xs: Breakpoints.xs,
+      sm: Breakpoints.sm,
+      md: Breakpoints.md,
+      lg: Breakpoints.lg,
+      xl: Breakpoints.xl,
     },
   },
   palette: {

@@ -7,7 +7,7 @@ import {
   styled,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { websiteRoutes } from "website/routes";
+import { websiteRoutes } from "website/constants/routes";
 
 interface Props {
   handleIsOpen: (value: boolean) => void;

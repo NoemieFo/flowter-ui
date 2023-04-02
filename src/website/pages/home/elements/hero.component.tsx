@@ -12,14 +12,14 @@ import { ScribbleImg } from "pictures/scribbleImg.component";
 
 export const HeroComponent = (): JSX.Element => {
   const theme = useTheme();
-  const isPhoneDisplay = useMediaQuery(theme.breakpoints.down("sm"));
+  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
   const isHorizontalTabletDisplay = useMediaQuery(
     theme.breakpoints.between("md", "lg")
   );
 
   let headerContent;
 
-  if (isPhoneDisplay) {
+  if (isPhone) {
     headerContent = (
       <>
         La solution de gestion <br />
@@ -45,7 +45,7 @@ export const HeroComponent = (): JSX.Element => {
   const header = (
     <HeroHeader component={"div"}>
       <Typography variant="h1">{headerContent}</Typography>
-      {!isPhoneDisplay && (
+      {!isPhone && (
         <ScribbleImg
           color={theme.palette.green.light}
           style={{
@@ -61,23 +61,20 @@ export const HeroComponent = (): JSX.Element => {
 
   const subheader = (
     <Typography variant="subtitle1">
-      <br />
       Gérez votre flotte automobile interne <br /> simplement et efficacement.
       <br />
       Découvrez Flowter.
-      <br />
-      <br />
     </Typography>
   );
 
   return (
     <HeroGrid component={"div"}>
       <LeftColumn>
-        <div>
-          {header}
-          {subheader}
-          <ButtonMainComponent text="Découvrir" icon={<ArrowIcon />} />
-        </div>
+        {/* <div> */}
+        {header}
+        {subheader}
+        <ButtonMainComponent text="Découvrir" icon={<ArrowIcon />} />
+        {/* </div> */}
       </LeftColumn>
       <Box
         component={"img"}
@@ -120,8 +117,9 @@ const HeroHeader = styled(Box)(({ theme }) => ({
 const LeftColumn = styled(Box)(({ theme }) => ({
   width: "65%",
   display: "flex",
-  alignItems: "center",
+  flexDirection: "column",
   paddingLeft: "80px",
+  rowGap: "30px",
 
   [theme.breakpoints.down("sm")]: {
     width: "100%",

@@ -14,7 +14,12 @@ export const ButtonMainComponent = ({
   disabled,
 }: ButtonProps): JSX.Element => {
   return (
-    <Button color="primary" variant="contained" disabled={disabled}>
+    <Button
+      color="primary"
+      variant="contained"
+      disabled={disabled}
+      sx={{ width: "fit-content" }}
+    >
       {text}
       {icon}
     </Button>
