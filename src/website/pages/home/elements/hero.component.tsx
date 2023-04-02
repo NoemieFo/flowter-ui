@@ -7,8 +7,8 @@ import {
 } from "@mui/material";
 import { ButtonMainComponent } from "common/buttons.component";
 import Parking from "pictures/home_parking.svg";
-import ArrowIcon from "pictures/icons/arrow.svg";
-import Scribble from "pictures/scribble.svg";
+import { ArrowIcon } from "pictures/icons/arrowIcon.component";
+import { ScribbleImg } from "pictures/scribbleImg.component";
 
 export const HeroComponent = (): JSX.Element => {
   const theme = useTheme();
@@ -36,9 +36,7 @@ export const HeroComponent = (): JSX.Element => {
   } else {
     headerContent = (
       <>
-        La solution de gestion de flotte
-        <br />
-        de véhicules d'entreprise
+        La solution de gestion de flotte de véhicules d'entreprise
         <br /> qu'il vous faut.
       </>
     );
@@ -48,28 +46,28 @@ export const HeroComponent = (): JSX.Element => {
     <HeroHeader component={"div"}>
       <Typography variant="h1">{headerContent}</Typography>
       {!isPhoneDisplay && (
-        <Box
-          component={"img"}
-          className="title-scribble-img"
-          alt="Arrow icon"
-          sx={{
+        <ScribbleImg
+          color={theme.palette.green.light}
+          style={{
             position: "absolute",
             bottom: "0",
             marginLeft: "-35px",
             zIndex: "-10",
           }}
-          src={Scribble}
         />
       )}
     </HeroHeader>
   );
 
   const subheader = (
-    <HeroSubHeader component={"p"}>
-      Gérez votre flotte automobile interne simplement et efficacement.
+    <Typography variant="subtitle1">
+      <br />
+      Gérez votre flotte automobile interne <br /> simplement et efficacement.
       <br />
       Découvrez Flowter.
-    </HeroSubHeader>
+      <br />
+      <br />
+    </Typography>
   );
 
   return (
@@ -78,16 +76,7 @@ export const HeroComponent = (): JSX.Element => {
         <div>
           {header}
           {subheader}
-          <ButtonMainComponent
-            text="Découvrir"
-            icon={
-              <Box
-                component={"img"}
-                sx={{ marginLeft: "10px" }}
-                src={ArrowIcon}
-              />
-            }
-          />
+          <ButtonMainComponent text="Découvrir" icon={<ArrowIcon />} />
         </div>
       </LeftColumn>
       <Box
@@ -125,17 +114,6 @@ const HeroHeader = styled(Box)(({ theme }) => ({
 
   [theme.breakpoints.down("sm")]: {
     paddingBottom: "0",
-  },
-}));
-
-const HeroSubHeader = styled(Box)(({ theme }) => ({
-  fontSize: "24px",
-  lineHeight: "150%",
-  width: "450px",
-
-  [theme.breakpoints.down("sm")]: {
-    width: "auto",
-    fontSize: "18px",
   },
 }));
 

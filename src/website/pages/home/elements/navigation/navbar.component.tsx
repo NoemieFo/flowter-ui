@@ -1,8 +1,3 @@
-import EmailIcon from "@mui/icons-material/Email";
-import EuroIcon from "@mui/icons-material/Euro";
-import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
-import Groups2Icon from "@mui/icons-material/Groups2";
-import HomeIcon from "@mui/icons-material/Home";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   AppBar,
@@ -18,45 +13,12 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import { PhoneMenuComponent } from "./phone-menu.component";
-
-interface MenuItem {
-  name: string;
-  icon: JSX.Element;
-  route: string;
-}
-
-export const menuItems: MenuItem[] = [
-  {
-    name: "Accueil",
-    icon: <HomeIcon style={{ color: "white" }} />,
-    route: "",
-  },
-  {
-    name: "A propos",
-    icon: <Groups2Icon style={{ color: "white" }} />,
-    route: "/a-propos",
-  },
-  {
-    name: "Fonctionnalités",
-    icon: <FormatListBulletedIcon style={{ color: "white" }} />,
-    route: "/fonctionnalites",
-  },
-  {
-    name: "Nous contacter",
-    icon: <EmailIcon style={{ color: "white" }} />,
-    route: "/nous-contacter",
-  },
-  {
-    name: "Tarifs",
-    icon: <EuroIcon style={{ color: "white" }} />,
-    route: "/tarifs",
-  },
-];
+import { websiteRoutes } from "website/routes";
+import { PhoneMenuComponent } from "./phoneMenu.component";
 
 export const Navbar = () => {
   const theme = useTheme();
-  const isPhoneDisplay = useMediaQuery(theme.breakpoints.down("md"));
+  const isPhoneDisplay = useMediaQuery(theme.breakpoints.down("lg"));
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const handleIsOpen = (value: boolean) => setIsOpen(value);
@@ -93,8 +55,8 @@ export const Navbar = () => {
       <Typography variant="h4">Logo</Typography>
       <DesktopMenuWrapper>
         <LinkWrapper>
-          {menuItems.map((item, index) => (
-            <Link key={index} to={item.route}>
+          {Object.values(websiteRoutes).map((item, index) => (
+            <Link key={index} to={item.path}>
               {item.name}
             </Link>
           ))}

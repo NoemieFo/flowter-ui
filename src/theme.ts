@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 
+export const lightGrey = "#F5F5F5";
 const mainBlue = "#35A3E7";
-const lightGrey = "#F5F5F5";
 const lightBlue = "#EBF0F4";
 const darkBlue = "#455A64";
 
@@ -23,19 +23,19 @@ const errorLight = "#FEE2E2";
 
 declare module "@mui/material/styles" {
   interface Palette {
-    purple: Palette["primary"];
-    orange: Palette["primary"];
-    pink: Palette["primary"];
-    turquoise: Palette["primary"];
-    green: Palette["primary"];
+    purple: Palette["secondary"];
+    orange: Palette["secondary"];
+    pink: Palette["secondary"];
+    turquoise: Palette["secondary"];
+    green: Palette["secondary"];
   }
 
   interface PaletteOptions {
-    purple: PaletteOptions["primary"];
-    orange: PaletteOptions["primary"];
-    pink: PaletteOptions["primary"];
-    turquoise: PaletteOptions["primary"];
-    green: PaletteOptions["primary"];
+    purple: PaletteOptions["secondary"];
+    orange: PaletteOptions["secondary"];
+    pink: PaletteOptions["secondary"];
+    turquoise: PaletteOptions["secondary"];
+    green: PaletteOptions["secondary"];
   }
 }
 
@@ -80,7 +80,60 @@ export const theme = createTheme({
       color: "black",
       lineHeight: "150%",
       "@media only screen and (max-width: 600px)": {
-        fontSize: "22px",
+        fontSize: "24px",
+      },
+    },
+    h2: {
+      fontFamily: "Poppins",
+      fontWeight: "700",
+      fontSize: "24px",
+      color: "black",
+      lineHeight: "150%",
+      "@media only screen and (max-width: 600px)": {
+        fontSize: "18px",
+      },
+    },
+    h3: {
+      fontFamily: "Poppins",
+      fontWeight: "700",
+      fontSize: "18px",
+      color: "black",
+      lineHeight: "150%",
+      "@media only screen and (max-width: 600px)": {
+        fontSize: "16px",
+      },
+    },
+    body1: {
+      fontFamily: "Lato",
+      fontSize: "15px",
+      fontWeight: "300",
+      color: "black",
+      lineHeight: "150%",
+      opacity: "100%",
+      "@media only screen and (max-width: 600px)": {
+        fontSize: "15px",
+      },
+    },
+    // To use after h1
+    subtitle1: {
+      fontFamily: "Lato",
+      fontSize: "24px",
+      lineHeight: "150%",
+      "@media only screen and (max-width: 600px)": {
+        width: "auto",
+        fontSize: "18px",
+      },
+    },
+    // To use after h2
+    subtitle2: {
+      fontFamily: "Lato",
+      fontSize: "18px",
+      lineHeight: "150%",
+      textAlign: "center",
+      "@media only screen and (max-width: 600px)": {
+        width: "auto",
+        fontSize: "16px",
+        textAlign: "left",
       },
     },
   },
@@ -122,16 +175,54 @@ export const theme = createTheme({
             },
           }),
           // Special theme for secondary buttons
-          ...(ownerState.variant === "outlined" && {
-            ":hover": {
-              backgroundColor: ownerState.color,
-              border: `2px solid ${ownerState.color}`,
-            },
-            ":disabled": {
-              opacity: "50%",
-              border: `2px solid ${ownerState.color}`,
-            },
-          }),
+          ...(ownerState.variant === "outlined" &&
+            ownerState.color === "purple" && {
+              ":hover": {
+                backgroundColor: secondaryPurpleLight,
+                background: secondaryPurpleLight,
+                border: `2px solid ${secondaryPurpleLight}`,
+              },
+              ":disabled": {
+                opacity: "50%",
+                border: `2px solid ${secondaryPurpleLight}`,
+              },
+            }),
+          ...(ownerState.variant === "outlined" &&
+            ownerState.color === "orange" && {
+              ":hover": {
+                backgroundColor: secondaryOrangeLight,
+                background: secondaryOrangeLight,
+                border: `2px solid ${secondaryOrangeLight}`,
+              },
+              ":disabled": {
+                opacity: "50%",
+                border: `2px solid ${secondaryOrangeLight}`,
+              },
+            }),
+          ...(ownerState.variant === "outlined" &&
+            ownerState.color === "pink" && {
+              ":hover": {
+                backgroundColor: secondaryPinkLight,
+                background: secondaryPinkLight,
+                border: `2px solid ${secondaryPinkLight}`,
+              },
+              ":disabled": {
+                opacity: "50%",
+                border: `2px solid ${secondaryPinkLight}`,
+              },
+            }),
+          ...(ownerState.variant === "outlined" &&
+            ownerState.color === "turquoise" && {
+              ":hover": {
+                backgroundColor: secondaryTurquoiseLight,
+                background: secondaryTurquoiseLight,
+                border: `2px solid ${secondaryTurquoiseLight}`,
+              },
+              ":disabled": {
+                opacity: "50%",
+                border: `2px solid ${secondaryPinkLight}`,
+              },
+            }),
           borderRadius: "50px",
           boxShadow: "none",
           textTransform: "none",

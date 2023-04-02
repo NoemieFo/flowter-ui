@@ -7,7 +7,7 @@ import {
   styled,
 } from "@mui/material";
 import { Link } from "react-router-dom";
-import { menuItems } from "./navbar.component";
+import { websiteRoutes } from "website/routes";
 
 interface Props {
   handleIsOpen: (value: boolean) => void;
@@ -18,11 +18,11 @@ export const PhoneMenuComponent = ({ handleIsOpen }: Props): JSX.Element => {
 
   return (
     <PhoneMenu onClick={() => handleClick()}>
-      {menuItems.map((item, index) => (
+      {Object.values(websiteRoutes).map((item, index) => (
         <ListItem disablePadding key={index}>
           <ListItemButton>
             <ListItemIcon>{item.icon}</ListItemIcon>
-            <Link to={item.route}>{item.name}</Link>
+            <Link to={item.path}>{item.name}</Link>
           </ListItemButton>
           <Divider />
         </ListItem>
