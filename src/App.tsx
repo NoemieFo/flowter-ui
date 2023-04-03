@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { CssBaseline } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import { Route, Routes } from "react-router-dom";
+import { Navbar } from "website/pages/home/elements/navigation/navbar.component";
+import { theme } from "./theme";
+import { ContactUsPage } from "./website/pages/contact-us/contactUs.page";
+import { HomePage } from "./website/pages/home/home.page";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Navbar />
+      <Routes>
+        <Route path="" element={<HomePage />} />
+        {/* <Route path="/a-propos" element={<ContactUsPage />} />
+        <Route path="/fonctionnalites" element={<ContactUsPage />} />
+        <Route path="/tarifs" element={<ContactUsPage />} /> */}
+        <Route path="/nous-contacter" element={<ContactUsPage />} />
+      </Routes>
+    </ThemeProvider>
   );
-}
+};
 
 export default App;
