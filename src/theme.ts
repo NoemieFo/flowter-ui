@@ -132,7 +132,6 @@ export const theme = createTheme({
         fontSize: "15px",
       },
     },
-    // To use after h1
     subtitle1: {
       fontFamily: "Lato",
       fontSize: "24px",
@@ -142,7 +141,6 @@ export const theme = createTheme({
         fontSize: "18px",
       },
     },
-    // To use after h2
     subtitle2: {
       fontFamily: "Lato",
       fontSize: "18px",

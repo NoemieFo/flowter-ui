@@ -1,4 +1,10 @@
-import { Box, Typography, styled, useTheme } from "@mui/material";
+import {
+  Box,
+  Typography,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Image from "mui-image";
 import { ScribbleImg } from "pictures/scribbleImg.component";
 import ScribbleCompact from "pictures/scribble_compact.svg";
@@ -10,7 +16,7 @@ interface TitleProps {
   scribbleVerticalOffset?: string;
 }
 
-export const SectionTitle = ({
+export const PageTitle = ({
   text,
   scribbleColor,
   scribbleWidth,
@@ -20,12 +26,41 @@ export const SectionTitle = ({
   return (
     <TitleContainer component={"div"}>
       <TitleElements component={"div"}>
-        <Typography variant="h2">{text}</Typography>
+        <Typography variant="h1" zIndex="10">
+          {text}
+        </Typography>
+        <ScribbleImg
+          color={scribbleColor ?? theme.palette.green.light}
+          style={{
+            width: scribbleWidth ?? "410px",
+            marginTop: scribbleVerticalOffset ?? "-64px",
+          }}
+        />
+      </TitleElements>
+    </TitleContainer>
+  );
+};
+
+export const SectionTitle = ({
+  text,
+  scribbleColor,
+  scribbleWidth,
+  scribbleVerticalOffset,
+}: TitleProps) => {
+  const theme = useTheme();
+  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
+
+  return (
+    <TitleContainer component={"div"}>
+      <TitleElements component={"div"}>
+        <Typography variant="h2" zIndex="10">
+          {text}
+        </Typography>
         <ScribbleImg
           color={scribbleColor ?? theme.palette.green.light}
           style={{
             width: scribbleWidth ?? "270px",
-            marginTop: scribbleVerticalOffset ?? "-50px",
+            marginTop: scribbleVerticalOffset ?? isPhone ? "-52px" : "-56px",
           }}
         />
       </TitleElements>
@@ -38,16 +73,16 @@ export const SectionTitleCompact = ({
   scribbleVerticalOffset,
 }: TitleProps) => {
   return (
-    // <TitleContainer component={"div"}>
     <TitleElements component={"div"}>
-      <Typography variant="h2">{text}</Typography>
+      <Typography variant="h2" zIndex="10">
+        {text}
+      </Typography>
       <Image
         src={ScribbleCompact}
         style={{ marginTop: scribbleVerticalOffset ?? "-40px" }}
         width="150px"
       />
     </TitleElements>
-    // </TitleContainer>
   );
 };
 
@@ -56,10 +91,6 @@ const TitleElements = styled(Box)(() => ({
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
-
-  h2: {
-    zIndex: 10,
-  },
 }));
 
 const TitleContainer = styled(Box)(() => ({

@@ -18,7 +18,8 @@ export const WhatIsFlowter = (): JSX.Element => {
       <SectionTitle
         text="C'est quoi flowter ?"
         scribbleColor={theme.palette.pink.light}
-        scribbleWidth={isPhone ? "250px" : "300px"}
+        scribbleWidth={isPhone ? "230px" : "300px"}
+        scribbleVerticalOffset={isPhone ? "-52px" : undefined}
       />
       <Typography variant="subtitle2">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim

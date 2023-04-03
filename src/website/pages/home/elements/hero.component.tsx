@@ -51,8 +51,9 @@ export const HeroComponent = (): JSX.Element => {
           style={{
             position: "absolute",
             bottom: "0",
-            marginLeft: "-35px",
+            marginLeft: "-40px",
             zIndex: "-10",
+            width: "380px",
           }}
         />
       )}
