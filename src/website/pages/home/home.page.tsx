@@ -1,7 +1,6 @@
-import { Box, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import PricesMobile from "pictures/prices_mobile.svg";
 import { FeaturesSection } from "./elements/features.component";
-import { Footer } from "./elements/footer.component";
 import { HeroComponent } from "./elements/hero.component";
 import { PricesSection } from "./elements/prices.component";
 import { WhatIsFlowter } from "./elements/whatIsFlowter.component";
@@ -36,7 +35,18 @@ export const HomePage = (): JSX.Element => {
           }}
         />
       )}
-      <Footer />
+      {/* TODO: use generic footer once done */}
+      <Box
+        height="150px"
+        bgcolor={theme.palette.primary.light}
+        sx={{
+          [theme.breakpoints.down("sm")]: {
+            marginTop: "174px",
+          },
+        }}
+      >
+        <Typography variant="body1">Footer will come here!!</Typography>
+      </Box>
     </>
   );
 };

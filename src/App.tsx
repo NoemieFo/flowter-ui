@@ -3,7 +3,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "website/pages/home/elements/navigation/navbar.component";
 import { theme } from "./theme";
-import { ContactUsPage } from "./website/pages/contact-us/contact-us.page";
+import { ContactUsPage } from "./website/pages/contact-us/contactUs.page";
 import { HomePage } from "./website/pages/home/home.page";
 
 const App = () => {
