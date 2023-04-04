@@ -1,5 +1,6 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import { PropsWithChildren } from "react";
+import { Breakpoints } from "./constants/breakpoints";
 
 interface Props extends PropsWithChildren {}
 
@@ -13,6 +14,8 @@ export const PageHeaderContainer = ({ children }: Props) => {
         display: "flex",
         flexDirection: "column",
         justifyContent: isPhone ? "flex-start" : "center",
+        rowGap: !isPhone ? "18px" : undefined,
+        maxWidth: Breakpoints.xl,
       }}
     >
       {children}

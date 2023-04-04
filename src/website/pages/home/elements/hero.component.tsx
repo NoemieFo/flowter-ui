@@ -9,6 +9,7 @@ import { ButtonMainComponent } from "common/buttons.component";
 import Parking from "pictures/home_parking.svg";
 import { ArrowIcon } from "pictures/icons/arrowIcon.component";
 import { ScribbleImg } from "pictures/scribbleImg.component";
+import { websiteRoutes } from "website/constants/routes";
 
 export const HeroComponent = (): JSX.Element => {
   const theme = useTheme();
@@ -74,7 +75,11 @@ export const HeroComponent = (): JSX.Element => {
         {/* <div> */}
         {header}
         {subheader}
-        <ButtonMainComponent text="Découvrir" icon={<ArrowIcon />} />
+        <ButtonMainComponent
+          text="Découvrir"
+          icon={<ArrowIcon />}
+          path={websiteRoutes["features"].path}
+        />
         {/* </div> */}
       </LeftColumn>
       <Box
