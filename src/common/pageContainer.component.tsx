@@ -17,7 +17,7 @@ export const PageContainer = ({ children }: Props) => {
           marginBottom: "50px",
           display: "flex",
           flexDirection: "column",
-          rowGap: "20px",
+          rowGap: "40px",
         }}
       >
         {children}

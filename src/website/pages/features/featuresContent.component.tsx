@@ -6,6 +6,7 @@ import { features } from "website/constants/features";
 export const FeaturesContent = (): JSX.Element => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
+  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   const isPair = (number: number) => {
     return number % 2 === 0;
@@ -14,10 +15,9 @@ export const FeaturesContent = (): JSX.Element => {
   const grid = (
     <Grid
       container
-      spacing={8}
+      spacing={isPhone ? 4 : 8}
       alignItems="center"
       columns={{ xs: 1, sm: 12 }}
-      margin="auto"
     >
       {features.map((feature, index) => {
         const columnImg = (
@@ -25,7 +25,7 @@ export const FeaturesContent = (): JSX.Element => {
             <Image
               src={feature.img.path}
               alt={feature.img.description}
-              style={{ maxWidth: "250px" }}
+              style={{ maxWidth: isPhone ? "180px" : "250px" }}
             />
           </Grid>
         );

@@ -26,7 +26,7 @@ export const FeaturesPage = () => {
           at lacinia ac, congue sit amet urna.
         </Typography>
       </PageHeaderContainer>
-      <Box sx={{ maxWidth: Breakpoints.md }}>
+      <Box sx={{ maxWidth: Breakpoints.md, margin: "auto" }}>
         <FeaturesContent />
       </Box>
     </PageContainer>
