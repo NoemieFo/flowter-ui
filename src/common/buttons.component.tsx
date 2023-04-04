@@ -69,7 +69,7 @@ export const MoreInformationButton = ({ path }: MoreInformationButtonProps) => {
   console.log(path);
   return (
     <LinkToPage to={path}>
-      En savoir plus <ArrowIcon />
+      {path} <ArrowIcon />
     </LinkToPage>
   );
 };
