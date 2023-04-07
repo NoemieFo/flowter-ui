@@ -13,9 +13,9 @@ import {
 import { SectionTitle } from "common/titles.component";
 import Image from "mui-image";
 import Features from "pictures/features.svg";
-
 import { lightGrey } from "theme";
 import { features } from "website/constants/features";
+import { websiteRoutes } from "website/constants/routes";
 
 export const FeaturesSection = (): JSX.Element => {
   const theme = useTheme();
@@ -70,8 +70,8 @@ export const FeaturesSection = (): JSX.Element => {
               <CardContainer>
                 {!isPhone && (
                   <Image
-                    src={feature.img.path}
-                    alt={feature.img.description}
+                    src={feature.avatar.path}
+                    alt={feature.avatar.description}
                     width="172px"
                     className="feature-img"
                   />
@@ -80,9 +80,13 @@ export const FeaturesSection = (): JSX.Element => {
                   {feature.title}
                 </Typography>
                 <Typography variant="body1" color="black">
-                  {feature.description}
+                  {feature.descriptionShorten}
                 </Typography>
-                {!isPhone && <MoreInformationButton path={feature.path} />}
+                {!isPhone && (
+                  <MoreInformationButton
+                    path={`${feature.path}#${feature.id}`}
+                  />
+                )}
               </CardContainer>
             </Grid>
           ))}
@@ -91,6 +95,7 @@ export const FeaturesSection = (): JSX.Element => {
       <ButtonSecondaryComponent
         text={`${isPhone ? "Voir" : "Découvrir"} toutes les fonctionnalités`}
         color="purple"
+        path={websiteRoutes["features"].path}
       />
     </FeaturesContainer>
   );

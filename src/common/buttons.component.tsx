@@ -6,36 +6,39 @@ export interface ButtonProps {
   disabled?: boolean;
   text: string;
   icon?: JSX.Element;
+  path?: string;
 }
 
 export const ButtonMainComponent = ({
   text,
   icon,
   disabled,
+  path,
 }: ButtonProps): JSX.Element => {
   const theme = useTheme();
   return (
-    <Button
-      color="primary"
-      variant="contained"
-      disabled={disabled}
-      sx={{
-        width: "fit-content",
-        ":hover": {
-          backgroundColor: theme.palette.secondary.main,
-          color: "white",
-        },
-      }}
-    >
-      {text}
-      {icon}
-    </Button>
+    <Link to={path ?? ""} style={{ textDecoration: "none" }}>
+      <Button
+        color="primary"
+        variant="contained"
+        disabled={disabled}
+        sx={{
+          width: "fit-content",
+          ":hover": {
+            backgroundColor: theme.palette.secondary.main,
+            color: "white",
+          },
+        }}
+      >
+        {text}
+        {icon}
+      </Button>
+    </Link>
   );
 };
 
 export interface ButtonSecondaryProps extends ButtonProps {
   color: any;
-  path?: string;
 }
 
 export const ButtonSecondaryComponent = ({
@@ -63,6 +66,7 @@ interface MoreInformationButtonProps {
 }
 
 export const MoreInformationButton = ({ path }: MoreInformationButtonProps) => {
+  console.log(path);
   return (
     <LinkToPage to={path}>
       En savoir plus <ArrowIcon />
@@ -141,4 +145,8 @@ const FormButtonGroup = styled(Box)(({ theme }) => ({
   justifyContent: "flex-end",
   marginTop: "20px",
   columnGap: "40px",
+
+  [theme.breakpoints.down("sm")]: {
+    justifyContent: "center",
+  },
 }));

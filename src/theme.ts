@@ -1,4 +1,5 @@
 import { createTheme } from "@mui/material/styles";
+import { Breakpoints } from "common/constants/breakpoints";
 
 export const lightGrey = "#F5F5F5";
 const mainBlue = "#35A3E7";
@@ -57,14 +58,6 @@ declare module "@mui/material/styles" {
     lg: true;
     xl: true;
   }
-}
-
-enum Breakpoints {
-  xs = 0,
-  sm = 600,
-  md = 960,
-  lg = 1200,
-  xl = 1536,
 }
 
 export const theme = createTheme({

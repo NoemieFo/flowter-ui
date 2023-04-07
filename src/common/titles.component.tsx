@@ -93,8 +93,10 @@ const TitleElements = styled(Box)(() => ({
   flexDirection: "column",
 }));
 
-const TitleContainer = styled(Box)(() => ({
+const TitleContainer = styled(Box)(({ theme }) => ({
   display: "flex",
-  justifyContent: "center",
-  marginBottom: "20px",
+
+  [theme.breakpoints.up("sm")]: {
+    justifyContent: "center",
+  },
 }));
