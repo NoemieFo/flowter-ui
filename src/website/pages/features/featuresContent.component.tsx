@@ -1,7 +1,7 @@
 import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Image from "mui-image";
 import React from "react";
-import { features } from "website/constants/features";
+import { features } from "~/website/constants/features";
 
 export const FeaturesContent = (): JSX.Element => {
   const theme = useTheme();

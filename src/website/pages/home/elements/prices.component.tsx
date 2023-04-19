@@ -1,12 +1,19 @@
-import { Box, Grid, Typography, styled, useMediaQuery } from "@mui/material";
-import { ButtonSecondaryComponent } from "common/buttons.component";
-import { SectionTitleCompact } from "common/titles.component";
+import {
+  Box,
+  Grid,
+  Typography,
+  styled,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
 import Image from "mui-image";
-import Prices from "pictures/prices.svg";
-import { theme } from "theme";
-import { websiteRoutes } from "website/constants/routes";
+import { ButtonSecondaryComponent } from "~/common/buttons.component";
+import { SectionTitleCompact } from "~/common/titles.component";
+import Prices from "~/pictures/prices.svg";
+import { websiteRoutes } from "~/website/constants/routes";
 
 export const PricesSection = (): JSX.Element => {
+  const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
@@ -44,7 +51,7 @@ export const PricesSection = (): JSX.Element => {
   );
 };
 
-const PricesContainer = styled(Box)(() => ({
+const PricesContainer = styled(Box)(({ theme }) => ({
   padding: "50px 40px",
 
   ".prices-right-column": {

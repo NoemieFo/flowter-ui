@@ -7,12 +7,12 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import React from "react";
 import {
   ButtonMainComponent,
   ClearFormButton,
   FormButtonGroupComponent,
-} from "common/buttons.component";
-import React from "react";
+} from "~/common/buttons.component";
 
 interface MailData {
   name: string;

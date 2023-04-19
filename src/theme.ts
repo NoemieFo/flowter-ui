@@ -1,5 +1,5 @@
 import { createTheme } from "@mui/material/styles";
-import { Breakpoints } from "common/constants/breakpoints";
+import { Breakpoints } from "~/common/constants/breakpoints";
 
 export const lightGrey = "#F5F5F5";
 const mainBlue = "#35A3E7";
@@ -29,6 +29,7 @@ declare module "@mui/material/styles" {
     pink: Palette["secondary"];
     turquoise: Palette["secondary"];
     green: Palette["secondary"];
+    lightGrey: Palette["secondary"];
   }
 
   interface PaletteOptions {
@@ -37,6 +38,7 @@ declare module "@mui/material/styles" {
     pink: PaletteOptions["secondary"];
     turquoise: PaletteOptions["secondary"];
     green: PaletteOptions["secondary"];
+    lightGrey: PaletteOptions["secondary"];
   }
 }
 
@@ -81,6 +83,7 @@ export const theme = createTheme({
     turquoise: { main: secondaryTurquoise, light: secondaryTurquoiseLight },
     pink: { main: secondaryPink, light: secondaryPinkLight },
     green: { main: secondaryGreen, light: secondaryGreenLight },
+    lightGrey: { main: lightGrey },
   },
   typography: {
     fontFamily: ["Lato", "Arial", "sans-serif"].join(","),

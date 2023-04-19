@@ -1,8 +1,8 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { Breakpoints } from "common/constants/breakpoints";
-import { PageContainer } from "common/pageContainer.component";
-import { PageHeaderContainer } from "common/pageHeaderContainer.component";
-import { PageTitle } from "common/titles.component";
+import { Breakpoints } from "~/common/constants/breakpoints";
+import { PageContainer } from "~/common/pageContainer.component";
+import { PageHeaderContainer } from "~/common/pageHeaderContainer.component";
+import { PageTitle } from "~/common/titles.component";
 import { FeaturesContent } from "./featuresContent.component";
 
 export const FeaturesPage = () => {

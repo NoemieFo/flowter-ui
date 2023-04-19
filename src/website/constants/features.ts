@@ -1,15 +1,14 @@
-import FollowMaintenance from "pictures/follow_maintenance.svg";
-import FollowMaintenanceAvatar from "pictures/follow_maintenance_avatar.svg";
-import HandleUsers from "pictures/handle_users.svg";
-import HandleUsersAvatar from "pictures/handle_users_avatar.svg";
-// import ManageFleet from "pictures/manage_your_fleet.svg";
-import ManageFleetAvatar from "pictures/manage_your_fleet_avatar.svg";
-import MultipleDevices from "pictures/multiple_devices.svg";
-import MultipleDevicesAvatar from "pictures/multiple_devices_avatar.svg";
-import PlanRides from "pictures/plan_rides.svg";
-import PlanRidesAvatar from "pictures/plan_rides_avatar.svg";
-import VisualizeStats from "pictures/visualize_stats.svg";
-import VisualizeStatsAvatar from "pictures/visualize_stats_avatar.svg";
+import FollowMaintenance from "~/pictures/follow_maintenance.svg";
+import FollowMaintenanceAvatar from "~/pictures/follow_maintenance_avatar.svg";
+import HandleUsers from "~/pictures/handle_users.svg";
+import HandleUsersAvatar from "~/pictures/handle_users_avatar.svg";
+import ManageFleetAvatar from "~/pictures/manage_your_fleet_avatar.svg";
+import MultipleDevices from "~/pictures/multiple_devices.svg";
+import MultipleDevicesAvatar from "~/pictures/multiple_devices_avatar.svg";
+import PlanRides from "~/pictures/plan_rides.svg";
+import PlanRidesAvatar from "~/pictures/plan_rides_avatar.svg";
+import VisualizeStats from "~/pictures/visualize_stats.svg";
+import VisualizeStatsAvatar from "~/pictures/visualize_stats_avatar.svg";
 import { websiteRoutes } from "./routes";
 
 export interface Feature {
