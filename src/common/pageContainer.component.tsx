@@ -1,6 +1,6 @@
 import { Container, useMediaQuery, useTheme } from "@mui/material";
 import { PropsWithChildren } from "react";
-import { Footer } from "website/pages/home/elements/footer.component";
+import { Footer } from "~/website/pages/home/elements/footer.component";
 
 interface Props extends PropsWithChildren {}
 

@@ -1,5 +1,5 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import PricesMobile from "pictures/prices_mobile.svg";
+import PricesMobile from "~/pictures/prices_mobile.svg";
 import { FeaturesSection } from "./elements/features.component";
 import { HeroComponent } from "./elements/hero.component";
 import { PricesSection } from "./elements/prices.component";

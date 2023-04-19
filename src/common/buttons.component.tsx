@@ -1,6 +1,6 @@
 import { Box, Button, styled, useTheme } from "@mui/material";
-import { ArrowIcon } from "pictures/icons/arrowIcon.component";
 import { Link } from "react-router-dom";
+import { ArrowIcon } from "~/pictures/icons/arrowIcon.component";
 
 export interface ButtonProps {
   disabled?: boolean;

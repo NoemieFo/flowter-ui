@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
-import { websiteRoutes } from "website/constants/routes";
+import { websiteRoutes } from "~/website/constants/routes";
 import { PhoneMenuComponent } from "./phoneMenu.component";
 
 export const Navbar = () => {

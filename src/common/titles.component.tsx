@@ -6,8 +6,8 @@ import {
   useTheme,
 } from "@mui/material";
 import Image from "mui-image";
-import { ScribbleImg } from "pictures/scribbleImg.component";
-import ScribbleCompact from "pictures/scribble_compact.svg";
+import { ScribbleImg } from "~/pictures/scribbleImg.component";
+import ScribbleCompact from "~/pictures/scribble_compact.svg";
 
 interface TitleProps {
   text: string;
