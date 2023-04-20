@@ -14,6 +14,7 @@ interface TitleProps {
   scribbleColor?: string;
   scribbleWidth?: string;
   scribbleVerticalOffset?: string;
+  compact?: boolean;
 }
 
 export const PageTitle = ({
@@ -21,6 +22,7 @@ export const PageTitle = ({
   scribbleColor,
   scribbleWidth,
   scribbleVerticalOffset,
+  compact,
 }: TitleProps) => {
   const theme = useTheme();
   return (
@@ -29,13 +31,21 @@ export const PageTitle = ({
         <Typography variant="h1" zIndex="10">
           {text}
         </Typography>
-        <ScribbleImg
-          color={scribbleColor ?? theme.palette.green.light}
-          style={{
-            width: scribbleWidth ?? "410px",
-            marginTop: scribbleVerticalOffset ?? "-64px",
-          }}
-        />
+        {compact ? (
+          <Image
+            src={ScribbleCompact}
+            width={scribbleWidth ?? "220px"}
+            wrapperStyle={{ marginTop: scribbleVerticalOffset ?? "-62px" }}
+          />
+        ) : (
+          <ScribbleImg
+            color={scribbleColor ?? theme.palette.green.light}
+            style={{
+              width: scribbleWidth ?? "410px",
+              marginTop: scribbleVerticalOffset ?? "-64px",
+            }}
+          />
+        )}
       </TitleElements>
     </TitleContainer>
   );

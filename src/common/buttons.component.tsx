@@ -1,5 +1,6 @@
 import { Box, Button, styled, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import { ArrowIcon } from "~/pictures/icons/arrowIcon.component";
 
 export interface ButtonProps {
@@ -65,16 +66,25 @@ interface MoreInformationButtonProps {
   path: string;
 }
 
-export const MoreInformationButton = ({ path }: MoreInformationButtonProps) => {
-  console.log(path);
+export const MoreInformationButtonWithAnchor = ({
+  path,
+}: MoreInformationButtonProps) => {
   return (
-    <LinkToPage to={path}>
+    <LinkWithAnchorButton to={path}>
       En savoir plus <ArrowIcon />
-    </LinkToPage>
+    </LinkWithAnchorButton>
   );
 };
 
-const LinkToPage = styled(Link)(({ theme }) => ({
+export const MoreInformationButton = ({ path }: MoreInformationButtonProps) => {
+  return (
+    <LinkButton to={path}>
+      En savoir plus <ArrowIcon />
+    </LinkButton>
+  );
+};
+
+const linksStyle = {
   textDecoration: "none",
   color: "black",
   display: "flex",
@@ -82,11 +92,22 @@ const LinkToPage = styled(Link)(({ theme }) => ({
   fontFamily: "Poppins",
   fontWeight: "700",
   fontSize: "16px",
-  borderBottom: `2px solid ${theme.palette.green.main}`,
   width: "fit-content",
   margin: "30px auto",
   paddingBottom: "4px",
+};
 
+const LinkWithAnchorButton = styled(HashLink)(({ theme }) => ({
+  ...linksStyle,
+  borderBottom: `2px solid ${theme.palette.green.main}`,
+  [theme.breakpoints.down("sm")]: {
+    margin: "30px 0px 0px 0px",
+  },
+}));
+
+const LinkButton = styled(Link)(({ theme }) => ({
+  ...linksStyle,
+  borderBottom: `2px solid ${theme.palette.green.main}`,
   [theme.breakpoints.down("sm")]: {
     margin: "30px 0px 0px 0px",
   },

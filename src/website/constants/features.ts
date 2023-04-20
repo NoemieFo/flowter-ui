@@ -40,7 +40,6 @@ export const features: Feature[] = [
   },
   {
     id: 2,
-
     title: "Gérez votre parc",
     avatar: { path: ManageFleetAvatar, description: "gestion de parc" },
     img: { path: ManageFleetAvatar, description: "gestion de parc" },
@@ -52,7 +51,6 @@ export const features: Feature[] = [
   },
   {
     id: 3,
-
     title: "Visualisez des statistiques",
     avatar: {
       path: VisualizeStatsAvatar,

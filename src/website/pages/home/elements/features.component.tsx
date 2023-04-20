@@ -9,11 +9,10 @@ import {
 import Image from "mui-image";
 import {
   ButtonSecondaryComponent,
-  MoreInformationButton,
+  MoreInformationButtonWithAnchor,
 } from "~/common/buttons.component";
 import { SectionTitle } from "~/common/titles.component";
 import Features from "~/pictures/features.svg";
-// import { lightGrey } from "~/the/me";
 import { features } from "~/website/constants/features";
 import { websiteRoutes } from "~/website/constants/routes";
 
@@ -83,7 +82,7 @@ export const FeaturesSection = (): JSX.Element => {
                   {feature.descriptionShorten}
                 </Typography>
                 {!isPhone && (
-                  <MoreInformationButton
+                  <MoreInformationButtonWithAnchor
                     path={`${feature.path}#${feature.id}`}
                   />
                 )}
