@@ -10,8 +10,8 @@ import {
 import React from "react";
 import {
   ButtonMainComponent,
-  ClearFormButton,
   FormButtonGroupComponent,
+  SecondaryFormButton,
 } from "~/common/buttons.component";
 
 interface MailData {
@@ -140,7 +140,9 @@ export const ContactUsForm = () => {
             label="En cochant cette case, je reconnais avoir lu et accepté blablablablablablabla."
           />
           <FormButtonGroupComponent
-            secondaryButton={<ClearFormButton onClear={onClearForm} />}
+            secondaryButton={
+              <SecondaryFormButton onClick={onClearForm} textButton="Effacer" />
+            }
             mainButton={
               <ButtonMainComponent
                 text="Envoyer"

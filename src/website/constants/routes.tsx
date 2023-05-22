@@ -3,6 +3,7 @@ import EuroIcon from "@mui/icons-material/Euro";
 import FormatListBulletedIcon from "@mui/icons-material/FormatListBulleted";
 import Groups2Icon from "@mui/icons-material/Groups2";
 import HomeIcon from "@mui/icons-material/Home";
+import PersonIcon from "@mui/icons-material/Person";
 
 export interface RouteDetails {
   name: string;
@@ -10,7 +11,7 @@ export interface RouteDetails {
   path: string;
 }
 
-type RouteKey = "home" | "about" | "features" | "contact" | "prices";
+type RouteKey = "home" | "about" | "features" | "contact" | "prices" | "login";
 
 export const websiteRoutes: Record<RouteKey, RouteDetails> = {
   home: {
@@ -37,5 +38,10 @@ export const websiteRoutes: Record<RouteKey, RouteDetails> = {
     name: "Tarifs",
     icon: <EuroIcon style={{ color: "white" }} />,
     path: "/tarifs",
+  },
+  login: {
+    name: "Se connecter",
+    icon: <PersonIcon style={{ color: "white" }} />,
+    path: "/se-connecter",
   },
 };

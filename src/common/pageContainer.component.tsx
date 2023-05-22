@@ -1,4 +1,4 @@
-import { Container, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Container, styled, useMediaQuery, useTheme } from "@mui/material";
 import { PropsWithChildren } from "react";
 import { Footer } from "~/website/pages/home/elements/footer.component";
 
@@ -9,20 +9,25 @@ export const PageContainer = ({ children }: Props) => {
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <div>
+    <BoxContainer>
       <Container
         maxWidth="lg"
         sx={{
           marginTop: isPhone ? "30px" : "50px",
           marginBottom: "50px",
-          display: "flex",
-          flexDirection: "column",
           rowGap: "40px",
         }}
       >
         {children}
       </Container>
       <Footer />
-    </div>
+    </BoxContainer>
   );
 };
+
+const BoxContainer = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "space-between",
+  minHeight: "100vh",
+}));

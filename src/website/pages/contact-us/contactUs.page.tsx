@@ -15,7 +15,6 @@ export const ContactUsPage = () => {
         <PageTitle
           text="Nous contacter"
           scribbleColor={theme.palette.turquoise.light}
-          scribbleWidth={isPhone ? "260px" : "450px"}
           scribbleVerticalOffset={isPhone ? "-54px" : undefined}
         />
         <Typography variant="subtitle2">

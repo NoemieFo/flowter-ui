@@ -1,7 +1,7 @@
 import { createTheme } from "@mui/material/styles";
 import { Breakpoints } from "~/common/constants/breakpoints";
 
-export const lightGrey = "#F5F5F5";
+const lightGrey = "#F5F5F5";
 const mainBlue = "#35A3E7";
 const lightBlue = "#EBF0F4";
 const darkBlue = "#455A64";

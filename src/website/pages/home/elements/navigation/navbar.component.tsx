@@ -47,21 +47,31 @@ export const Navbar = () => {
       >
         <PhoneMenuComponent handleIsOpen={handleIsOpen} />
       </PhoneMenuWrapper>
+      <Link to={websiteRoutes["login"].path}>
+        <ConnectButton variant="contained">Se connecter</ConnectButton>
+      </Link>
     </Toolbar>
   );
 
+  const menuItems = Object.fromEntries(
+    Object.entries(websiteRoutes).filter(([key, _]) => key !== "login")
+  );
+
+  console.log(menuItems);
   const desktopNavbar = (
     <Toolbar>
       <Typography variant="h4">Logo</Typography>
       <DesktopMenuWrapper>
         <LinkWrapper>
-          {Object.values(websiteRoutes).map((item, index) => (
+          {Object.values(menuItems).map((item, index) => (
             <Link key={index} to={item.path}>
               {item.name}
             </Link>
           ))}
         </LinkWrapper>
-        <ConnectButton variant="contained">Se connecter</ConnectButton>
+        <Link to={websiteRoutes["login"].path}>
+          <ConnectButton variant="contained">Se connecter</ConnectButton>
+        </Link>
       </DesktopMenuWrapper>
     </Toolbar>
   );
