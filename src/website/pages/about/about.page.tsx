@@ -11,10 +11,11 @@ export const AboutPage = () => {
     <PageContainer>
       <PageHeaderContainer>
         <PageTitle
+          compact
           text="A propos"
           scribbleColor={theme.palette.pink.light}
-          scribbleWidth={isPhone ? "260px" : "450px"}
-          scribbleVerticalOffset={isPhone ? "-54px" : undefined}
+          scribbleWidth={isPhone ? "260px" : ""}
+          scribbleVerticalOffset={isPhone ? "-54px" : "-64px"}
         />
         <Typography variant="subtitle2">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia

@@ -12,10 +12,9 @@ export const PricesPage = () => {
       <PageHeaderContainer>
         <PageTitle
           text="Tarifs"
-          // scribbleColor={theme.palette.orange.light}
-          // scribbleWidth={isPhone ? "260px" : "450px"}
-          // scribbleVerticalOffset={isPhone ? "-54px" : undefined}
+          scribbleColor={theme.palette.orange.light}
           compact
+          scribbleVerticalOffset={isPhone ? "-70px" : "-64px"}
         />
         <Typography variant="subtitle2">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia

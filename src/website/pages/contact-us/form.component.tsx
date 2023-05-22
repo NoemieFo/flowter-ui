@@ -53,7 +53,6 @@ export const ContactUsForm = () => {
     setData(emptyMailData);
   };
 
-  console.log(checked);
   const form = (
     <FormGroup>
       <Grid container spacing={2} columns={{ xs: 1, sm: 12 }}>

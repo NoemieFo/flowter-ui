@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import Image from "mui-image";
 import { ButtonSecondaryComponent } from "~/common/buttons.component";
-import { SectionTitleCompact } from "~/common/titles.component";
+import { SectionTitle } from "~/common/titles.component";
 import Prices from "~/pictures/prices.svg";
 import { websiteRoutes } from "~/website/constants/routes";
 
@@ -30,9 +30,10 @@ export const PricesSection = (): JSX.Element => {
           </Grid>
         )}
         <Grid item xs={8} className="prices-right-column">
-          <SectionTitleCompact
+          <SectionTitle
             text="Tarifs"
             scribbleVerticalOffset={isPhone ? "-35px" : undefined}
+            compact
           />
           <Typography variant="body1">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia
@@ -61,7 +62,7 @@ const PricesContainer = styled(Box)(({ theme }) => ({
     alignItems: "flex-start",
     justifyContent: "center",
     marginBottom: "20px",
-    rowGap: "30px",
+    rowGap: "20px",
   },
 
   [theme.breakpoints.down("sm")]: {

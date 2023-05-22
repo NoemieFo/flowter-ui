@@ -34,6 +34,9 @@ export const WhatIsFlowter = (): JSX.Element => {
 };
 
 const WhatIsFlowterSection = styled(Box)(({ theme }) => ({
+  display: "flex",
+  flexDirection: "column",
+  rowGap: "20px",
   maxWidth: "1200px",
   margin: "auto",
   padding: "0 80px 20px 80px",
