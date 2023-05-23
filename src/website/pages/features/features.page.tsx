@@ -1,5 +1,4 @@
-import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
-import { Breakpoints } from "~/common/constants/breakpoints";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import { PageContainer } from "~/common/pageContainer.component";
 import { PageHeaderContainer } from "~/common/pageHeaderContainer.component";
 import { PageTitle } from "~/common/titles.component";
@@ -26,9 +25,7 @@ export const FeaturesPage = () => {
           at lacinia ac, congue sit amet urna.
         </Typography>
       </PageHeaderContainer>
-      <Box sx={{ maxWidth: Breakpoints.md, margin: "auto" }}>
-        <FeaturesContent />
-      </Box>
+      <FeaturesContent />
     </PageContainer>
   );
 };

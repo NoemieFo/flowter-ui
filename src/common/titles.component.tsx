@@ -6,14 +6,18 @@ import {
   useTheme,
 } from "@mui/material";
 import Image from "mui-image";
-import { ScribbleImg } from "~/pictures/scribbleImg.component";
 import ScribbleCompact from "~/pictures/scribble_compact.svg";
+import {
+  ScribbleCompactImg,
+  ScribbleImg,
+} from "~/pictures/scribbles.component";
 
 interface TitleProps {
   text: string;
   scribbleColor?: string;
   scribbleWidth?: string;
   scribbleVerticalOffset?: string;
+  compact?: boolean;
 }
 
 export const PageTitle = ({
@@ -21,21 +25,36 @@ export const PageTitle = ({
   scribbleColor,
   scribbleWidth,
   scribbleVerticalOffset,
+  compact,
 }: TitleProps) => {
   const theme = useTheme();
+  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <TitleContainer component={"div"}>
       <TitleElements component={"div"}>
         <Typography variant="h1" zIndex="10">
           {text}
         </Typography>
-        <ScribbleImg
-          color={scribbleColor ?? theme.palette.green.light}
-          style={{
-            width: scribbleWidth ?? "410px",
-            marginTop: scribbleVerticalOffset ?? "-64px",
-          }}
-        />
+        {compact ? (
+          <ScribbleCompactImg
+            color={scribbleColor ?? theme.palette.green.light}
+            style={{
+              marginTop: isPhone ? "-55px" : scribbleVerticalOffset ?? "-60px",
+              width: isPhone ? "150px" : scribbleWidth ?? "220px",
+              height: "90px",
+            }}
+          />
+        ) : (
+          <ScribbleImg
+            color={scribbleColor ?? theme.palette.green.light}
+            style={{
+              width: scribbleWidth ?? "410px",
+              marginTop: isPhone ? "-56px" : scribbleVerticalOffset ?? "-64px",
+              height: "90px",
+            }}
+          />
+        )}
       </TitleElements>
     </TitleContainer>
   );
@@ -46,33 +65,12 @@ export const SectionTitle = ({
   scribbleColor,
   scribbleWidth,
   scribbleVerticalOffset,
+  compact,
 }: TitleProps) => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
-  return (
-    <TitleContainer component={"div"}>
-      <TitleElements component={"div"}>
-        <Typography variant="h2" zIndex="10">
-          {text}
-        </Typography>
-        <ScribbleImg
-          color={scribbleColor ?? theme.palette.green.light}
-          style={{
-            width: scribbleWidth ?? "270px",
-            marginTop: scribbleVerticalOffset ?? isPhone ? "-52px" : "-56px",
-          }}
-        />
-      </TitleElements>
-    </TitleContainer>
-  );
-};
-
-export const SectionTitleCompact = ({
-  text,
-  scribbleVerticalOffset,
-}: TitleProps) => {
-  return (
+  return compact ? (
     <TitleElements component={"div"}>
       <Typography variant="h2" zIndex="10">
         {text}
@@ -83,6 +81,21 @@ export const SectionTitleCompact = ({
         width="150px"
       />
     </TitleElements>
+  ) : (
+    <TitleContainer component={"div"}>
+      <TitleElements component={"div"}>
+        <Typography variant="h2" zIndex="10">
+          {text}
+        </Typography>
+        <ScribbleImg
+          color={scribbleColor ?? theme.palette.green.light}
+          style={{
+            width: scribbleWidth ?? "250px",
+            marginTop: scribbleVerticalOffset ?? isPhone ? "-32px" : "-42px",
+          }}
+        />
+      </TitleElements>
+    </TitleContainer>
   );
 };
 

@@ -9,11 +9,10 @@ import {
 import Image from "mui-image";
 import {
   ButtonSecondaryComponent,
-  MoreInformationButton,
+  MoreInformationButtonWithAnchor,
 } from "~/common/buttons.component";
 import { SectionTitle } from "~/common/titles.component";
 import Features from "~/pictures/features.svg";
-// import { lightGrey } from "~/the/me";
 import { features } from "~/website/constants/features";
 import { websiteRoutes } from "~/website/constants/routes";
 
@@ -24,7 +23,7 @@ export const FeaturesSection = (): JSX.Element => {
   return (
     <FeaturesContainer
       component={"div"}
-      rowGap="30px"
+      rowGap="20px"
       bgcolor={theme.palette.lightGrey.main}
       textAlign={"center"}
       padding={"50px 40px"}
@@ -43,22 +42,20 @@ export const FeaturesSection = (): JSX.Element => {
         maxWidth="1200px"
         margin="auto"
         marginBottom="20px"
-        rowGap="30px"
+        rowGap="20px"
       >
-        <div>
-          <SectionTitle
-            text="Fonctionnalités"
-            scribbleColor={theme.palette.purple.light}
-            scribbleWidth={isPhone ? "230px" : "300px"}
-          />
-          <Typography variant="subtitle2" paragraph>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia
-            enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Sed
-            elementum nunc at neque feugiat porta. Phasellus rutrum efficitur
-            tempus. Cras id ex at erat porta lacinia. Etiam sem velit, ultricies
-            at lacinia ac, congue sit amet urna.
-          </Typography>
-        </div>
+        <SectionTitle
+          text="Fonctionnalités"
+          scribbleColor={theme.palette.purple.light}
+          scribbleWidth={isPhone ? "230px" : "300px"}
+        />
+        <Typography variant="subtitle2" paragraph>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia
+          enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Sed
+          elementum nunc at neque feugiat porta. Phasellus rutrum efficitur
+          tempus. Cras id ex at erat porta lacinia. Etiam sem velit, ultricies
+          at lacinia ac, congue sit amet urna.
+        </Typography>
         <Grid
           container
           spacing={{ sm: 4, md: 6 }}
@@ -83,7 +80,7 @@ export const FeaturesSection = (): JSX.Element => {
                   {feature.descriptionShorten}
                 </Typography>
                 {!isPhone && (
-                  <MoreInformationButton
+                  <MoreInformationButtonWithAnchor
                     path={`${feature.path}#${feature.id}`}
                   />
                 )}
@@ -115,6 +112,7 @@ const CardContainer = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  rowGap: "20px",
 
   ".feature-img": {
     marginBottom: "20px",
