@@ -54,7 +54,9 @@ export const Navbar = () => {
   );
 
   const menuItems = Object.fromEntries(
-    Object.entries(websiteRoutes).filter(([key, _]) => key !== "login")
+    Object.entries(websiteRoutes).filter(
+      ([key, _]) => key !== "login" && key !== "cgv"
+    )
   );
 
   console.log(menuItems);
