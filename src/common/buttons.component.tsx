@@ -242,12 +242,44 @@ const FormButtonGroupPhone = styled(Box)(({ theme }) => ({
 }));
 
 interface FooterButtonProps {
-  text: string;
   path: string;
+  text: string;
 }
-export const FooterButton = ({
-  text,
-  path,
-}: FooterButtonProps): JSX.Element => {
-  return <Link to={path}>{text}</Link>;
+
+export const FooterButton = ({ path, text }: FooterButtonProps) => {
+  return (
+    <Link to={path ?? ""} style={{ textDecoration: "none" }}>
+      <Button
+        color="secondary"
+        variant="text"
+        sx={{
+          minWidth: "0",
+          fontFamily: "Lato",
+          fontWeight: "500",
+          fontSize: "18px",
+          color: " #666666",
+          borderRadius: "0",
+          height: "30px",
+          padding: "0px",
+
+          ":hover": {
+            background: "none",
+            borderBottom: `2px solid #666666`,
+          },
+        }}
+      >
+        {text}
+      </Button>
+    </Link>
+  );
 };
+// interface FooterButtonProps {
+//   text: string;
+//   path: string;
+// }
+// export const FooterButton = ({
+//   text,
+//   path,
+// }: FooterButtonProps): JSX.Element => {
+//   return <Link to={path}>{text}</Link>;
+// };
