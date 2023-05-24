@@ -41,7 +41,7 @@ export const PageTitle = ({
             color={scribbleColor ?? theme.palette.green.light}
             style={{
               marginTop: isPhone ? "-55px" : scribbleVerticalOffset ?? "-60px",
-              width: isPhone ? "150px" : scribbleWidth ?? "220px",
+              width: isPhone ? "150px" : scribbleWidth ?? "292px",
               height: "90px",
             }}
           />
@@ -49,7 +49,7 @@ export const PageTitle = ({
           <ScribbleImg
             color={scribbleColor ?? theme.palette.green.light}
             style={{
-              width: scribbleWidth ?? "410px",
+              width: isPhone ? "260px" : scribbleWidth ?? "450px",
               marginTop: isPhone ? "-56px" : scribbleVerticalOffset ?? "-64px",
               height: "90px",
             }}

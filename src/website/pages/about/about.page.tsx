@@ -14,7 +14,6 @@ export const AboutPage = () => {
           compact
           text="A propos"
           scribbleColor={theme.palette.pink.light}
-          scribbleWidth={isPhone ? "260px" : ""}
           scribbleVerticalOffset={isPhone ? "-54px" : "-64px"}
         />
         <Typography variant="subtitle2">

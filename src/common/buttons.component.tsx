@@ -1,7 +1,8 @@
-import { Box, Button, styled, useTheme } from "@mui/material";
+import { Box, Button, styled, useMediaQuery, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
 import { ArrowIcon } from "~/pictures/icons/arrowIcon.component";
+import { theme } from "~/theme";
 
 export interface ButtonProps {
   disabled?: boolean;
@@ -48,16 +49,19 @@ export const ButtonSecondaryComponent = ({
   disabled,
   path,
 }: ButtonSecondaryProps): JSX.Element => {
+  const button = (
+    <Button
+      color={color}
+      variant="outlined"
+      disabled={disabled}
+      sx={{ width: "fit-content" }}
+    >
+      {text}
+    </Button>
+  );
   return (
     <Link to={path ?? ""} style={{ textDecoration: "none" }}>
-      <Button
-        color={color}
-        variant="outlined"
-        disabled={disabled}
-        sx={{ width: "fit-content" }}
-      >
-        {text}
-      </Button>
+      {button}
     </Link>
   );
 };
@@ -113,16 +117,20 @@ const LinkButton = styled(Link)(({ theme }) => ({
   },
 }));
 
-interface ClearFormButtonProps {
-  onClear: () => void;
+interface SecondaryFormButtonProps {
+  onClick: () => void;
+  text: string;
 }
 
-export const ClearFormButton = ({ onClear }: ClearFormButtonProps) => {
+export const SecondaryFormButton = ({
+  onClick,
+  text,
+}: SecondaryFormButtonProps) => {
   return (
     <Button
       color="secondary"
       variant="text"
-      onClick={onClear}
+      onClick={onClick}
       sx={{
         fontFamily: "Lato",
         fontWeight: "500",
@@ -139,7 +147,7 @@ export const ClearFormButton = ({ onClear }: ClearFormButtonProps) => {
         },
       }}
     >
-      Effacer
+      {text}
     </Button>
   );
 };
@@ -147,14 +155,25 @@ export const ClearFormButton = ({ onClear }: ClearFormButtonProps) => {
 interface FormButtonGroupProps {
   mainButton: JSX.Element;
   secondaryButton: JSX.Element;
+  centered?: boolean;
 }
 
 export const FormButtonGroupComponent = ({
   mainButton,
   secondaryButton,
+  centered,
 }: FormButtonGroupProps) => {
-  return (
-    <FormButtonGroup columnGap={"20px"}>
+  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
+  return isPhone ? (
+    <FormButtonGroupPhone>
+      {mainButton}
+      {secondaryButton}
+    </FormButtonGroupPhone>
+  ) : (
+    <FormButtonGroup
+      columnGap={"20px"}
+      sx={{ justifyContent: centered ? "center" : "flex-end" }}
+    >
       {secondaryButton} {mainButton}
     </FormButtonGroup>
   );
@@ -163,7 +182,6 @@ export const FormButtonGroupComponent = ({
 const FormButtonGroup = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  justifyContent: "flex-end",
   marginTop: "20px",
   columnGap: "40px",
 
@@ -171,3 +189,22 @@ const FormButtonGroup = styled(Box)(({ theme }) => ({
     justifyContent: "center",
   },
 }));
+
+const FormButtonGroupPhone = styled(Box)(({ theme }) => ({
+  paddingTop: "40px",
+  display: "flex",
+  flexDirection: "column",
+  rowGap: "20px",
+  alignItems: "center",
+}));
+
+interface FooterButtonProps {
+  text: string;
+  path: string;
+}
+export const FooterButton = ({
+  text,
+  path,
+}: FooterButtonProps): JSX.Element => {
+  return <Link to={path}>{text}</Link>;
+};

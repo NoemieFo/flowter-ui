@@ -14,7 +14,6 @@ export const FeaturesPage = () => {
         <PageTitle
           text="Fonctionnalités"
           scribbleColor={theme.palette.purple.light}
-          scribbleWidth={isPhone ? "260px" : "450px"}
           scribbleVerticalOffset={isPhone ? "-54px" : undefined}
         />
         <Typography variant="subtitle2">
