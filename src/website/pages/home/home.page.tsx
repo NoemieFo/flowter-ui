@@ -1,5 +1,6 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
 import PricesMobile from "~/pictures/prices_mobile.svg";
+import { WebsiteLayout } from "../website.layout";
 import { FeaturesSection } from "./elements/features.component";
 import { Footer } from "./elements/footer.component";
 import { HeroComponent } from "./elements/hero.component";
@@ -12,7 +13,7 @@ export const HomePage = (): JSX.Element => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <>
+    <WebsiteLayout>
       <Box
         height={isDesktop ? "calc(100vh - 64px)" : "auto"}
         width="100%"
@@ -37,6 +38,6 @@ export const HomePage = (): JSX.Element => {
         />
       )}
       <Footer />
-    </>
+    </WebsiteLayout>
   );
 };

@@ -117,6 +117,20 @@ export const theme = createTheme({
         fontSize: "16px",
       },
     },
+    h4: {
+      fontFamily: "Poppins",
+      fontWeight: "600",
+      fontSize: "16px",
+      color: "white",
+      lineHeight: "150%",
+    },
+    h5: {
+      fontFamily: "Lato",
+      fontWeight: "500",
+      fontSize: "16px",
+      color: "white",
+      lineHeight: "150%",
+    },
     body1: {
       fontFamily: "Lato",
       fontSize: "15px",
@@ -156,7 +170,6 @@ export const theme = createTheme({
           backgroundColor: lightBlue,
           boxShadow: "none",
           fontFamily: "Poppins",
-          fontWeight: "medium",
           fontSize: "18px",
         }),
       },
