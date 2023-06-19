@@ -39,7 +39,6 @@ export const HomePage = (): JSX.Element => {
           }}
         />
       )}
-      <Footer />
     </WebsiteLayout>
   );
 };
