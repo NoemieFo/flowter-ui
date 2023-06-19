@@ -273,13 +273,3 @@ export const FooterButton = ({ path, text }: FooterButtonProps) => {
     </Link>
   );
 };
-// interface FooterButtonProps {
-//   text: string;
-//   path: string;
-// }
-// export const FooterButton = ({
-//   text,
-//   path,
-// }: FooterButtonProps): JSX.Element => {
-//   return <Link to={path}>{text}</Link>;
-// };
