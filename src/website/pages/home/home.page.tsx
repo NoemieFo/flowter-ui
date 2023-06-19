@@ -13,7 +13,7 @@ export const HomePage = (): JSX.Element => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <WebsiteLayout>
+    <WebsiteLayout isHome={true}>
       <Box
         height={isDesktop ? "calc(100vh - 64px)" : "auto"}
         width="100%"
