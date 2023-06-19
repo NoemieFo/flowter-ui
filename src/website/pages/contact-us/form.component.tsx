@@ -141,7 +141,7 @@ export const ContactUsForm = () => {
           />
           <FormButtonGroupComponent
             secondaryButton={
-              <SecondaryFormButton onClick={onClearForm} textButton="Effacer" />
+              <SecondaryFormButton onClick={onClearForm} text="Effacer" />
             }
             mainButton={
               <ButtonMainComponent
