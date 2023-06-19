@@ -1,6 +1,5 @@
 import { Container, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
-import { Footer } from "~/website/pages/home/elements/footer.component";
 import { WebsiteLayout } from "~/website/pages/website.layout";
 
 export const PageContainer = ({ children }: React.PropsWithChildren) => {
@@ -21,7 +20,6 @@ export const PageContainer = ({ children }: React.PropsWithChildren) => {
       >
         {children}
       </Container>
-      <Footer />
     </WebsiteLayout>
   );
 };

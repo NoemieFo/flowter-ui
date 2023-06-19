@@ -1,5 +1,4 @@
 import { Box, useMediaQuery, useTheme } from "@mui/material";
-import { Footer } from "~/common/footer.component";
 import PricesMobile from "~/pictures/prices_mobile.svg";
 import { WebsiteLayout } from "../website.layout";
 import { FeaturesSection } from "./elements/features.component";
@@ -39,7 +38,6 @@ export const HomePage = (): JSX.Element => {
           }}
         />
       )}
-      <Footer />
     </WebsiteLayout>
   );
 };
