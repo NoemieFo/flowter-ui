@@ -13,20 +13,42 @@ import {
 } from "~/pictures/icons/logo_social_network.component";
 import { RouteDetails, websiteRoutes } from "~/website/constants/routes";
 
-export const Footer = () => {
+interface FooterProps {
+  isHome: boolean;
+}
+
+export const Footer = ({ isHome }: FooterProps): JSX.Element => {
   const theme = useTheme();
 
   const isTablet = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <BoxFooter>
+    <Grid
+      sx={{
+        // position: "fixed",
+        height: "250px",
+        display: "flex",
+        rowGap: "20px",
+        backgroundColor: theme.palette.primary.light,
+        flexDirection: "row",
+        [theme.breakpoints.down("md")]: {
+          flexDirection: "column",
+        },
+        [theme.breakpoints.down("sm")]: {
+          marginTop: isHome ? "180px" : "0px",
+        },
+      }}
+    >
       {isTablet && <FooterTablet isTablet={isTablet} />}
       {!isTablet && <FooterDesktop isTablet={isTablet} />}
-    </BoxFooter>
+    </Grid>
   );
 };
 
-const FooterTablet = ({ isTablet }: { isTablet: boolean }): JSX.Element => {
+interface FooterElementProps {
+  isTablet: boolean;
+}
+const FooterTablet = ({ isTablet }: FooterElementProps): JSX.Element => {
   return (
     <GridTablet>
       <Title />
@@ -36,7 +58,7 @@ const FooterTablet = ({ isTablet }: { isTablet: boolean }): JSX.Element => {
   );
 };
 
-const FooterDesktop = ({ isTablet }: { isTablet: boolean }): JSX.Element => {
+const FooterDesktop = ({ isTablet }: FooterElementProps): JSX.Element => {
   return (
     <>
       <GridLeftDesktop>
@@ -52,7 +74,7 @@ const Title = (): JSX.Element => {
   return <Typography variant="h2">Flowter</Typography>;
 };
 
-const Logos = ({ isTablet }: { isTablet: boolean }): JSX.Element => {
+const Logos = ({ isTablet }: FooterElementProps): JSX.Element => {
   return (
     <GridLogo>
       <FacebookIcon isTablet={isTablet} />
@@ -125,19 +147,5 @@ const GridRoutes = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
     gridTemplateColumns: "repeat(auto-fill, 50%)",
     rowGap: "10px",
-  },
-}));
-
-const BoxFooter = styled(Grid)(({ theme }) => ({
-  height: "250px",
-  display: "flex",
-  rowGap: "20px",
-  backgroundColor: theme.palette.primary.light,
-  flexDirection: "row",
-  [theme.breakpoints.down("md")]: {
-    flexDirection: "column",
-  },
-  [theme.breakpoints.down("sm")]: {
-    marginTop: "180px",
   },
 }));

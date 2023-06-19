@@ -24,7 +24,7 @@ export const websiteRoutes: Record<RouteKey, RouteDetails> = {
   home: {
     name: "Accueil",
     icon: <HomeIcon style={{ color: "white" }} />,
-    path: "",
+    path: "/",
   },
   about: {
     name: "A propos",

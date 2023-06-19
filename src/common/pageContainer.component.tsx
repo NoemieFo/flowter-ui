@@ -7,7 +7,7 @@ export const PageContainer = ({ children }: React.PropsWithChildren) => {
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <WebsiteLayout>
+    <WebsiteLayout isHome={false}>
       <Container
         maxWidth="lg"
         sx={{

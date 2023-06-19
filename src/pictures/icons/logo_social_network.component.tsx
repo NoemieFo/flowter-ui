@@ -23,11 +23,14 @@ const LogoSocialNetwork = (
   );
 };
 
-export const FacebookIcon = ({ isTablet }: { isTablet: boolean }) =>
+interface IconProps {
+  isTablet: boolean;
+}
+export const FacebookIcon = ({ isTablet }: IconProps) =>
   LogoSocialNetwork("", Facebook, "Logo Facebook", isTablet);
 
-export const InstagramIcon = ({ isTablet }: { isTablet: boolean }) =>
+export const InstagramIcon = ({ isTablet }: IconProps) =>
   LogoSocialNetwork("", Instagram, "Logo Instagram", isTablet);
 
-export const TwitterIcon = ({ isTablet }: { isTablet: boolean }) =>
+export const TwitterIcon = ({ isTablet }: IconProps) =>
   LogoSocialNetwork("", Twitter, "Logo Twitter", isTablet);
