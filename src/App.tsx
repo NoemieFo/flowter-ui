@@ -1,6 +1,9 @@
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 import { Route, Routes } from "react-router-dom";
+import { apps } from "./application/constants/applications";
+import { AddCrashPage } from "./application/pages/addCrash.page";
+import { DashboardPage } from "./application/pages/dashboard.page";
 import { theme } from "./theme";
 import { AboutPage } from "./website/pages/about/about.page";
 import { ContactUsPage } from "./website/pages/contact-us/contactUs.page";
@@ -21,6 +24,12 @@ const App = () => {
         <Route path="/tarifs" element={<PricesPage />} />
         <Route path="/nous-contacter" element={<ContactUsPage />} />
         <Route path="/se-connecter" element={<LoginPage />} />
+        {/* App */}
+        <Route path="/dashboard" element={<DashboardPage />} />
+        <Route
+          path={apps.crash.subPages["addCrash"].path}
+          element={<AddCrashPage />}
+        />
       </Routes>
     </ThemeProvider>
   );

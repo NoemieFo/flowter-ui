@@ -36,7 +36,7 @@ export const apps: Record<AppName, App> = {
     name: "Tableau de bord",
     icon: "",
     subPages: {
-      myDashBoard: {
+      myDashboard: {
         name: "Tableau de bord",
         icon: "",
         path: "",

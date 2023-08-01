@@ -7,13 +7,23 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "mui-image";
+import { useNavigate } from "react-router-dom";
 
 interface ListTitleProps {
   appName: string;
   appIcon: string;
+  appPath: string;
 }
 
-export const DrawerListItem = ({ appName, appIcon }: ListTitleProps) => {
+export const DrawerListItem = ({
+  appName,
+  appIcon,
+  appPath,
+}: ListTitleProps) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(appPath);
+  };
   return (
     <List disablePadding>
       <ListItem
@@ -22,7 +32,7 @@ export const DrawerListItem = ({ appName, appIcon }: ListTitleProps) => {
         sx={{ display: "block" }}
       >
         <ListItemButton
-          onClick={undefined}
+          onClick={handleClick}
           sx={{
             minHeight: 48,
             px: 1.8,

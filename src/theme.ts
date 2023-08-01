@@ -52,6 +52,16 @@ declare module "@mui/material/Button" {
   }
 }
 
+declare module "@mui/material/SvgIcon" {
+  interface SvgIconPropsColorOverrides {
+    purple: true;
+    orange: true;
+    pink: true;
+    turquoise: true;
+    green: true;
+  }
+}
+
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {
     xs: true;

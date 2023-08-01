@@ -8,7 +8,7 @@ export const AppLayout = ({
   return (
     <Box sx={{ display: "flex" }}>
       <AppMenu />
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+      <Box component="main" sx={{ flexGrow: 1, p: 5 }}>
         {children}
       </Box>
     </Box>
