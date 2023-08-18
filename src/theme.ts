@@ -141,6 +141,13 @@ export const theme = createTheme({
       color: "white",
       lineHeight: "150%",
     },
+    h6: {
+      fontFamily: "Poppins",
+      fontWeight: "600",
+      fontSize: "18px",
+      lineHeight: "150%",
+      color: "black",
+    },
     body1: {
       fontFamily: "Lato",
       fontSize: "15px",

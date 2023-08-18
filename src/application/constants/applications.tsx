@@ -39,7 +39,7 @@ export const apps: Record<AppName, App> = {
       myDashboard: {
         name: "Tableau de bord",
         icon: "",
-        path: "",
+        path: "/",
       },
     },
   },

@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import Image from "mui-image";
 import React from "react";
+import { useNavigate } from "react-router";
 import { PageDetails } from "~/application/constants/applications";
 import ExpandArrowWhite from "~/pictures/icons/menu/expand_arrow_white.svg";
 
@@ -26,6 +27,7 @@ export const DrawerAccordionList = ({
   subPages,
 }: DrawerAccordionListProps) => {
   const [open, setOpen] = React.useState(true);
+  const navigate = useNavigate();
 
   const handleClick = () => {
     setOpen(!open);
@@ -94,6 +96,7 @@ export const DrawerAccordionList = ({
                     justifyContent: open ? "initial" : "center",
                     px: 2.4,
                   }}
+                  onClick={() => navigate(page.path)}
                 >
                   <ListItemIcon
                     sx={{

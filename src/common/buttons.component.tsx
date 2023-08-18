@@ -117,6 +117,38 @@ const LinkButton = styled(Link)(({ theme }) => ({
   },
 }));
 
+interface PrimaryFormButtonProps {
+  text: string;
+  disabled?: boolean;
+  onValidate: () => void;
+}
+
+export const PrimaryFormButton = ({
+  text,
+  disabled,
+  onValidate,
+}: PrimaryFormButtonProps): JSX.Element => {
+  const theme = useTheme();
+  return (
+    <Button
+      color="primary"
+      variant="contained"
+      disabled={disabled}
+      sx={{
+        width: "fit-content",
+        ":hover": {
+          backgroundColor: theme.palette.secondary.main,
+          color: "white",
+        },
+      }}
+      type="submit"
+      onClick={onValidate}
+    >
+      {text}
+    </Button>
+  );
+};
+
 interface SecondaryFormButtonProps {
   onClick: () => void;
   text: string;

@@ -1,9 +1,10 @@
+import { useMediaQuery } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled, useTheme } from "@mui/material/styles";
 import Image from "mui-image";
 import * as React from "react";
 import ExpandArrowWhite from "~/pictures/icons/menu/expand_arrow_white.svg";
-import { AppMenuContent } from "./appMenuContent";
+import { AppMenuContent } from "./appMenuContent.component";
 
 const drawerWidth = 340;
 interface AppBarProps extends MuiAppBarProps {
@@ -31,7 +32,7 @@ const AppBar = styled(MuiAppBar, {
 export const AppMenu = () => {
   const theme = useTheme();
   const [isDrawerOpened, setIsDrawerOpened] = React.useState<boolean>(false);
-  // const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
+  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
   // if (isPhone) {
   //   return (
@@ -75,7 +76,9 @@ export const AppMenu = () => {
   //     </React.Fragment>
   //   );
   // }
-  return (
+  return isPhone ? (
+    <></>
+  ) : (
     <>
       <AppBar
         position="fixed"
