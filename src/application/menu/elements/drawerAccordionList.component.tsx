@@ -1,4 +1,5 @@
 import {
+  Box,
   Collapse,
   List,
   ListItem,
@@ -55,18 +56,14 @@ export const DrawerAccordionList = ({
               justifyContent: "center",
             }}
           >
-            <Image
-              src={appIcon}
-              wrapperStyle={{ width: "36px" }}
-              duration={0}
-            />
+            <Box component="img" src={appIcon} sx={{ width: "36px" }} />
           </ListItemIcon>
           <ListItemText>
             <Typography variant="h4">{appName}</Typography>
           </ListItemText>
           <Image
             src={ExpandArrowWhite}
-            alt="arrow"
+            alt="Ouverture de l'accordéon"
             duration={0}
             wrapperStyle={{
               transform: open ? "rotate(90deg)" : "rotate(-90deg)",
@@ -86,7 +83,7 @@ export const DrawerAccordionList = ({
                   display: "block",
                   backgroundColor: "#6D828C",
                   borderBottom: "1px solid white",
-                  ":first-child": { marginTop: open ? "auto" : "-2px" },
+                  ":first-of-type": { marginTop: open ? "auto" : "-2px" },
                   ":last-child": { borderBottom: "none" },
                 }}
               >

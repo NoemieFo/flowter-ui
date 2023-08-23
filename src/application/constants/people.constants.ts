@@ -1,4 +1,4 @@
-import { EniSchoolsNames } from "./places.constants";
+import { Company, EniSchoolsNames } from "./places.constants";
 
 export interface Passenger {
   name: string;
@@ -15,3 +15,23 @@ export const passengersTest: Passenger[] = [
   { name: "Bonsaké", firstname: "Bill", school: EniSchoolsNames.EniNantes },
   { name: "Bonsaké", firstname: "Bill", school: EniSchoolsNames.EniNiort },
 ];
+
+export enum Roles {
+  superAdmin = "SUPER_ADMIN",
+  admin = "ADMIN",
+  user = "USER",
+  driver = "DRIVER",
+}
+
+export interface User {
+  id: number;
+  roles: Roles[];
+  password: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  driverLicenceCheck: boolean;
+  isDriver: boolean;
+  company: Company;
+}

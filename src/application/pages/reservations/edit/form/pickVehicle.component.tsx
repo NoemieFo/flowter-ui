@@ -52,7 +52,7 @@ export const PickVehicleComponent = ({
     <>
       <FormSectionTitle icon={Car} title={"Sélection du véhicule"} />
       <Grid container spacing={2} alignItems="center">
-        <Grid item xs={12} md={3}>
+        <Grid item xs={12} sm={3}>
           <FormControl fullWidth>
             <InputLabel id="categories-dropdown">Catégorie *</InputLabel>
             <Select
@@ -70,7 +70,7 @@ export const PickVehicleComponent = ({
             </Select>
           </FormControl>
         </Grid>
-        <Grid item xs={12} md={9}>
+        <Grid item xs={12} sm={9}>
           {selectedCarOptions?.length > 0 && (
             <Box
               sx={{

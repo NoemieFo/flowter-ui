@@ -1,4 +1,4 @@
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import dayjs, { Dayjs } from "dayjs";
 import React from "react";
 import {
@@ -9,17 +9,14 @@ import {
 import { Passenger } from "~/application/constants/people.constants";
 import { EniSchoolsNames } from "~/application/constants/places.constants";
 import OrderRide from "~/pictures/order_ride.svg";
-import { AddReservationFormInput } from "../addReservation.constants";
+import { AddReservationFormInput } from "../editReservation.constants";
 import { AddReservationButtons } from "./buttons.component";
 import { PassengersComponent } from "./passengers.component";
 import { PickVehicleComponent } from "./pickVehicle.component";
 import { TripDetailsComponent } from "./tripDetails.component";
 
 // FIXME: add destination handling
-export const AddReservationForm = () => {
-  const theme = useTheme();
-  const isTablet = useMediaQuery(theme.breakpoints.up("md"));
-
+export const EditReservationForm = () => {
   const [category, setCategory] = React.useState<CarCategories>(
     CarCategories.All
   );
@@ -62,8 +59,8 @@ export const AddReservationForm = () => {
     setReturnDate(newDate);
   };
 
-  const [reasonId, setReason] = React.useState<number>(0);
-  const updateReason = (newReason: number) => {
+  const [reason, setReason] = React.useState<string>("");
+  const updateReason = (newReason: string) => {
     setReason(newReason);
   };
 
@@ -77,7 +74,7 @@ export const AddReservationForm = () => {
     departureDate.format() !== "" &&
     departurePlace !== EniSchoolsNames.DefaultEmpty &&
     returnDate !== "" &&
-    reasonId !== 0;
+    reason !== "";
 
   const updatePassengers = (passengers: Passenger[]) => {
     setPassengers(passengers);
@@ -90,7 +87,7 @@ export const AddReservationForm = () => {
     setDepartureDate(today);
     setDeparturePlace(EniSchoolsNames.DefaultEmpty);
     setReturnDate(today.format());
-    setReason(0);
+    setReason("");
     setPassengers([]);
   };
 
@@ -103,7 +100,7 @@ export const AddReservationForm = () => {
         place: departurePlace,
       },
       returnDate,
-      reasonId,
+      reason,
       passengers,
     };
 
@@ -125,6 +122,7 @@ export const AddReservationForm = () => {
       <TripDetailsComponent
         departureDate={departureDate}
         departurePlace={departurePlace}
+        reason={reason}
         updateDepartureDate={updateDepartureDate}
         updateDeparturePlace={updateDeparturePlace}
         updateReturnDate={updateReturnDate}
@@ -134,9 +132,9 @@ export const AddReservationForm = () => {
         <Grid
           item
           xs={12}
-          md={8}
+          sm={8}
           sx={{
-            paddingRight: { md: "40px" },
+            paddingRight: { sm: "40px" },
           }}
         >
           <PassengersComponent updatePassengers={updatePassengers} />
@@ -146,19 +144,14 @@ export const AddReservationForm = () => {
             clearForm={clearForm}
           />
         </Grid>
-        {isTablet && (
-          <Grid item xs={12} md={4}>
-            <Box
-              component="img"
-              src={OrderRide}
-              alt="Réserver un véhicule"
-              sx={{
-                marginTop: "20px",
-                width: { xs: "100%", sm: "300px", lg: "100%" },
-              }}
-            />
-          </Grid>
-        )}
+        <Grid item xs={12} sm={4}>
+          <Box
+            component="img"
+            src={OrderRide}
+            alt="Réserver un véhicule"
+            sx={{ marginTop: "20px", width: "100%" }}
+          />
+        </Grid>
       </Grid>
     </>
   );

@@ -1,5 +1,4 @@
-import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
-import Image from "mui-image";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Construction1 from "~/pictures/construction1.svg";
 import Construction2 from "~/pictures/construction2.svg";
 import Construction3 from "~/pictures/construction3.svg";
@@ -30,11 +29,13 @@ export const UnderConstruction = () => {
         sx={{ width: "fit-content", margin: "auto" }}
       >
         <Grid item xs={6} md={4}>
-          <Image
+          <Box
+            component="img"
             src={imagesSrc[getRandomInt(4)]}
             alt={"Page en construction"}
-            style={{ maxWidth: isPhone ? "180px" : "250px" }}
-            duration={0}
+            sx={{
+              width: "100%",
+            }}
           />
         </Grid>
         <Grid item xs={6} md={8}>

@@ -1,3 +1,6 @@
+import { Car } from "./cars.constants";
+import { User } from "./people.constants";
+
 export enum EniSchoolsNames {
   DefaultEmpty = "",
   EniChartres = "ENI Chartres-de-Bretagne",
@@ -49,3 +52,11 @@ const initEniSchools = (): Record<EniSchoolsNames, EniSchoolDetails> => {
 
 export const eniSchools: Record<EniSchoolsNames, EniSchoolDetails> =
   initEniSchools();
+
+export interface Company {
+  id: number;
+  name: string;
+  address: string;
+  cars: Car[];
+  users: User[];
+}

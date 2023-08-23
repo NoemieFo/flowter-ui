@@ -40,7 +40,8 @@ export const ButtonMainComponent = ({
 };
 
 export interface ButtonSecondaryProps extends ButtonProps {
-  color: any;
+  color?: any;
+  onClick?: () => any;
 }
 
 export const ButtonSecondaryComponent = ({
@@ -48,21 +49,25 @@ export const ButtonSecondaryComponent = ({
   color,
   disabled,
   path,
+  onClick,
 }: ButtonSecondaryProps): JSX.Element => {
   const button = (
     <Button
       color={color}
       variant="outlined"
       disabled={disabled}
-      sx={{ width: "fit-content" }}
+      sx={{ width: { xs: "100%", sm: "fit-content" } }}
+      onClick={onClick}
     >
       {text}
     </Button>
   );
-  return (
+  return path ? (
     <Link to={path ?? ""} style={{ textDecoration: "none" }}>
       {button}
     </Link>
+  ) : (
+    button
   );
 };
 
@@ -120,7 +125,7 @@ const LinkButton = styled(Link)(({ theme }) => ({
 interface PrimaryFormButtonProps {
   text: string;
   disabled?: boolean;
-  onValidate: () => void;
+  onValidate: (...args: any) => any;
 }
 
 export const PrimaryFormButton = ({
@@ -152,11 +157,13 @@ export const PrimaryFormButton = ({
 interface SecondaryFormButtonProps {
   onClick: () => void;
   text: string;
+  borderColor?: string;
 }
 
 export const SecondaryFormButton = ({
   onClick,
   text,
+  borderColor,
 }: SecondaryFormButtonProps) => {
   return (
     <Button
@@ -167,15 +174,18 @@ export const SecondaryFormButton = ({
         fontFamily: "Lato",
         fontWeight: "500",
         fontSize: "18px",
-        color: " #666666",
+        color: { xs: "black", md: "#666666" },
         width: "fit-content",
         borderRadius: "0",
         padding: "0px",
         height: "30px",
-
         ":hover": {
           background: "none",
-          borderBottom: `2px solid #666666`,
+          borderBottom: `2px solid ${borderColor ?? "#666666"}`,
+        },
+        borderBottom: {
+          xs: `2px solid ${borderColor ?? "#666666"}`,
+          md: "none",
         },
       }}
     >

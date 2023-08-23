@@ -1,4 +1,3 @@
-import { useMediaQuery, useTheme } from "@mui/material";
 import {
   FormButtonGroupComponent,
   PrimaryFormButton,
@@ -16,9 +15,6 @@ export const AddReservationButtons = ({
   validate,
   clearForm,
 }: AddReservationButtonsProps) => {
-  const theme = useTheme();
-  const isPhone = useMediaQuery(theme.breakpoints.down("md"));
-
   const mainButton = (
     <PrimaryFormButton
       text="Réserver"
@@ -35,7 +31,6 @@ export const AddReservationButtons = ({
       <FormButtonGroupComponent
         mainButton={mainButton}
         secondaryButton={secondaryButton}
-        centered={isPhone}
       />
     </>
   );

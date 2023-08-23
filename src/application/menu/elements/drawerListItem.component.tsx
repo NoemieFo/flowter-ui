@@ -1,4 +1,5 @@
 import {
+  Box,
   List,
   ListItem,
   ListItemButton,
@@ -6,7 +7,6 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import Image from "mui-image";
 import { useNavigate } from "react-router-dom";
 
 interface ListTitleProps {
@@ -46,11 +46,7 @@ export const DrawerListItem = ({
               justifyContent: "center",
             }}
           >
-            <Image
-              src={appIcon}
-              wrapperStyle={{ width: "36px" }}
-              duration={0}
-            />
+            <Box component="img" src={appIcon} sx={{ width: "36px" }} />
           </ListItemIcon>
           <ListItemText>
             <Typography variant="h4">{appName}</Typography>

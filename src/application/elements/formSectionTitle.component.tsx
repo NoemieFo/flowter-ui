@@ -1,12 +1,16 @@
-import { Box, Typography } from "@mui/material";
-import Image from "mui-image";
+import { Box, SxProps, Typography } from "@mui/material";
 
 export interface FormSectionTitleProps {
   icon: string;
   title: string;
+  sx?: SxProps;
 }
 
-export const FormSectionTitle = ({ icon, title }: FormSectionTitleProps) => {
+export const FormSectionTitle = ({
+  icon,
+  title,
+  sx,
+}: FormSectionTitleProps) => {
   return (
     <Box
       sx={{
@@ -14,10 +18,11 @@ export const FormSectionTitle = ({ icon, title }: FormSectionTitleProps) => {
         columnGap: "6px",
         marginBottom: "18px",
         marginTop: "30px",
+        ...sx,
       }}
     >
-      <Image src={icon} width={"25px"} duration={0} />
-      <Typography variant="h6">{title}</Typography>
+      <Box component="img" src={icon} sx={{ width: "25px" }} alt="Pin icône" />
+      <Typography variant="h3">{title}</Typography>
     </Box>
   );
 };

@@ -7,6 +7,9 @@ import { AddCrashPage } from "./application/pages/addCrash.page";
 import { DashboardPage } from "./application/pages/dashboard.page";
 import { PlanningPage } from "./application/pages/planning.page";
 import { AddReservationPage } from "./application/pages/reservations/add/addReservation.page";
+import { AllReservationsPage } from "./application/pages/reservations/all/allReservations.page";
+import { ReservationDetailsPage } from "./application/pages/reservations/details/reservationDetails.page";
+import { EditReservationPage } from "./application/pages/reservations/edit/editReservation.page";
 import { theme } from "./theme";
 import { AboutPage } from "./website/pages/about/about.page";
 import { ContactUsPage } from "./website/pages/contact-us/contactUs.page";
@@ -36,9 +39,22 @@ const App = () => {
             path={apps.planning.subPages["myPlanning"].path}
             element={<PlanningPage />}
           />
+          {/* Reservations */}
+          <Route
+            path={apps.reservations.subPages["myReservations"].path}
+            element={<AllReservationsPage />}
+          />
           <Route
             path={apps.reservations.subPages["addReservation"].path}
             element={<AddReservationPage />}
+          />
+          <Route
+            path={apps.reservations.subPages["reservationDetails"].path}
+            element={<ReservationDetailsPage />}
+          />
+          <Route
+            path={apps.reservations.subPages["editReservation"].path}
+            element={<EditReservationPage />}
           />
           <Route
             path={apps.crash.subPages["addCrash"].path}

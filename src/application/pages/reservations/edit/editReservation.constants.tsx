@@ -10,7 +10,7 @@ export interface AddReservationFormInput {
   options: Record<CarOptions, boolean>;
   departure: DepartureDetails;
   returnDate: string;
-  reasonId: number;
+  reason: string;
   passengers?: Passenger[];
 }
 
