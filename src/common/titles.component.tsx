@@ -26,7 +26,7 @@ export const PageTitle = ({
 
   return (
     <Stack justifyContent="center" alignItems="center" direction="column">
-      <Typography variant="h1" zIndex="10">
+      <Typography variant="h1" zIndex="10" id="page-title">
         {text}
       </Typography>
       {compact ? (
