@@ -52,6 +52,16 @@ declare module "@mui/material/Button" {
   }
 }
 
+declare module "@mui/material/SvgIcon" {
+  interface SvgIconPropsColorOverrides {
+    purple: true;
+    orange: true;
+    pink: true;
+    turquoise: true;
+    green: true;
+  }
+}
+
 declare module "@mui/material/styles" {
   interface BreakpointOverrides {
     xs: true;
@@ -133,14 +143,11 @@ export const theme = createTheme({
     },
     body1: {
       fontFamily: "Lato",
-      fontSize: "15px",
+      fontSize: "16px",
       fontWeight: "300",
       color: "black",
       lineHeight: "150%",
       opacity: "100%",
-      "@media only screen and (max-width: 600px)": {
-        fontSize: "15px",
-      },
     },
     subtitle1: {
       fontFamily: "Lato",
@@ -153,7 +160,7 @@ export const theme = createTheme({
     },
     subtitle2: {
       fontFamily: "Lato",
-      fontSize: "18px",
+      fontSize: "20px",
       lineHeight: "150%",
       textAlign: "center",
       "@media only screen and (max-width: 600px)": {
@@ -161,6 +168,10 @@ export const theme = createTheme({
         fontSize: "16px",
         textAlign: "left",
       },
+    },
+    caption: {
+      fontFamily: "Lato",
+      fontSize: "14px",
     },
   },
   components: {
@@ -181,6 +192,16 @@ export const theme = createTheme({
           flexGrow: "2",
           justifyContent: "space-between",
         }),
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
+        primary: () => ({
+          fontFamily: "Poppins, Arial",
+          fontWeight: "bold",
+          fontSize: "14px",
+        }),
+        secondary: () => ({ fontSize: "16px", color: "black" }),
       },
     },
     MuiButton: {

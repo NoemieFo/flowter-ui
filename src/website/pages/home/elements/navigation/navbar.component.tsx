@@ -57,7 +57,6 @@ export const Navbar = () => {
     Object.entries(websiteRoutes).filter(([key, _]) => key !== "login")
   );
 
-  console.log(menuItems);
   const desktopNavbar = (
     <Toolbar>
       <Typography variant="h4">Logo</Typography>
