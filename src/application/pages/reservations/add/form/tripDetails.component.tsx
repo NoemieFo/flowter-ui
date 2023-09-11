@@ -1,5 +1,5 @@
 import { FormSectionTitle } from "@application/elements/formSectionTitle.component";
-import { FormControl, Grid, InputLabel, TextField } from "@mui/material";
+import { Grid, TextField } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
@@ -69,13 +69,8 @@ export const TripDetailsComponent = ({
           </LocalizationProvider>
         </Grid>
         <Grid item xs={12} md={4}>
-          <FormControl fullWidth required>
-            <InputLabel id="departure-place-dropdown">
-              Lieu de départ
-            </InputLabel>
-            {/* FIXME: use connected user location as default value */}
-            <DeparturePlaceField updateDeparturePlace={updateDeparturePlace} />
-          </FormControl>
+          {/* FIXME: use connected user location as default value */}
+          <DeparturePlaceField updateDeparturePlace={updateDeparturePlace} />
         </Grid>
         <Grid item xs={12} md={5}>
           <ReasonField updateReason={updateReason} />

@@ -7,8 +7,7 @@
       "@application/*": ["src/application/*"],
       "@pictures/*": ["src/pictures/*"],
       "@website/*": ["src/website/*"],
-      "@common/*": ["src/common/*"],
-      "~/*": ["./*"]
+      "@common/*": ["src/common/*"]
     },
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -24,6 +23,5 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx"
-  },
-  "include": ["src"]
+  }
 }
