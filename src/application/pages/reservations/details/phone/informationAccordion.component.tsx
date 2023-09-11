@@ -1,11 +1,11 @@
+import { Reservation } from "@application/constants/reservations.constants";
+import { FormSectionTitle } from "@application/elements/formSectionTitle.component";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { Box, useTheme } from "@mui/material";
 import Accordion from "@mui/material/Accordion";
 import AccordionDetails from "@mui/material/AccordionDetails";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import React from "react";
-import { Reservation } from "~/application/constants/reservations.constants";
-import { FormSectionTitle } from "~/application/elements/formSectionTitle.component";
 import { CarInformationPhoneComponent } from "./carInformationPhone.component";
 import { DateAndPlacePhoneComponent } from "./dateAndPlacePhone.component";
 import { KilomtersPhoneComponent } from "./kilometersPhone.component";

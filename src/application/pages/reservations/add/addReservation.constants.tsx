@@ -1,9 +1,8 @@
 import {
   CarCategories,
   CarOptions,
-} from "~/application/constants/categories.constants";
-import { Passenger } from "~/application/constants/people.constants";
-import { EniSchoolsNames } from "~/application/constants/places.constants";
+} from "@application/constants/categories.constants";
+import { Passenger } from "@application/constants/people.constants";
 
 export interface AddReservationFormInput {
   category: CarCategories;
@@ -16,5 +15,5 @@ export interface AddReservationFormInput {
 
 export interface DepartureDetails {
   date: string;
-  place: EniSchoolsNames;
+  departurePlaceId: number;
 }

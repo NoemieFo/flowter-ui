@@ -1,4 +1,10 @@
 import {
+  apiDataNode,
+  apiTotalItems,
+} from "@application/constants/queries.constants";
+import { Motive } from "@application/constants/reservations.constants";
+import { Message } from "@application/elements/messages.component";
+import {
   CircularProgress,
   FormControl,
   InputLabel,
@@ -7,12 +13,6 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { useQuery } from "react-query";
-import {
-  apiDataNode,
-  apiTotalItems,
-} from "~/application/constants/queries.constants";
-import { Motive } from "~/application/constants/reservations.constants";
-import { Message } from "~/application/elements/messages.component";
 import { getReasonsQuery } from "../addReservation.queries";
 
 interface ReasonFieldProps {
@@ -56,7 +56,6 @@ export const ReasonField = ({ updateReason }: ReasonFieldProps) => {
 
   const handleChangeReason = (e: SelectChangeEvent) => {
     const reasonId = Number(e.target.value);
-    console.log(e);
     updateReason(reasonId);
   };
 

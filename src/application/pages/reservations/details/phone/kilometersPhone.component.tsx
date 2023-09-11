@@ -1,11 +1,11 @@
-import { Stack } from "@mui/material";
-import React from "react";
 import {
   FormButtonGroupComponent,
   PrimaryFormButton,
   SecondaryFormButton,
-} from "~/common/buttons.component";
-import Speedometer from "~/pictures/icons/speedometer.svg";
+} from "@common/buttons.component";
+import { Stack } from "@mui/material";
+import Speedometer from "@pictures/icons/speedometer.svg";
+import React from "react";
 import {
   ReturnalKilometersField,
   StartKilometersField,

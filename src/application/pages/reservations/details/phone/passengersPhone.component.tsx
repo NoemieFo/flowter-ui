@@ -1,6 +1,6 @@
+import { User } from "@application/constants/people.constants";
 import { List, ListItem, ListItemText, Stack, Typography } from "@mui/material";
-import { User } from "~/application/constants/people.constants";
-import People from "~/pictures/icons/people.svg";
+import People from "@pictures/icons/people.svg";
 import { InformationAccordion } from "./informationAccordion.component";
 
 interface PassengersPhoneProps {

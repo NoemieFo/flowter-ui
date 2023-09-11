@@ -1,4 +1,10 @@
 import {
+  CarCategories,
+  CarOptions,
+  carCategories,
+} from "@application/constants/categories.constants";
+import { FormSectionTitle } from "@application/elements/formSectionTitle.component";
+import {
   Box,
   Checkbox,
   FormControl,
@@ -10,13 +16,7 @@ import {
   SelectChangeEvent,
   capitalize,
 } from "@mui/material";
-import {
-  CarCategories,
-  CarOptions,
-  carCategories,
-} from "~/application/constants/categories.constants";
-import { FormSectionTitle } from "~/application/elements/formSectionTitle.component";
-import Car from "~/pictures/icons/menu/car.svg";
+import Car from "@pictures/icons/menu/car.svg";
 
 interface Props {
   selectedCategory: CarCategories;

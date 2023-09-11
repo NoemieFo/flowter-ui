@@ -6,8 +6,8 @@ import {
   ListItemIcon,
   styled,
 } from "@mui/material";
+import { websiteRoutes } from "@website/constants/routes";
 import { Link } from "react-router-dom";
-import { websiteRoutes } from "~/website/constants/routes";
 
 interface Props {
   handleIsOpen: (value: boolean) => void;

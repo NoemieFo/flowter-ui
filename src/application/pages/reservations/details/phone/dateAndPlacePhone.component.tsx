@@ -1,7 +1,7 @@
+import { Reservation } from "@application/constants/reservations.constants";
 import { Box, Stack, Typography } from "@mui/material";
-import { Reservation } from "~/application/constants/reservations.constants";
-import Address from "~/pictures/icons/address.svg";
-import Chevron from "~/pictures/icons/chevron_right.svg";
+import Address from "@pictures/icons/address.svg";
+import Chevron from "@pictures/icons/chevron_right.svg";
 import { InformationAccordion } from "./informationAccordion.component";
 
 export interface DateAndPlacePhoneProps {
@@ -11,6 +11,8 @@ export interface DateAndPlacePhoneProps {
 export const DateAndPlacePhoneComponent = ({
   reservation,
 }: DateAndPlacePhoneProps) => {
+  const emptyValue = "-";
+
   const panel1 = (
     <Stack
       direction={"column"}
@@ -20,16 +22,23 @@ export const DateAndPlacePhoneComponent = ({
     >
       <>
         <Typography variant="h4" color="black">
-          {reservation.dateOfLoan}
+          {reservation.dateOfLoan ?? emptyValue}
         </Typography>
-        <Typography>{reservation.location}</Typography>
+        <Typography>{reservation.location ?? emptyValue}</Typography>
       </>
       <Box
         component="img"
         src={Chevron}
         sx={{ width: "40px", transform: "rotate(90deg)" }}
       />
-      {reservation.destination}
+      <Stack direction={"column"} alignItems={"center"}>
+        {reservation?.destination?.address ?? emptyValue}
+        <div>
+          {reservation?.destination?.postalCode ?? emptyValue}
+          {reservation?.destination?.city ?? emptyValue}
+        </div>
+      </Stack>
+
       <Box
         component="img"
         src={Chevron}
@@ -37,9 +46,9 @@ export const DateAndPlacePhoneComponent = ({
       />
       <>
         <Typography variant="h4" color="black">
-          {reservation.dateOfReturn}
+          {reservation.dateOfReturn ?? emptyValue}
         </Typography>
-        <Typography>{reservation.location}</Typography>
+        <Typography>{reservation.location ?? emptyValue}</Typography>
       </>
     </Stack>
   );

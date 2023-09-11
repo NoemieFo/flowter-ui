@@ -1,16 +1,19 @@
-// vite.config.ts
 import reactRefresh from "@vitejs/plugin-react-refresh";
+import path from "path";
 import { defineConfig } from "vite";
 
-const path = require("path");
 export default defineConfig({
   plugins: [reactRefresh()],
   resolve: {
     alias: {
-      "~": path.resolve(__dirname, "src"),
+      "@": path.resolve(__dirname, "./src"),
+      "@pictures": path.resolve(__dirname, "./src/pictures"),
+      "@application": path.resolve(__dirname, "./src/application"),
+      "@website": path.resolve(__dirname, "./src/website"),
+      "@common": path.resolve(__dirname, "./src/common"),
     },
   },
   server: {
-    port: 8080,
+    port: 3000,
   },
 });

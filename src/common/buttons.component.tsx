@@ -1,8 +1,7 @@
 import { Box, Button, styled, useMediaQuery, useTheme } from "@mui/material";
+import { ArrowIcon } from "@pictures/icons/arrowIcon.component";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
-import { ArrowIcon } from "~/pictures/icons/arrowIcon.component";
-import { theme } from "~/theme";
 
 export interface ButtonProps {
   disabled?: boolean;
@@ -205,7 +204,9 @@ export const FormButtonGroupComponent = ({
   secondaryButton,
   centered,
 }: FormButtonGroupProps) => {
+  const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
+
   return isPhone ? (
     <FormButtonGroupPhone>
       {mainButton}

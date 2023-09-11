@@ -11,9 +11,9 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import { websiteRoutes } from "@website/constants/routes";
 import React from "react";
 import { Link } from "react-router-dom";
-import { websiteRoutes } from "~/website/constants/routes";
 import { PhoneMenuComponent } from "./phoneMenu.component";
 
 export const Navbar = () => {

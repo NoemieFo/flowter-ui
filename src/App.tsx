@@ -1,22 +1,24 @@
+import { apps } from "@application/constants/applications";
+import { AddCrashPage } from "@application/pages/addCrash.page";
+import { DashboardPage } from "@application/pages/dashboard.page";
+import { PlanningPage } from "@application/pages/planning.page";
+import { EditPasswordPage } from "@application/pages/profile/editPassword.page";
+import { EditProfilePage } from "@application/pages/profile/editProfile.page";
+import { ProfileDetailsPage } from "@application/pages/profile/profileDetails.page";
+import { AddReservationPage } from "@application/pages/reservations/add/addReservation.page";
+import { AllReservationsPage } from "@application/pages/reservations/all/allReservations.page";
+import { ReservationDetailsPage } from "@application/pages/reservations/details/reservationDetails.page";
 import { CssBaseline } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
+import { AboutPage } from "@website/pages/about/about.page";
+import { ContactUsPage } from "@website/pages/contact-us/contactUs.page";
+import { FeaturesPage } from "@website/pages/features/features.page";
+import { HomePage } from "@website/pages/home/home.page";
+import { LoginPage } from "@website/pages/login/login.page";
+import { PricesPage } from "@website/pages/prices/prices.page";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, Routes } from "react-router-dom";
-import { apps } from "./application/constants/applications";
-import { AddCrashPage } from "./application/pages/addCrash.page";
-import { DashboardPage } from "./application/pages/dashboard.page";
-import { PlanningPage } from "./application/pages/planning.page";
-import { AddReservationPage } from "./application/pages/reservations/add/addReservation.page";
-import { AllReservationsPage } from "./application/pages/reservations/all/allReservations.page";
-import { ReservationDetailsPage } from "./application/pages/reservations/details/reservationDetails.page";
-import { EditReservationPage } from "./application/pages/reservations/edit/editReservation.page";
 import { theme } from "./theme";
-import { AboutPage } from "./website/pages/about/about.page";
-import { ContactUsPage } from "./website/pages/contact-us/contactUs.page";
-import { FeaturesPage } from "./website/pages/features/features.page";
-import { HomePage } from "./website/pages/home/home.page";
-import { LoginPage } from "./website/pages/login/login.page";
-import { PricesPage } from "./website/pages/prices/prices.page";
 
 const App = () => {
   const queryClient = new QueryClient();
@@ -39,6 +41,19 @@ const App = () => {
             path={apps.planning.subPages["myPlanning"].path}
             element={<PlanningPage />}
           />
+          {/* Profile */}
+          <Route
+            path={apps.profile.subPages["myProfile"].path}
+            element={<ProfileDetailsPage />}
+          />
+          <Route
+            path={apps.profile.subPages["editProfile"].path}
+            element={<EditProfilePage />}
+          />
+          <Route
+            path={apps.profile.subPages["editPassword"].path}
+            element={<EditPasswordPage />}
+          />
           {/* Reservations */}
           <Route
             path={apps.reservations.subPages["myReservations"].path}
@@ -52,10 +67,10 @@ const App = () => {
             path={apps.reservations.subPages["reservationDetails"].path}
             element={<ReservationDetailsPage />}
           />
-          <Route
+          {/* <Route
             path={apps.reservations.subPages["editReservation"].path}
             element={<EditReservationPage />}
-          />
+          /> */}
           <Route
             path={apps.crash.subPages["addCrash"].path}
             element={<AddCrashPage />}

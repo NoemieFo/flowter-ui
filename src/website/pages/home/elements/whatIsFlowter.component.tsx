@@ -1,3 +1,5 @@
+import { MoreInformationButton } from "@common/buttons.component";
+import { SectionTitle } from "@common/titles.component";
 import {
   Box,
   Typography,
@@ -5,9 +7,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { MoreInformationButton } from "~/common/buttons.component";
-import { SectionTitle } from "~/common/titles.component";
-import { websiteRoutes } from "~/website/constants/routes";
+import { websiteRoutes } from "@website/constants/routes";
 
 export const WhatIsFlowter = (): JSX.Element => {
   const theme = useTheme();

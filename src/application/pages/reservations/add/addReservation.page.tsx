@@ -1,6 +1,6 @@
+import { AppLayout } from "@application/pages/app.layout";
+import { PageTitle } from "@common/titles.component";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { PageTitle } from "~/common/titles.component";
-import { AppLayout } from "../../app.layout";
 import { AddReservationForm } from "./form/addReservation.form";
 
 export const AddReservationPage = () => {

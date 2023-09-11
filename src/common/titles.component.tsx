@@ -1,10 +1,7 @@
 import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
+import ScribbleCompact from "@pictures/scribble_compact.svg";
+import { ScribbleCompactImg, ScribbleImg } from "@pictures/scribbles.component";
 import Image from "mui-image";
-import ScribbleCompact from "~/pictures/scribble_compact.svg";
-import {
-  ScribbleCompactImg,
-  ScribbleImg,
-} from "~/pictures/scribbles.component";
 
 interface TitleProps {
   text: string;
@@ -12,6 +9,7 @@ interface TitleProps {
   scribbleWidth?: string;
   scribbleVerticalOffset?: string;
   compact?: boolean;
+  alignItems?: "center" | "right" | "left";
 }
 
 export const PageTitle = ({
@@ -20,13 +18,18 @@ export const PageTitle = ({
   scribbleWidth,
   scribbleVerticalOffset,
   compact,
+  alignItems,
 }: TitleProps) => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
   return (
-    <Stack justifyContent="center" alignItems="center" direction="column">
-      <Typography variant="h1" zIndex="10">
+    <Stack
+      justifyContent="center"
+      alignItems={alignItems ?? "center"}
+      direction="column"
+    >
+      <Typography variant="h1" zIndex="10" id="page-title">
         {text}
       </Typography>
       {compact ? (

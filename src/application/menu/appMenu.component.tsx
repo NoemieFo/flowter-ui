@@ -1,9 +1,9 @@
 import { useMediaQuery } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled, useTheme } from "@mui/material/styles";
+import ExpandArrowWhite from "@pictures/icons/menu/expand_arrow_white.svg";
 import Image from "mui-image";
 import * as React from "react";
-import ExpandArrowWhite from "~/pictures/icons/menu/expand_arrow_white.svg";
 import { AppMenuContent } from "./appMenuContent.component";
 
 const drawerWidth = 340;

@@ -1,38 +1,25 @@
-import {
-  FormControl,
-  Grid,
-  InputLabel,
-  Select,
-  SelectChangeEvent,
-  TextField,
-} from "@mui/material";
+import { FormSectionTitle } from "@application/elements/formSectionTitle.component";
+import { FormControl, Grid, InputLabel, TextField } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import Address from "@pictures/icons/address.svg";
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/fr";
 import React from "react";
-import {
-  EniSchoolsNames,
-  eniSchoolsNames,
-} from "~/application/constants/places.constants";
-import { FormSectionTitle } from "~/application/elements/formSectionTitle.component";
-import { itemToMenuItem } from "~/common/helpers/utils";
-import Address from "~/pictures/icons/address.svg";
+import { DeparturePlaceField } from "./departurePlace.component";
 import { ReasonField } from "./reasonField.component";
 
 interface Props {
   departureDate: Dayjs;
-  departurePlace: string;
   updateDepartureDate: (departureDate: Dayjs) => void;
-  updateDeparturePlace: (departurePlace: EniSchoolsNames) => void;
+  updateDeparturePlace: (departurePlaceId: number) => void;
   updateReturnDate: (returnDate: string) => void;
-  updateReason: (reason: number) => void;
+  updateReason: (reasonId: number) => void;
 }
 
 export const TripDetailsComponent = ({
   departureDate,
-  departurePlace,
   updateDepartureDate,
   updateDeparturePlace,
   updateReturnDate,
@@ -41,9 +28,8 @@ export const TripDetailsComponent = ({
   const today = dayjs();
   const [keyword, setKeyword] = React.useState<string>("");
 
-  const handleChangeDeparturePlace = (e: SelectChangeEvent) => {
-    const newDeparturePlace = e.target.value as EniSchoolsNames;
-    updateDeparturePlace(newDeparturePlace);
+  const handleChangeDeparturePlace = (departurePlaceId: number) => {
+    updateDeparturePlace(departurePlaceId);
   };
 
   const handleKeyword = (e: any) => {
@@ -88,15 +74,7 @@ export const TripDetailsComponent = ({
               Lieu de départ
             </InputLabel>
             {/* FIXME: use connected user location as default value */}
-            <Select
-              labelId="departure-place-dropdown"
-              id="departure-place-select"
-              value={departurePlace}
-              label="Lieu de départ"
-              onChange={handleChangeDeparturePlace}
-            >
-              {eniSchoolsNames.map((p: EniSchoolsNames) => itemToMenuItem(p))}
-            </Select>
+            <DeparturePlaceField updateDeparturePlace={updateDeparturePlace} />
           </FormControl>
         </Grid>
         <Grid item xs={12} md={5}>

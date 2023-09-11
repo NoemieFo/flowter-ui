@@ -1,3 +1,4 @@
+import { ButtonMainComponent } from "@common/buttons.component";
 import {
   Box,
   Typography,
@@ -5,16 +6,15 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { ButtonMainComponent } from "~/common/buttons.component";
-import Parking from "~/pictures/home_parking.svg";
-import { ArrowIcon } from "~/pictures/icons/arrowIcon.component";
-import { ScribbleImg } from "~/pictures/scribbles.component";
-import { websiteRoutes } from "~/website/constants/routes";
+import Parking from "@pictures/home_parking.svg";
+import { ArrowIcon } from "@pictures/icons/arrowIcon.component";
+import { ScribbleImg } from "@pictures/scribbles.component";
+import { websiteRoutes } from "@website/constants/routes";
 
 export const HeroComponent = (): JSX.Element => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
-  const isHorizontalTabletDisplay = useMediaQuery(
+  const isHorizontalTablet = useMediaQuery(
     theme.breakpoints.between("md", "lg")
   );
 
@@ -27,7 +27,7 @@ export const HeroComponent = (): JSX.Element => {
         de flotte de véhicules d'entreprise qu'il vous faut.
       </>
     );
-  } else if (isHorizontalTabletDisplay) {
+  } else if (isHorizontalTablet) {
     headerContent = (
       <>
         La solution <br /> de gestion de flotte <br />
@@ -72,7 +72,6 @@ export const HeroComponent = (): JSX.Element => {
   return (
     <HeroGrid component={"div"}>
       <LeftColumn>
-        {/* <div> */}
         {header}
         {subheader}
         <ButtonMainComponent
@@ -80,7 +79,6 @@ export const HeroComponent = (): JSX.Element => {
           icon={<ArrowIcon />}
           path={websiteRoutes["features"].path}
         />
-        {/* </div> */}
       </LeftColumn>
       <Box
         component={"img"}

@@ -1,6 +1,6 @@
+import { Reservation } from "@application/constants/reservations.constants";
 import { Box, Grid } from "@mui/material";
-import { Reservation } from "~/application/constants/reservations.constants";
-import ReservationDetails from "~/pictures/reservation_details.svg";
+import ReservationDetails from "@pictures/reservation_details.svg";
 import { BannerComponent } from "./banner.component";
 import { ReservationDetailsButtons } from "./buttons.component";
 import { CarInformationComponent } from "./carInformation.component";

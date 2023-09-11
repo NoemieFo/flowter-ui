@@ -1,10 +1,10 @@
-import { useTheme } from "@mui/material";
-import { apps } from "~/application/constants/applications";
+import { apps } from "@application/constants/applications";
 import {
   ButtonSecondaryComponent,
   FormButtonGroupComponent,
   SecondaryFormButton,
-} from "~/common/buttons.component";
+} from "@common/buttons.component";
+import { useTheme } from "@mui/material";
 
 export const ModifyReservationButton = () => {
   return (
@@ -20,7 +20,6 @@ export const CancelReservationButton = () => {
   const theme = useTheme();
   const cancel = () => {
     // FIXME: define action
-    console.log("Cancel reservation");
   };
   return (
     <SecondaryFormButton

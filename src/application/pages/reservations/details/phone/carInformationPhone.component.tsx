@@ -1,3 +1,4 @@
+import { Car } from "@application/constants/cars.constants";
 import {
   List,
   ListItem,
@@ -5,8 +6,7 @@ import {
   Typography,
   capitalize,
 } from "@mui/material";
-import { Car } from "~/application/constants/cars.constants";
-import CarIcon from "~/pictures/icons/car.svg";
+import CarIcon from "@pictures/icons/car.svg";
 import { InformationAccordion } from "./informationAccordion.component";
 
 export interface CarInformationPhoneProps {

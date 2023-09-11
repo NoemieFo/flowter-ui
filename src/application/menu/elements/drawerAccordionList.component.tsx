@@ -1,3 +1,4 @@
+import { PageDetails } from "@application/constants/applications";
 import {
   Box,
   Collapse,
@@ -8,11 +9,10 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
+import ExpandArrowWhite from "@pictures/icons/menu/expand_arrow_white.svg";
 import Image from "mui-image";
 import React from "react";
 import { useNavigate } from "react-router";
-import { PageDetails } from "~/application/constants/applications";
-import ExpandArrowWhite from "~/pictures/icons/menu/expand_arrow_white.svg";
 
 export interface DrawerAccordionListProps {
   isMenuOpened: boolean;

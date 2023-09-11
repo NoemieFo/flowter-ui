@@ -1,14 +1,14 @@
-import AddToCalendarWhite from "~/pictures/icons/menu/add_to_calendar_white.svg";
-import CalendarWhite from "~/pictures/icons/menu/calendar_white.svg";
-import CarCrashWhite from "~/pictures/icons/menu/car_crash_white.svg";
-import CarWhite from "~/pictures/icons/menu/car_white.svg";
-import EditPasswordWhite from "~/pictures/icons/menu/edit_password_white.svg";
-import EditProfileWhite from "~/pictures/icons/menu/edit_profile_white.svg";
-import ListWhite from "~/pictures/icons/menu/list_white.svg";
-import PlanningWhite from "~/pictures/icons/menu/planning_white.svg";
-import ProfileDetailsWhite from "~/pictures/icons/menu/profile_details_white.svg";
-import ProfileWhite from "~/pictures/icons/menu/profile_white.svg";
-import SearchWhite from "~/pictures/icons/menu/search_white.svg";
+import AddToCalendarWhite from "@pictures/icons/menu/add_to_calendar_white.svg";
+import CalendarWhite from "@pictures/icons/menu/calendar_white.svg";
+import CarCrashWhite from "@pictures/icons/menu/car_crash_white.svg";
+import CarWhite from "@pictures/icons/menu/car_white.svg";
+import EditPasswordWhite from "@pictures/icons/menu/edit_password_white.svg";
+import EditProfileWhite from "@pictures/icons/menu/edit_profile_white.svg";
+import ListWhite from "@pictures/icons/menu/list_white.svg";
+import PlanningWhite from "@pictures/icons/menu/planning_white.svg";
+import ProfileDetailsWhite from "@pictures/icons/menu/profile_details_white.svg";
+import ProfileWhite from "@pictures/icons/menu/profile_white.svg";
+import SearchWhite from "@pictures/icons/menu/search_white.svg";
 
 export interface App {
   name: string;

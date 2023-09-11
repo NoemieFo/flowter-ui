@@ -1,5 +1,5 @@
+import { FooterButton } from "@common/buttons.component";
 import { Box, Typography, useTheme } from "@mui/material";
-import { FooterButton } from "~/common/buttons.component";
 
 export const Footer = () => {
   const theme = useTheme();

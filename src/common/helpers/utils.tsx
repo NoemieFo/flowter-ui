@@ -7,3 +7,16 @@ export const itemToMenuItem = (i: any): JSX.Element => {
     </MenuItem>
   );
 };
+
+export const convertDateToFrenchFormat = (date: Date) => {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "short",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    timeZone: "Europe/Paris",
+  };
+  return date.toLocaleDateString("fr-FR", options);
+};
