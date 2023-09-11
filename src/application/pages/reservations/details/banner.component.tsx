@@ -1,3 +1,4 @@
+import { Reservation } from "@application/constants/reservations.constants";
 import {
   Box,
   Grid,
@@ -6,12 +7,11 @@ import {
   Typography,
   useTheme,
 } from "@mui/material";
-import { Reservation } from "~/application/constants/reservations.constants";
-import Car from "~/pictures/car.svg";
-import EditBtn from "~/pictures/edit_btn.svg";
-import Chevron from "~/pictures/icons/chevron_right.svg";
-import Pin from "~/pictures/icons/pin.svg";
-import Sign from "~/pictures/icons/sign.svg";
+import Car from "@pictures/car.svg";
+import EditBtn from "@pictures/edit_btn.svg";
+import Chevron from "@pictures/icons/chevron_right.svg";
+import Pin from "@pictures/icons/pin.svg";
+import Sign from "@pictures/icons/sign.svg";
 
 interface BannerProps {
   reservation: Reservation;
@@ -82,7 +82,8 @@ export const BannerComponent = ({ reservation }: BannerProps) => {
           </Grid>
           {chevronColumn}
           <Grid item md={4} padding={"0px"} textAlign={"center"}>
-            {reservation.destination}
+            {reservation.destination.address}{" "}
+            {reservation.destination.postalCode} {reservation.destination.city}
           </Grid>
           {chevronColumn}
           <Grid

@@ -1,18 +1,18 @@
+import { AppLayout } from "@application/pages/app.layout";
 import { useMediaQuery, useTheme } from "@mui/material";
-import { PageTitle } from "~/common/titles.component";
-import { AppLayout } from "../../app.layout";
+import { allReservations } from "../details/reservationDetails.page";
+import { DesktopGrid } from "./result/desktopGrid.component";
+import { PhoneSwiper } from "./result/phone/phoneSwiper.component";
 
 export const AllReservationsPage = () => {
   const theme = useTheme();
-  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
+  const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+  {
+    /* FIXME: make call to get reservations */
+  }
 
-  return (
-    <AppLayout>
-      <PageTitle
-        text="Mes réservations"
-        scribbleColor={theme.palette.orange.light}
-        scribbleVerticalOffset={isPhone ? "-54px" : undefined}
-      />
-    </AppLayout>
-  );
+  const reservations = allReservations;
+  const content = isDesktop ? <DesktopGrid /> : <PhoneSwiper />;
+
+  return <AppLayout>{content}</AppLayout>;
 };

@@ -1,3 +1,5 @@
+import { ButtonSecondaryComponent } from "@common/buttons.component";
+import { SectionTitle } from "@common/titles.component";
 import {
   Box,
   Grid,
@@ -6,11 +8,9 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import Prices from "@pictures/prices.svg";
+import { websiteRoutes } from "@website/constants/routes";
 import Image from "mui-image";
-import { ButtonSecondaryComponent } from "~/common/buttons.component";
-import { SectionTitle } from "~/common/titles.component";
-import Prices from "~/pictures/prices.svg";
-import { websiteRoutes } from "~/website/constants/routes";
 
 export const PricesSection = (): JSX.Element => {
   const theme = useTheme();

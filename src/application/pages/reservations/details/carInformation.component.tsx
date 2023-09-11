@@ -1,7 +1,7 @@
+import { Car } from "@application/constants/cars.constants";
+import { DataCardComponent } from "@application/elements/dataCard.component";
 import { Grid, List, ListItem, ListItemText, capitalize } from "@mui/material";
-import { Car } from "~/application/constants/cars.constants";
-import { DataCardComponent } from "~/application/elements/dataCard.component";
-import CarIcon from "~/pictures/icons/car.svg";
+import CarIcon from "@pictures/icons/car.svg";
 
 export interface CarInformationProps {
   car: Car;

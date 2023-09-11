@@ -1,12 +1,12 @@
-import { InputAdornment, TextField } from "@mui/material";
-import React from "react";
-import { DataCardComponent } from "~/application/elements/dataCard.component";
+import { DataCardComponent } from "@application/elements/dataCard.component";
 import {
   FormButtonGroupComponent,
   PrimaryFormButton,
   SecondaryFormButton,
-} from "~/common/buttons.component";
-import Speedometer from "~/pictures/icons/speedometer.svg";
+} from "@common/buttons.component";
+import { InputAdornment, TextField } from "@mui/material";
+import Speedometer from "@pictures/icons/speedometer.svg";
+import React from "react";
 
 interface KilometersFieldProps {
   value: number;
@@ -98,11 +98,7 @@ export const KilometersComponent = () => {
   );
 
   return (
-    <DataCardComponent
-      title="Renseigner le Kilométrage"
-      iconPath={Speedometer}
-      sticker
-    >
+    <DataCardComponent title="Kilométrage" iconPath={Speedometer} sticker>
       <StartKilometersField
         value={departureKilometers}
         handleChangeKilometers={handleChangeKilometers}

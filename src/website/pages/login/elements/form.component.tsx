@@ -1,3 +1,8 @@
+import {
+  ButtonMainComponent,
+  FormButtonGroupComponent,
+  SecondaryFormButton,
+} from "@common/buttons.component";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   FormControl,
@@ -8,15 +13,8 @@ import {
   InputLabel,
   OutlinedInput,
   TextField,
-  useMediaQuery,
-  useTheme,
 } from "@mui/material";
 import React from "react";
-import {
-  ButtonMainComponent,
-  FormButtonGroupComponent,
-  SecondaryFormButton,
-} from "~/common/buttons.component";
 
 interface LoginData {
   mail: string;
@@ -29,9 +27,6 @@ const initLoginData: LoginData = {
 };
 
 export const LoginForm = () => {
-  const theme = useTheme();
-  const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
-
   const onForgotPassword = () => {};
 
   const [data, setData] = React.useState<LoginData>(initLoginData);

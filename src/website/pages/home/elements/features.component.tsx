@@ -1,4 +1,9 @@
 import {
+  ButtonSecondaryComponent,
+  MoreInformationButtonWithAnchor,
+} from "@common/buttons.component";
+import { SectionTitle } from "@common/titles.component";
+import {
   Box,
   Grid,
   Typography,
@@ -6,15 +11,10 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import Features from "@pictures/features.svg";
+import { features } from "@website/constants/features";
+import { websiteRoutes } from "@website/constants/routes";
 import Image from "mui-image";
-import {
-  ButtonSecondaryComponent,
-  MoreInformationButtonWithAnchor,
-} from "~/common/buttons.component";
-import { SectionTitle } from "~/common/titles.component";
-import Features from "~/pictures/features.svg";
-import { features } from "~/website/constants/features";
-import { websiteRoutes } from "~/website/constants/routes";
 
 export const FeaturesSection = (): JSX.Element => {
   const theme = useTheme();

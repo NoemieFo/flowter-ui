@@ -1,7 +1,7 @@
 import { CSSObject, Theme, styled } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
+import Bear from "@pictures/bear.png";
 import Image from "mui-image";
-import Bear from "~/pictures/bear.png";
 import { apps } from "../constants/applications";
 import { DrawerAccordionList } from "./elements/drawerAccordionList.component";
 import { DrawerListItem } from "./elements/drawerListItem.component";
@@ -99,7 +99,7 @@ export const AppMenuContent = ({ opened }: DesktopMenuProps) => {
           appIcon={apps.reservations.icon}
           subPages={Object.fromEntries(
             Object.entries(apps.reservations.subPages).filter(
-              ([k, _]) => k !== "editReservation"
+              ([k, _]) => k !== "editReservation" && k !== "reservationDetails"
             )
           )}
         />

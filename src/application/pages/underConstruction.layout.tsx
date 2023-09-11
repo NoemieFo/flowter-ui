@@ -1,8 +1,8 @@
 import { Box, Grid, Typography } from "@mui/material";
-import Construction1 from "~/pictures/construction1.svg";
-import Construction2 from "~/pictures/construction2.svg";
-import Construction3 from "~/pictures/construction3.svg";
-import Construction4 from "~/pictures/construction4.svg";
+import Construction1 from "@pictures/construction1.svg";
+import Construction2 from "@pictures/construction2.svg";
+import Construction3 from "@pictures/construction3.svg";
+import Construction4 from "@pictures/construction4.svg";
 import { AppLayout } from "./app.layout";
 
 export const UnderConstruction = () => {

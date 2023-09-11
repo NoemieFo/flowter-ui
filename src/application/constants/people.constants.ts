@@ -1,19 +1,19 @@
-import { Company, EniSchoolsNames } from "./places.constants";
+import { Company } from "./reservations.constants";
 
 export interface Passenger {
   name: string;
   firstname: string;
-  school: EniSchoolsNames;
+  school: string;
 }
 
 export const passengersTest: Passenger[] = [
   {
     name: "Miche",
     firstname: "Mitch",
-    school: EniSchoolsNames.EniChartres,
+    school: "ENI Chartres-de-Bretagne",
   },
-  { name: "Bonsaké", firstname: "Bill", school: EniSchoolsNames.EniNantes },
-  { name: "Bonsaké", firstname: "Bill", school: EniSchoolsNames.EniNiort },
+  { name: "Bonsaké", firstname: "Bill", school: "ENI Nantes" },
+  { name: "Bonsaké", firstname: "Bill", school: "ENI Niort" },
 ];
 
 export enum Roles {

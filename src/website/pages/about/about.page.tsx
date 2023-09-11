@@ -1,7 +1,7 @@
+import { PageContainer } from "@common/pageContainer.component";
+import { PageHeaderContainer } from "@common/pageHeaderContainer.component";
+import { PageTitle } from "@common/titles.component";
 import { Typography, useMediaQuery, useTheme } from "@mui/material";
-import { PageContainer } from "~/common/pageContainer.component";
-import { PageHeaderContainer } from "~/common/pageHeaderContainer.component";
-import { PageTitle } from "~/common/titles.component";
 
 export const AboutPage = () => {
   const theme = useTheme();

@@ -1,12 +1,11 @@
 import { Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { features } from "@website/constants/features";
 import Image from "mui-image";
 import React from "react";
-import { features } from "~/website/constants/features";
 
 export const FeaturesContent = (): JSX.Element => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
-  const isTablet = useMediaQuery(theme.breakpoints.between("sm", "md"));
 
   const isPair = (number: number) => {
     return number % 2 === 0;

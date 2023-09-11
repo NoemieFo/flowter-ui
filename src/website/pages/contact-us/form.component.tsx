@@ -1,4 +1,9 @@
 import {
+  ButtonMainComponent,
+  FormButtonGroupComponent,
+  SecondaryFormButton,
+} from "@common/buttons.component";
+import {
   Checkbox,
   FormControlLabel,
   FormGroup,
@@ -8,11 +13,6 @@ import {
   useTheme,
 } from "@mui/material";
 import React from "react";
-import {
-  ButtonMainComponent,
-  FormButtonGroupComponent,
-  SecondaryFormButton,
-} from "~/common/buttons.component";
 
 interface MailData {
   name: string;
@@ -141,7 +141,7 @@ export const ContactUsForm = () => {
           />
           <FormButtonGroupComponent
             secondaryButton={
-              <SecondaryFormButton onClick={onClearForm} textButton="Effacer" />
+              <SecondaryFormButton onClick={onClearForm} text="Effacer" />
             }
             mainButton={
               <ButtonMainComponent

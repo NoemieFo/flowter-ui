@@ -1,14 +1,13 @@
-import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
-import dayjs, { Dayjs } from "dayjs";
-import React from "react";
 import {
   CarCategories,
   CarOptions,
   carOptionsByCategory,
-} from "~/application/constants/categories.constants";
-import { Passenger } from "~/application/constants/people.constants";
-import { EniSchoolsNames } from "~/application/constants/places.constants";
-import OrderRide from "~/pictures/order_ride.svg";
+} from "@application/constants/categories.constants";
+import { Passenger } from "@application/constants/people.constants";
+import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
+import OrderRide from "@pictures/order_ride.svg";
+import dayjs, { Dayjs } from "dayjs";
+import React from "react";
 import { AddReservationFormInput } from "../addReservation.constants";
 import { AddReservationButtons } from "./buttons.component";
 import { PassengersComponent } from "./passengers.component";
@@ -42,9 +41,6 @@ export const AddReservationForm = () => {
 
   const [departureDate, setDepartureDate] = React.useState<Dayjs>(dayjs());
   const [returnDate, setReturnDate] = React.useState<string>(dayjs().format());
-  const [departurePlace, setDeparturePlace] = React.useState<EniSchoolsNames>(
-    EniSchoolsNames.DefaultEmpty
-  );
 
   const updateCategory = (newCategory: CarCategories) => {
     setCategory(newCategory);
@@ -62,20 +58,21 @@ export const AddReservationForm = () => {
     setReturnDate(newDate);
   };
 
-  const [reasonId, setReason] = React.useState<number>(0);
-  const updateReason = (newReason: number) => {
-    setReason(newReason);
+  const [reasonId, setReasonId] = React.useState<number>(0);
+  const updateReason = (newReasonId: number) => {
+    setReasonId(newReasonId);
   };
 
-  const updateDeparturePlace = (newPlace: EniSchoolsNames) => {
-    setDeparturePlace(newPlace);
+  const [departurePlaceId, setDeparturePlaceId] = React.useState<number>(0);
+  const updateDeparturePlace = (newDeparturePlaceId: number) => {
+    setDeparturePlaceId(newDeparturePlaceId);
   };
 
   const [passengers, setPassengers] = React.useState<Passenger[]>([]);
   const isValid: boolean =
     category !== CarCategories.DefaultEmpty &&
     departureDate.format() !== "" &&
-    departurePlace !== EniSchoolsNames.DefaultEmpty &&
+    departurePlaceId !== 0 &&
     returnDate !== "" &&
     reasonId !== 0;
 
@@ -88,9 +85,9 @@ export const AddReservationForm = () => {
     setCategory(CarCategories.DefaultEmpty);
     setSelectedOptions({} as Record<CarOptions, boolean>);
     setDepartureDate(today);
-    setDeparturePlace(EniSchoolsNames.DefaultEmpty);
+    setDeparturePlaceId(0);
     setReturnDate(today.format());
-    setReason(0);
+    setReasonId(0);
     setPassengers([]);
   };
 
@@ -100,7 +97,7 @@ export const AddReservationForm = () => {
       options: selectedOptions,
       departure: {
         date: departureDate.format(),
-        place: departurePlace,
+        departurePlaceId: departurePlaceId,
       },
       returnDate,
       reasonId,
@@ -109,7 +106,6 @@ export const AddReservationForm = () => {
 
     if (isValid) {
       // FIXME:send request
-      console.log(input);
     }
   };
 
@@ -124,7 +120,6 @@ export const AddReservationForm = () => {
       />
       <TripDetailsComponent
         departureDate={departureDate}
-        departurePlace={departurePlace}
         updateDepartureDate={updateDepartureDate}
         updateDeparturePlace={updateDeparturePlace}
         updateReturnDate={updateReturnDate}

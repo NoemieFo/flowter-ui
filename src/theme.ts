@@ -1,5 +1,5 @@
+import { Breakpoints } from "@common/constants/breakpoints";
 import { createTheme } from "@mui/material/styles";
-import { Breakpoints } from "~/common/constants/breakpoints";
 
 const lightGrey = "#F5F5F5";
 const mainBlue = "#35A3E7";
@@ -72,6 +72,22 @@ declare module "@mui/material/styles" {
   }
 }
 
+declare module "@mui/material/styles" {
+  interface TypographyVariants {
+    caption2: React.CSSProperties;
+  }
+
+  interface TypographyVariantsOptions {
+    caption2: React.CSSProperties;
+  }
+}
+
+declare module "@mui/material/Typography" {
+  interface TypographyPropsVariantOverrides {
+    caption2: true;
+  }
+}
+
 export const theme = createTheme({
   breakpoints: {
     values: {
@@ -141,9 +157,24 @@ export const theme = createTheme({
       color: "white",
       lineHeight: "150%",
     },
+    h6: {
+      fontFamily: "Poppins",
+      fontWeight: "600",
+      fontSize: "14px",
+      color: "black",
+      lineHeight: "150%",
+    },
     body1: {
       fontFamily: "Lato",
       fontSize: "16px",
+      fontWeight: "300",
+      color: "black",
+      lineHeight: "150%",
+      opacity: "100%",
+    },
+    body2: {
+      fontFamily: "Lato",
+      fontSize: "14px",
       fontWeight: "300",
       color: "black",
       lineHeight: "150%",
@@ -172,6 +203,13 @@ export const theme = createTheme({
     caption: {
       fontFamily: "Lato",
       fontSize: "14px",
+    },
+    caption2: {
+      fontFamily: "Poppins",
+      fontSize: "12px",
+      fontWeight: "300",
+      color: "black",
+      lineHeight: "150%",
     },
   },
   components: {
@@ -223,50 +261,54 @@ export const theme = createTheme({
           // Special theme for secondary buttons
           ...(ownerState.variant === "outlined" &&
             ownerState.color === "purple" && {
+              border: `2px solid ${secondaryPurple}`,
               ":hover": {
                 backgroundColor: secondaryPurpleLight,
                 background: secondaryPurpleLight,
-                border: `2px solid ${secondaryPurpleLight}`,
+                border: `2px solid ${secondaryPurple}`,
               },
               ":disabled": {
                 opacity: "50%",
-                border: `2px solid ${secondaryPurpleLight}`,
+                border: `2px solid ${secondaryPurple}`,
               },
             }),
           ...(ownerState.variant === "outlined" &&
             ownerState.color === "orange" && {
+              border: `2px solid ${secondaryOrange}`,
               ":hover": {
                 backgroundColor: secondaryOrangeLight,
                 background: secondaryOrangeLight,
-                border: `2px solid ${secondaryOrangeLight}`,
+                border: `2px solid ${secondaryOrange}`,
               },
               ":disabled": {
                 opacity: "50%",
-                border: `2px solid ${secondaryOrangeLight}`,
+                border: `2px solid ${secondaryOrange}`,
               },
             }),
           ...(ownerState.variant === "outlined" &&
             ownerState.color === "pink" && {
+              border: `2px solid ${secondaryPink}`,
               ":hover": {
                 backgroundColor: secondaryPinkLight,
                 background: secondaryPinkLight,
-                border: `2px solid ${secondaryPinkLight}`,
+                border: `2px solid ${secondaryPink}`,
               },
               ":disabled": {
                 opacity: "50%",
-                border: `2px solid ${secondaryPinkLight}`,
+                border: `2px solid ${secondaryPink}`,
               },
             }),
           ...(ownerState.variant === "outlined" &&
             ownerState.color === "turquoise" && {
+              border: `2px solid ${secondaryTurquoise}`,
               ":hover": {
                 backgroundColor: secondaryTurquoiseLight,
                 background: secondaryTurquoiseLight,
-                border: `2px solid ${secondaryTurquoiseLight}`,
+                border: `2px solid ${secondaryTurquoise}`,
               },
               ":disabled": {
                 opacity: "50%",
-                border: `2px solid ${secondaryPinkLight}`,
+                border: `2px solid ${secondaryTurquoise}`,
               },
             }),
           borderRadius: "50px",

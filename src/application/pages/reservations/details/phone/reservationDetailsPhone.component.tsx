@@ -1,5 +1,6 @@
+import { Reservation } from "@application/constants/reservations.constants";
+import { phoneMarginHorizontal } from "@application/pages/app.layout";
 import { Stack } from "@mui/material";
-import { Reservation } from "~/application/constants/reservations.constants";
 import {
   CancelReservationButton,
   ModifyReservationButton,
@@ -17,7 +18,7 @@ export const ReservationDetailsPhoneComponent = ({
     <Stack
       direction={"column"}
       rowGap={"30px"}
-      sx={{ paddingTop: "14px", marginX: "-40px" }}
+      sx={{ paddingTop: "14px", marginX: `-${phoneMarginHorizontal}` }}
       alignItems={"center"}
     >
       <ModifyReservationButton />

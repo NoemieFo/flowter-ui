@@ -1,7 +1,7 @@
+import { User } from "@application/constants/people.constants";
+import { DataCardComponent } from "@application/elements/dataCard.component";
 import { Grid, ListItemText, Stack, Typography } from "@mui/material";
-import { User } from "~/application/constants/people.constants";
-import { DataCardComponent } from "~/application/elements/dataCard.component";
-import Users from "~/pictures/icons/users.svg";
+import Users from "@pictures/icons/users.svg";
 
 export interface PassengersInformationProps {
   passengers: User[];
@@ -43,7 +43,7 @@ export const PassengersInformationComponent = ({
   );
   return (
     <DataCardComponent title="Passagers" iconPath={Users}>
-      {list}
+      {passengers?.length > 0 ? list : "Pas de passager enregistré"}
     </DataCardComponent>
   );
 };
