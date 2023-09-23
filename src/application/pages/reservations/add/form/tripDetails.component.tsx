@@ -1,3 +1,5 @@
+import { normalizeData } from "@/application/constants/queries.constants";
+import { Company } from "@/application/constants/reservations.constants";
 import { FormSectionTitle } from "@application/elements/formSectionTitle.component";
 import { Grid, TextField } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
@@ -7,6 +9,8 @@ import Address from "@pictures/icons/address.svg";
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/fr";
 import React from "react";
+import { useQuery } from "react-query";
+import { getCompaniesQuery, getReasonsQuery } from "../addReservation.queries";
 import { DeparturePlaceField } from "./departurePlace.component";
 import { ReasonField } from "./reasonField.component";
 
@@ -28,10 +32,6 @@ export const TripDetailsComponent = ({
   const today = dayjs();
   const [keyword, setKeyword] = React.useState<string>("");
 
-  const handleChangeDeparturePlace = (departurePlaceId: number) => {
-    updateDeparturePlace(departurePlaceId);
-  };
-
   const handleKeyword = (e: any) => {
     const newKeyword = e.target.value;
     setKeyword(newKeyword);
@@ -49,6 +49,26 @@ export const TripDetailsComponent = ({
   const handleDepartureDate = (newDate: Dayjs) => {
     updateDepartureDate(newDate);
   };
+
+  const getCompaniesRes = useQuery("getCompanies", getCompaniesQuery);
+  const isLoadingCompanies = getCompaniesRes.isLoading;
+  const companies = normalizeData(getCompaniesRes.data ?? ({} as Company[]));
+  const companiesError = getCompaniesRes.isError;
+
+  const getReasonsRes = useQuery("getReasons", getReasonsQuery);
+  const isLoadingReasons = getReasonsRes.isLoading;
+  const reasons = normalizeData(getReasonsRes.data ?? ({} as string[]));
+  const reasonsError = getReasonsRes.isError;
+
+  // const [normalizedData, setNormalizedData] = React.useState<QueryData>(
+  //   data ? normalizeData(data) : ({} as QueryData)
+  // );
+
+  // React.useEffect(() => {
+  //   if (data) {
+  //     setNormalizedData(normalizeData(data));
+  //   }
+  // }, [data]);
 
   return (
     <>
@@ -70,10 +90,20 @@ export const TripDetailsComponent = ({
         </Grid>
         <Grid item xs={12} md={4}>
           {/* FIXME: use connected user location as default value */}
-          <DeparturePlaceField updateDeparturePlace={updateDeparturePlace} />
+          <DeparturePlaceField
+            updateDeparturePlace={updateDeparturePlace}
+            isLoading={isLoadingCompanies}
+            data={companies}
+            isError={companiesError}
+          />
         </Grid>
         <Grid item xs={12} md={5}>
-          <ReasonField updateReason={updateReason} />
+          <ReasonField
+            updateReason={updateReason}
+            isLoading={isLoadingReasons}
+            data={reasons}
+            isError={reasonsError}
+          />
         </Grid>
         {/* Row 2 */}
         <Grid item xs={12} md={9}>

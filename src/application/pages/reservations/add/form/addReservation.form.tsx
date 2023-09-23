@@ -106,6 +106,7 @@ export const AddReservationForm = () => {
 
     if (isValid) {
       // FIXME:send request
+      console.log(input);
     }
   };
 

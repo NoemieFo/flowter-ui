@@ -1,6 +1,6 @@
 import {
-  apiDataNode,
-  apiTotalItems,
+  QueryData,
+  normalizeData,
 } from "@application/constants/queries.constants";
 import { Motive } from "@application/constants/reservations.constants";
 import { Message } from "@application/elements/messages.component";
@@ -12,18 +12,33 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { useQuery } from "react-query";
-import { getReasonsQuery } from "../addReservation.queries";
+import React from "react";
 
 interface ReasonFieldProps {
   updateReason: (reasonId: number) => void;
+  isLoading: boolean;
+  data: QueryData;
+  isError: boolean;
 }
 
-export const ReasonField = ({ updateReason }: ReasonFieldProps) => {
-  const { isLoading, data, isError } = useQuery("getReasons", getReasonsQuery);
+export const ReasonField = ({
+  updateReason,
+  isLoading,
+  data,
+  isError,
+}: ReasonFieldProps) => {
+  const [normalizedData, setNormalizedData] = React.useState<QueryData>(
+    data ? normalizeData(data) : ({} as QueryData)
+  );
+
+  React.useEffect(() => {
+    if (data) {
+      setNormalizedData(normalizeData(data));
+    }
+  }, [data]);
 
   const reasonContent = () => {
-    if (isError || !data) {
+    if (isError || !normalizedData) {
       return (
         <Message
           type="error"
@@ -33,7 +48,7 @@ export const ReasonField = ({ updateReason }: ReasonFieldProps) => {
       );
     }
 
-    if (data[apiTotalItems] === 0) {
+    if (normalizedData?.totalItems === 0) {
       return (
         <Message
           type="warning"
@@ -45,9 +60,7 @@ export const ReasonField = ({ updateReason }: ReasonFieldProps) => {
         />
       );
     }
-    const res: Motive[] = data[apiDataNode];
-
-    return res.map((m: Motive) => (
+    return normalizedData?.result.map((m: Motive) => (
       <MenuItem key={m.id} value={m.id}>
         {m.label}
       </MenuItem>

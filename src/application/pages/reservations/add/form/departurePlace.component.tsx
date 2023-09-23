@@ -1,7 +1,4 @@
-import {
-  apiDataNode,
-  apiTotalItems,
-} from "@application/constants/queries.constants";
+import { QueryData } from "@/application/constants/queries.constants";
 import { Company } from "@application/constants/reservations.constants";
 import { Message } from "@application/elements/messages.component";
 import {
@@ -12,23 +9,22 @@ import {
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { useQuery } from "react-query";
-import { getCompaniesQuery } from "../addReservation.queries";
 
-interface DeparturePlaceField {
+interface DeparturePlaceFieldProps {
+  isLoading: boolean;
+  data: QueryData;
+  isError: boolean;
   updateDeparturePlace: (departurePlaceId: number) => void;
 }
 
 export const DeparturePlaceField = ({
   updateDeparturePlace,
-}: DeparturePlaceField) => {
-  const { isLoading, data, isError } = useQuery(
-    "getCompanies",
-    getCompaniesQuery
-  );
-
+  isLoading,
+  data,
+  isError,
+}: DeparturePlaceFieldProps) => {
   const departurePlaceContent = () => {
-    if (isError || !data) {
+    if (!isLoading && (isError || !data)) {
       return (
         <Message
           type="error"
@@ -38,7 +34,7 @@ export const DeparturePlaceField = ({
       );
     }
 
-    if (data[apiTotalItems] === 0) {
+    if (data?.totalItems === 0) {
       return (
         <Message
           type="warning"
@@ -51,9 +47,7 @@ export const DeparturePlaceField = ({
       );
     }
 
-    const res: Company[] = data[apiDataNode];
-
-    return res.map((c: Company) => (
+    return data?.result.map((c: Company) => (
       <MenuItem key={c.id} value={c.id}>
         {c.name}
       </MenuItem>
