@@ -21,7 +21,7 @@ const ButtonWrapper = styled(Stack)(() => ({
   marginLeft: "2px",
 }));
 
-export const detailsButton = (reservationId: number) => {
+export const DetailsButton = (reservationId: number) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -71,13 +71,13 @@ export const ReservationActionsButtons = ({
     >
       <CancelButton />
       <EditButton />
-      {detailsButton(reservationId)}
+      {DetailsButton(reservationId)}
     </Stack>
   ) : (
     <Stack width={"100%"}>
       <CancelButton />
       <EditButton />
-      {detailsButton(reservationId)}
+      {DetailsButton(reservationId)}
     </Stack>
   );
 };
