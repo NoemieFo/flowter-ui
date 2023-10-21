@@ -23,7 +23,7 @@ export const SearchInput: FunctionComponent = () => {
     }
   };
 
-  const handleClick = (e: React.MouseEvent): void => {
+  const handleClick = (_: React.MouseEvent): void => {
     if (keyword) {
       navigate(`/reservations/${keyword}/details`);
     }

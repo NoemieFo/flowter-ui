@@ -11,6 +11,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import React from "react";
 import { CreateReservationButton } from "./createReservationButton.component";
 import { ResultLineComponent, ResultLineHeader } from "./resultLine.component";
 
@@ -18,15 +19,27 @@ export const DesktopGrid = () => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const [reservations, setReservations] =
+    React.useState<Reservation[]>(allReservations);
+
+  const deleteReservation = (id: number) => {
+    const index = allReservations.indexOf(
+      allReservations.filter((r: Reservation) => r.id === id)[0]
+    );
+    allReservations.splice(index, 1);
+    setReservations([...allReservations]);
+  };
+
   const legendBoxSize = "16px";
   return (
     <>
       <Grid container>
-        <Grid item md={4}>
+        <Grid item md={4} textAlign={"left"}>
           <PageTitle
             text="Mes réservations"
             scribbleColor={theme.palette.orange.light}
             scribbleVerticalOffset={isPhone ? "-54px" : undefined}
+            alignLeft
           />
         </Grid>
         <Grid item md={8} paddingTop={"6px"}>
@@ -53,7 +66,7 @@ export const DesktopGrid = () => {
         <Grid item lg={6} textAlign={"center"}>
           {/* FIXME: add real reservations length */}
           <Typography variant="h3">
-            Mes réservations ({allReservations.length})
+            Toutes mes réservations ({reservations.length})
           </Typography>
         </Grid>
         <Grid item lg={3} textAlign={"right"}>
@@ -87,8 +100,12 @@ export const DesktopGrid = () => {
         </Grid>
       </Grid>
       <ResultLineHeader />
-      {allReservations.map((r: Reservation) => (
-        <ResultLineComponent reservation={r} key={r.id} />
+      {reservations.map((r: Reservation) => (
+        <ResultLineComponent
+          reservation={r}
+          key={r.id}
+          deleteReservation={deleteReservation}
+        />
       ))}
     </>
   );

@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 
 interface ActionButtonsProps {
   reservationId: number;
+  deleteReservation: (id: number) => void;
 }
 
 const ButtonWrapper = styled(Stack)(() => ({
@@ -22,7 +23,7 @@ const ButtonWrapper = styled(Stack)(() => ({
   marginLeft: "2px",
 }));
 
-export const DetailsButton = (reservationId: number) => {
+export const detailsButton = (reservationId: number) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
@@ -33,16 +34,6 @@ export const DetailsButton = (reservationId: number) => {
           <SearchIcon color={"primary"} />
         </IconButton>
       </Link>
-    </ButtonWrapper>
-  );
-};
-
-export const CancelButton = () => {
-  return (
-    <ButtonWrapper>
-      <IconButton>
-        <ClearIcon color="error" />
-      </IconButton>
     </ButtonWrapper>
   );
 };
@@ -59,9 +50,22 @@ export const EditButton = () => {
 
 export const ReservationActionsButtons = ({
   reservationId,
+  deleteReservation,
 }: ActionButtonsProps) => {
   const theme = useTheme();
   const isDesktop = theme.breakpoints.up("lg");
+  const body = (
+    <>
+      {/* Cancel Button */}
+      <ButtonWrapper>
+        <IconButton onClick={() => deleteReservation(reservationId)}>
+          <ClearIcon color="error" />
+        </IconButton>
+      </ButtonWrapper>
+      <EditButton />
+      {detailsButton(reservationId)}
+    </>
+  );
 
   return isDesktop ? (
     <Stack
@@ -70,15 +74,9 @@ export const ReservationActionsButtons = ({
       height={"58px"}
       borderRadius={"10px"}
     >
-      <CancelButton />
-      <EditButton />
-      {DetailsButton(reservationId)}
+      {body}
     </Stack>
   ) : (
-    <Stack width={"100%"}>
-      <CancelButton />
-      <EditButton />
-      {DetailsButton(reservationId)}
-    </Stack>
+    <Stack width={"100%"}>{body}</Stack>
   );
 };

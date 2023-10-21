@@ -3,7 +3,7 @@ import {
   allReservations,
 } from "@application/constants/reservations.constants";
 import { PageTitle } from "@common/titles.component";
-import { useMediaQuery, useTheme } from "@mui/material";
+import { Typography, useMediaQuery, useTheme } from "@mui/material";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
@@ -22,6 +22,7 @@ export const PhoneSwiper = () => {
         scribbleColor={theme.palette.orange.light}
         scribbleVerticalOffset={isPhone ? "-54px" : undefined}
       />
+      <Typography variant="h3">Total: ({allReservations.length})</Typography>
       <Swiper
         slidesPerView={isTablet ? 2 : "auto"}
         centeredSlides={true}
