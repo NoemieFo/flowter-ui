@@ -1,3 +1,10 @@
+import { apps } from "@/application/constants/applications";
+import {
+  Rights,
+  Roles,
+  User,
+  allUsers,
+} from "@/application/constants/user.constants";
 import {
   FormButtonGroupComponent,
   PrimaryFormButton,
@@ -7,6 +14,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import {
   FormControl,
   FormGroup,
+  FormHelperText,
   Grid,
   IconButton,
   InputAdornment,
@@ -15,6 +23,7 @@ import {
   TextField,
 } from "@mui/material";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 interface LoginData {
   mail: string;
@@ -28,6 +37,9 @@ const initLoginData: LoginData = {
 
 export const LoginForm = () => {
   const [data, setData] = React.useState<LoginData>(initLoginData);
+  const [connectedUser, setConnectedUser] = React.useState<User>({} as User);
+  const [isConnectionError, setIsConnectionError] =
+    React.useState<boolean>(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
@@ -37,6 +49,36 @@ export const LoginForm = () => {
       ...data,
       [name]: value,
     });
+  };
+
+  const navigate = useNavigate();
+
+  const connectUser = () => {
+    const connectedUser: User = allUsers.filter(
+      (u: User) => u.email === data.mail && u.password === data.password
+    )[0];
+
+    if (!connectedUser || Object.keys(connectedUser).length === 0) {
+      setIsConnectionError(true);
+    }
+
+    if (connectedUser && Object.keys(connectedUser).length > 0) {
+      localStorage.setItem("userLastname", connectedUser.lastname);
+      localStorage.setItem("userFirstname", connectedUser.firstname);
+      localStorage.setItem(
+        "userRights",
+        connectedUser.roles.includes(Roles.Driver) ||
+          connectedUser.roles.includes(Roles.Admin)
+          ? Rights.Write
+          : Rights.Read
+      );
+
+      const timer = setTimeout(() => {
+        setIsConnectionError(false);
+        return navigate(apps.reservations.subPages["myReservations"].path);
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
   };
 
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
@@ -60,10 +102,11 @@ export const LoginForm = () => {
             name="mail"
             margin="dense"
             onChange={handleChange}
+            error={isConnectionError}
           />
         </Grid>
         <Grid item xs={6} sm={5}>
-          <FormControl fullWidth variant="outlined">
+          <FormControl fullWidth variant="outlined" error={isConnectionError}>
             <InputLabel required htmlFor="outlined-adornment-password">
               Mot de passe
             </InputLabel>
@@ -83,6 +126,11 @@ export const LoginForm = () => {
                 </InputAdornment>
               }
             />
+            {isConnectionError && (
+              <FormHelperText>
+                E-mail ou utilisateur invalide. Veuillez réessayer
+              </FormHelperText>
+            )}
           </FormControl>
         </Grid>
         <FormButtonGroupComponent
@@ -97,7 +145,7 @@ export const LoginForm = () => {
             <PrimaryFormButton
               text="Me connecter"
               disabled={!data.mail || !data.password}
-              onValidate={() => undefined}
+              onValidate={() => connectUser()}
             />
           }
         />

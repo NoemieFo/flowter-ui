@@ -1,3 +1,4 @@
+import { hasWriteRight } from "@/application/constants/user.constants";
 import { Reservation } from "@application/constants/reservations.constants";
 import { Box, Grid } from "@mui/material";
 import ReservationDetails from "@pictures/reservation_details.svg";
@@ -21,12 +22,14 @@ export const ReservationDetailsComponent = ({
         <Grid item md={8} display={"flex"} alignItems={"stretch"}>
           <CarInformationComponent car={reservation.car} />
         </Grid>
-        <Grid item md={4}>
-          <KilometersComponent />
-        </Grid>
+        {hasWriteRight && (
+          <Grid item md={4}>
+            <KilometersComponent />
+          </Grid>
+        )}
         <Grid item md={8}>
           <PassengersInformationComponent passengers={reservation.users} />
-          <ReservationDetailsButtons />
+          {hasWriteRight && <ReservationDetailsButtons />}
         </Grid>
         <Grid item md={4}>
           <Box

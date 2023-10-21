@@ -1,3 +1,4 @@
+import { Rights } from "@/application/constants/user.constants";
 import ClearIcon from "@mui/icons-material/Clear";
 import ModeEditIcon from "@mui/icons-material/ModeEdit";
 import SearchIcon from "@mui/icons-material/Search";
@@ -28,7 +29,14 @@ export const detailsButton = (reservationId: number) => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
-    <ButtonWrapper borderRadius={isDesktop ? "0px 8px 8px 0px" : "0"}>
+    <ButtonWrapper
+      borderRadius={isDesktop ? "0px 8px 8px 0px" : "0"}
+      width={
+        localStorage.getItem("userRights") === Rights.Write
+          ? "33%"
+          : "100% !important"
+      }
+    >
       <Link to={`/reservations/${reservationId}/details`}>
         <IconButton>
           <SearchIcon color={"primary"} />
@@ -57,12 +65,16 @@ export const ReservationActionsButtons = ({
   const body = (
     <>
       {/* Cancel Button */}
-      <ButtonWrapper>
-        <IconButton onClick={() => deleteReservation(reservationId)}>
-          <ClearIcon color="error" />
-        </IconButton>
-      </ButtonWrapper>
-      <EditButton />
+      {localStorage.getItem("userRights") === Rights.Write && (
+        <>
+          <ButtonWrapper>
+            <IconButton onClick={() => deleteReservation(reservationId)}>
+              <ClearIcon color="error" />
+            </IconButton>
+          </ButtonWrapper>
+          <EditButton />
+        </>
+      )}
       {detailsButton(reservationId)}
     </>
   );

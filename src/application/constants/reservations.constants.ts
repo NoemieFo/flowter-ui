@@ -1,6 +1,6 @@
 import { Car, car1, car2, car3 } from "./cars.constants";
 import { Company, company1, company2 } from "./companies.constants";
-import { User, user1, user2, user3 } from "./user.constants";
+import { User, user1, user2, user3, user4 } from "./user.constants";
 
 export interface Reservation {
   id: number;
@@ -29,7 +29,7 @@ export const reservation1: Reservation = {
     city: "Rennes",
   },
   car: car3,
-  users: [],
+  users: [user4],
 };
 
 export const reservation2: Reservation = {

@@ -1,4 +1,9 @@
 import {
+  Rights,
+  User,
+  hasWriteRight,
+} from "@/application/constants/user.constants";
+import {
   Reservation,
   allReservations,
 } from "@application/constants/reservations.constants";
@@ -19,8 +24,20 @@ export const DesktopGrid = () => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
+  let baseData = allReservations;
+  if (!hasWriteRight) {
+    const filteredData: Reservation[] = baseData.filter((r: Reservation) => {
+      return r.users.some(
+        (u: User) =>
+          u.lastname === localStorage.getItem("userLastname") &&
+          u.firstname === localStorage.getItem("userFirstname")
+      );
+    });
+    baseData = filteredData;
+  }
+
   const [reservations, setReservations] =
-    React.useState<Reservation[]>(allReservations);
+    React.useState<Reservation[]>(baseData);
 
   const deleteReservation = (id: number) => {
     const index = allReservations.indexOf(
@@ -54,7 +71,9 @@ export const DesktopGrid = () => {
             TODO: put back search input
             <SearchInput /> 
             */}
-            <CreateReservationButton />
+            {localStorage.getItem("userRights") === Rights.Write && (
+              <CreateReservationButton />
+            )}
           </Stack>
         </Grid>
       </Grid>
