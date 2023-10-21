@@ -8,6 +8,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface ActionButtonsProps {
   reservationId: number;
@@ -27,11 +28,11 @@ export const DetailsButton = (reservationId: number) => {
 
   return (
     <ButtonWrapper borderRadius={isDesktop ? "0px 8px 8px 0px" : "0"}>
-      <IconButton
-        href={`http://localhost:3000/reservations/${reservationId}/details`}
-      >
-        <SearchIcon color={"primary"} />
-      </IconButton>
+      <Link to={`/reservations/${reservationId}/details`}>
+        <IconButton>
+          <SearchIcon color={"primary"} />
+        </IconButton>
+      </Link>
     </ButtonWrapper>
   );
 };

@@ -34,15 +34,3 @@ export const carOptionsByCategory: Record<CarCategories, CarOptions[]> = {
     CarOptions.GPS,
   ],
 };
-
-// export const carOptionsByCategory = (): Record<CarCategories, CarOptions[]> => {
-// //   const map: Record<CarCategories, CarOptions[]> = {} as Record<
-// //     CarCategories,
-// //     CarOptions[]
-// //   >;
-
-// //   carCategories.forEach(
-// //     (c) => (map[c] = c === CarCategories.All ? [CarOptions.GPS] : carOptions)
-// //   );
-//   return map;
-// };

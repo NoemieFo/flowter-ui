@@ -1,7 +1,6 @@
-# FROM node
-# WORKDIR /flowter-ui 
-# COPY package.json . 
-# RUN npm i 
-# COPY . .
-# EXPOSE 3000
-# CMD ["npm", "start"]
+FROM node
+WORKDIR /opt
+COPY ./* /opt/
+RUN yarn install
+EXPOSE 3000
+CMD ["yarn", "start"]

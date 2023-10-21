@@ -1,42 +1,55 @@
-import { normalizeData } from "@/application/constants/queries.constants";
-import { Company } from "@/application/constants/reservations.constants";
+import {
+  Company,
+  company1,
+  company2,
+  company3,
+} from "@/application/constants/companies.constants";
+import { Motive, allMotives } from "@/application/constants/motives.constants";
+import { Address } from "@/application/constants/reservations.constants";
 import { FormSectionTitle } from "@application/elements/formSectionTitle.component";
 import { Grid, TextField } from "@mui/material";
 import { DateTimePicker } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import Address from "@pictures/icons/address.svg";
+import AddressPicture from "@pictures/icons/address.svg";
 import dayjs, { Dayjs } from "dayjs";
 import "dayjs/locale/fr";
 import React from "react";
-import { useQuery } from "react-query";
-import { getCompaniesQuery, getReasonsQuery } from "../addReservation.queries";
 import { DeparturePlaceField } from "./departurePlace.component";
 import { ReasonField } from "./reasonField.component";
 
 interface Props {
   departureDate: Dayjs;
+  departurePlace: Company;
+  returnDate: Dayjs;
+  destination: Address;
+  motive: Motive;
   updateDepartureDate: (departureDate: Dayjs) => void;
-  updateDeparturePlace: (departurePlaceId: number) => void;
-  updateReturnDate: (returnDate: string) => void;
-  updateReason: (reasonId: number) => void;
+  updateDeparturePlace: (departurePlace: Company) => void;
+  updateReturnDate: (returnDate: Dayjs) => void;
+  updateReason: (reason: Motive) => void;
+  updateDestination: (newDestination: Address) => void;
 }
 
 export const TripDetailsComponent = ({
   departureDate,
+  departurePlace,
+  returnDate,
+  destination,
+  motive,
   updateDepartureDate,
   updateDeparturePlace,
   updateReturnDate,
   updateReason,
+  updateDestination,
 }: Props) => {
   const today = dayjs();
   const [keyword, setKeyword] = React.useState<string>("");
 
-  const handleKeyword = (e: any) => {
+  const handleDestination = (e: any) => {
     const newKeyword = e.target.value;
     setKeyword(newKeyword);
     // FIXME: add destination handling
-    // FIXME: does not work because of cors
     //   const { isLoading, error, data } = useQuery({
     //     queryKey: ["getPlaces"],
     //     queryFn: () =>
@@ -50,30 +63,54 @@ export const TripDetailsComponent = ({
     updateDepartureDate(newDate);
   };
 
-  const getCompaniesRes = useQuery("getCompanies", getCompaniesQuery);
-  const isLoadingCompanies = getCompaniesRes.isLoading;
-  const companies = normalizeData(getCompaniesRes.data ?? ({} as Company[]));
-  const companiesError = getCompaniesRes.isError;
+  const handleReturnDate = (newDate: Dayjs) => {
+    updateReturnDate(newDate);
+  };
 
-  const getReasonsRes = useQuery("getReasons", getReasonsQuery);
-  const isLoadingReasons = getReasonsRes.isLoading;
-  const reasons = normalizeData(getReasonsRes.data ?? ({} as string[]));
-  const reasonsError = getReasonsRes.isError;
+  // const getCompaniesRes = useQuery("getCompanies", getCompaniesQuery);
+  // const isLoadingCompanies = getCompaniesRes.isLoading;
+  // const companies = normalizeData(getCompaniesRes.data ?? ({} as Company[]));
+  // const companiesError = getCompaniesRes.isError;
 
-  // const [normalizedData, setNormalizedData] = React.useState<QueryData>(
-  //   data ? normalizeData(data) : ({} as QueryData)
-  // );
+  // const getReasonsRes = useQuery("getReasons", getReasonsQuery);
+  // const isLoadingReasons = getReasonsRes.isLoading;
+  // const reasons = normalizeData(getReasonsRes.data ?? ({} as string[]));
+  // const reasonsError = getReasonsRes.isError;
 
-  // React.useEffect(() => {
-  //   if (data) {
-  //     setNormalizedData(normalizeData(data));
-  //   }
-  // }, [data]);
+  const reasons = {
+    result: allMotives,
+  };
+
+  const [isDestinationError, setDestinationError] =
+    React.useState<boolean>(false);
+
+  const validateDestination = () => {
+    const addressRegex = /(\d+ [^\d]+) (\d{5}) ([^\d]+)/;
+    const match = addressRegex.exec(keyword);
+
+    if (match) {
+      const address: Address = {
+        street: match[1],
+        postalCode: match[2],
+        city: match[3],
+      };
+      updateDestination(address);
+      setDestinationError(false);
+    } else {
+      console.error("Failed to parse destination");
+      setDestinationError(true);
+    }
+  };
+
+  const companies = { result: [company1, company2, company3] };
 
   return (
     <>
-      <FormSectionTitle icon={Address} title={"Informations du trajet"} />
-      <Grid container spacing={2} alignItems="center">
+      <FormSectionTitle
+        icon={AddressPicture}
+        title={"Informations du trajet"}
+      />
+      <Grid container spacing={2} alignItems="flex-start">
         {/* Row 1 */}
         <Grid item xs={12} md={3}>
           <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="fr">
@@ -82,8 +119,9 @@ export const TripDetailsComponent = ({
                 width: "100%",
               }}
               defaultValue={today}
+              value={departureDate}
               label="Date et heure de départ *"
-              onChange={(newDate) => handleDepartureDate(newDate || today)}
+              onChange={(newDate) => handleDepartureDate(newDate ?? today)}
               minDate={dayjs(today)}
             />
           </LocalizationProvider>
@@ -91,29 +129,37 @@ export const TripDetailsComponent = ({
         <Grid item xs={12} md={4}>
           {/* FIXME: use connected user location as default value */}
           <DeparturePlaceField
+            selectedDeparturePlace={departurePlace}
             updateDeparturePlace={updateDeparturePlace}
-            isLoading={isLoadingCompanies}
             data={companies}
-            isError={companiesError}
           />
         </Grid>
         <Grid item xs={12} md={5}>
           <ReasonField
+            selectedMotive={motive}
             updateReason={updateReason}
-            isLoading={isLoadingReasons}
             data={reasons}
-            isError={reasonsError}
           />
         </Grid>
         {/* Row 2 */}
         <Grid item xs={12} md={9}>
           <TextField
+            error={isDestinationError}
             id="outlined-basic"
             label="Destination"
             variant="outlined"
             required
-            onChange={handleKeyword}
+            helperText={
+              isDestinationError ? "L'adresse de destination est invalide." : ""
+            }
+            onChange={handleDestination}
+            value={
+              Object.keys(destination).length > 0
+                ? `${destination?.street} ${destination?.postalCode} ${destination?.city}`
+                : keyword
+            }
             sx={{ width: "100%" }}
+            onBlur={() => validateDestination()}
           />
         </Grid>
         <Grid item xs={12} md={3}>
@@ -122,11 +168,10 @@ export const TripDetailsComponent = ({
               sx={{
                 width: "100%",
               }}
-              defaultValue={departureDate ?? today}
+              defaultValue={today}
+              value={returnDate}
               label="Date et heure de retour *"
-              onChange={(newValue) => {
-                updateReturnDate(newValue?.format() ?? today.format());
-              }}
+              onChange={(newDate) => handleReturnDate(newDate ?? today)}
               minDate={dayjs(departureDate)}
             />
           </LocalizationProvider>

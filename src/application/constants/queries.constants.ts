@@ -1,5 +1,5 @@
 export interface QueryData {
-  totalItems: number;
+  totalItems?: number;
   result: any[];
 }
 

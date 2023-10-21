@@ -1,4 +1,4 @@
-import { User } from "@application/constants/people.constants";
+import { User } from "@/application/constants/user.constants";
 import { List, ListItem, ListItemText, Stack, Typography } from "@mui/material";
 import People from "@pictures/icons/people.svg";
 import { InformationAccordion } from "./informationAccordion.component";
@@ -12,9 +12,9 @@ export const PassengersPhoneComponent = ({
 }: PassengersPhoneProps) => {
   const panel = passengers.map((p: User) => {
     return (
-      <ListItem>
+      <ListItem key={p.id}>
         <Stack direction="column" alignItems="start">
-          <ListItemText primary={`${p.firstName} ${p.lastName}`} />
+          <ListItemText primary={`${p.firstname} ${p.lastname}`} />
           <Typography variant="body1">{p.company.name}</Typography>
           <Typography variant="body1">{p.phone}</Typography>
           <Typography variant="body1">{p.email}</Typography>

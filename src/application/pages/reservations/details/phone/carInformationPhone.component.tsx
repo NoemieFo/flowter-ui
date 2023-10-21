@@ -18,34 +18,53 @@ export const CarInformationPhoneComponent = ({
 }: CarInformationPhoneProps) => {
   const list = (
     <List>
-      <ListItem divider sx={{ textAlign: "center" }}>
+      <ListItem
+        divider
+        sx={{ textAlign: "center" }}
+        key={`${car?.model?.brand}-${car?.id}`}
+      >
         <ListItemText
           primary="Marque"
-          secondary={capitalize(car.model.brand)}
+          secondary={capitalize(car?.model?.brand)}
         />
       </ListItem>
-      <ListItem divider sx={{ textAlign: "center" }}>
+      <ListItem
+        divider
+        sx={{ textAlign: "center" }}
+        key={`${car?.model?.label}-${car?.id}`}
+      >
         <ListItemText
           primary="Modèle"
-          secondary={capitalize(car.model.label)}
+          secondary={capitalize(car?.model?.label)}
         />
       </ListItem>
-      <ListItem divider sx={{ textAlign: "center" }}>
+      <ListItem
+        divider
+        sx={{ textAlign: "center" }}
+        key={`${car?.licensePlate}-${car?.id}`}
+      >
         <ListItemText
           primary="Immatriculation"
-          secondary={capitalize(car.licensePlate)}
+          secondary={capitalize(car?.licensePlate)}
         />
       </ListItem>
-      <ListItem divider sx={{ textAlign: "center" }}>
+      <ListItem
+        divider
+        sx={{ textAlign: "center" }}
+        key={`${car?.gearbox}-${car.id}`}
+      >
         <ListItemText
           primary="Boîte de vitesse"
-          secondary={capitalize(car.gearbox)}
+          secondary={capitalize(car?.gearbox)}
         />
       </ListItem>
-      <ListItem sx={{ display: "flex", flexDirection: "column" }}>
+      <ListItem
+        sx={{ display: "flex", flexDirection: "column" }}
+        key={`${car?.options[0]}-${car.id}`}
+      >
         <ListItemText primary="Options" />
-        {car.options.map((o) => (
-          <Typography>{capitalize(o)}</Typography>
+        {car?.options?.map((o) => (
+          <Typography key={o}>{capitalize(o)}</Typography>
         ))}
       </ListItem>
     </List>

@@ -1,5 +1,7 @@
-import { Reservation } from "@application/constants/reservations.constants";
-import { allReservations } from "@application/pages/reservations/details/reservationDetails.page";
+import {
+  Reservation,
+  allReservations,
+} from "@application/constants/reservations.constants";
 import { PageTitle } from "@common/titles.component";
 import {
   Box,
@@ -11,7 +13,6 @@ import {
 } from "@mui/material";
 import { CreateReservationButton } from "./createReservationButton.component";
 import { ResultLineComponent, ResultLineHeader } from "./resultLine.component";
-import { SearchInput } from "./searchInput.component";
 
 export const DesktopGrid = () => {
   const theme = useTheme();
@@ -36,14 +37,18 @@ export const DesktopGrid = () => {
             alignItems={"center"}
             justifyContent={"right"}
           >
-            <SearchInput />
+            {/* 
+            TODO: put back search input
+            <SearchInput /> 
+            */}
             <CreateReservationButton />
           </Stack>
         </Grid>
       </Grid>
       <Grid container spacing={2} marginBottom={"30px"} alignItems={"center"}>
+        {/* TODO: handle pagniation */}
         <Grid item lg={3}>
-          Afficher XXX résultats
+          {/* Afficher 333445 résultats*/}
         </Grid>
         <Grid item lg={6} textAlign={"center"}>
           {/* FIXME: add real reservations length */}

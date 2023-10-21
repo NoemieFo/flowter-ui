@@ -1,8 +1,10 @@
+import {
+  Company,
+  allCompanies,
+} from "@/application/constants/companies.constants";
 import { QueryData } from "@/application/constants/queries.constants";
-import { Company } from "@application/constants/reservations.constants";
 import { Message } from "@application/elements/messages.component";
 import {
-  CircularProgress,
   FormControl,
   InputLabel,
   MenuItem,
@@ -11,20 +13,26 @@ import {
 } from "@mui/material";
 
 interface DeparturePlaceFieldProps {
-  isLoading: boolean;
+  // isLoading: boolean;
+  // isError: boolean;
+  selectedDeparturePlace: Company;
   data: QueryData;
-  isError: boolean;
-  updateDeparturePlace: (departurePlaceId: number) => void;
+  updateDeparturePlace: (departurePlace: Company) => void;
 }
 
 export const DeparturePlaceField = ({
+  // isLoading,
+  // isError,
+  selectedDeparturePlace,
   updateDeparturePlace,
-  isLoading,
   data,
-  isError,
 }: DeparturePlaceFieldProps) => {
   const departurePlaceContent = () => {
-    if (!isLoading && (isError || !data)) {
+    if (
+      // !isLoading &&
+      // (isError || !data)
+      !data
+    ) {
       return (
         <Message
           type="error"
@@ -47,7 +55,7 @@ export const DeparturePlaceField = ({
       );
     }
 
-    return data?.result.map((c: Company) => (
+    return data?.result?.map((c: Company) => (
       <MenuItem key={c.id} value={c.id}>
         {c.name}
       </MenuItem>
@@ -56,23 +64,29 @@ export const DeparturePlaceField = ({
 
   const handleChangeDeparturePlace = (e: SelectChangeEvent) => {
     const departurePlaceId = Number(e.target.value);
-    updateDeparturePlace(departurePlaceId);
+    updateDeparturePlace(
+      allCompanies.filter((c: Company) => c.id === departurePlaceId)[0]
+    );
   };
 
   return (
     <FormControl fullWidth required>
       <InputLabel id="departure-place-dropdown">Lieu de départ</InputLabel>
       <Select
-        endAdornment={
-          isLoading ? (
-            <CircularProgress size={20} sx={{ marginRight: "20px" }} />
-          ) : undefined
-        }
-        // labelId="departure-place-dropdown"
+        // endAdornment={
+        //   isLoading ? (
+        //     <CircularProgress size={20} sx={{ marginRight: "20px" }} />
+        //   ) : undefined
+        // }
+        // disabled={isLoading}
         defaultValue={""}
         label="Lieu de départ"
         onChange={handleChangeDeparturePlace}
-        disabled={isLoading}
+        value={
+          Object.keys(selectedDeparturePlace).length > 0
+            ? String(selectedDeparturePlace.id)
+            : ""
+        }
       >
         {departurePlaceContent()}
       </Select>

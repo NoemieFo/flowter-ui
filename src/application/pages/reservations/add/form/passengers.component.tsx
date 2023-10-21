@@ -1,7 +1,9 @@
 import {
-  Passenger,
-  passengersTest,
-} from "@application/constants/people.constants";
+  User,
+  user1,
+  user2,
+  user3,
+} from "@/application/constants/user.constants";
 import { FormSectionTitle } from "@application/elements/formSectionTitle.component";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
@@ -14,10 +16,12 @@ import People from "@pictures/icons/people.svg";
 import * as React from "react";
 
 interface PassengersComponentProps {
-  updatePassengers: (passengers: Passenger[]) => void;
+  selectedPassengers?: User[];
+  updatePassengers: (passengers: User[]) => void;
 }
 
 export const PassengersComponent = ({
+  selectedPassengers,
   updatePassengers,
 }: PassengersComponentProps) => {
   const [passengers, setPassengers] = React.useState<string[]>([]);
@@ -30,7 +34,8 @@ export const PassengersComponent = ({
 
     setPassengers(typeof value === "string" ? value.split(",") : value);
 
-    let p: Passenger[] = [];
+    let p: User[] = [];
+
     try {
       const cleanedValue = value.toString().replaceAll("'", "");
       p = JSON.parse(`[${cleanedValue}]`);
@@ -61,12 +66,12 @@ export const PassengersComponent = ({
               label="Ajouter des passagers"
             />
           }
-          renderValue={(selected) => (
+          renderValue={(selected: string[]) => (
             <Box
               sx={{ display: "flex", flexWrap: "wrap", gap: 0.5, padding: "0" }}
             >
-              {selected.map((value) => {
-                let selectedPassenger;
+              {selected.map((value: string) => {
+                let selectedPassenger: User = {} as User;
                 try {
                   selectedPassenger = JSON.parse(value);
                 } catch (e) {
@@ -75,18 +80,18 @@ export const PassengersComponent = ({
                 return (
                   <Chip
                     key={value}
-                    label={`${selectedPassenger.firstname} ${selectedPassenger.name}`}
+                    label={`${selectedPassenger.firstname} ${selectedPassenger.lastname}`}
                   />
                 );
               })}
             </Box>
           )}
         >
-          {passengersTest.map((p: Passenger) => {
+          {[user1, user2, user3].map((p: User) => {
             const pString = JSON.stringify(p);
             return (
               <MenuItem key={pString} value={pString}>
-                {`${p.firstname} ${p.name} - ${p.school}`}
+                {`${p.firstname} ${p.lastname} - ${p.company.name}`}
               </MenuItem>
             );
           })}

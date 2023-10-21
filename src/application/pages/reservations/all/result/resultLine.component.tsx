@@ -1,4 +1,4 @@
-import { User } from "@application/constants/people.constants";
+import { User } from "@/application/constants/user.constants";
 import { Reservation } from "@application/constants/reservations.constants";
 import { convertDateToFrenchFormat } from "@common/helpers/utils";
 import {
@@ -97,7 +97,7 @@ export const ResultLineComponent = ({
     return (
       <Stack direction={"column"}>
         <Text variant="body2">
-          {reservation?.destination?.address ?? emptyValue}
+          {reservation?.destination?.street ?? emptyValue}
         </Text>
         <Text variant="body2">{cpAndCity}</Text>
       </Stack>
@@ -119,7 +119,7 @@ export const ResultLineComponent = ({
               key={reservation.users[0].id}
               lineHeight={1.2}
             >
-              {reservation?.users[0].firstName} {reservation?.users[0].lastName}
+              {reservation?.users[0].firstname} {reservation?.users[0].lastname}
             </Text>
 
             <Text
@@ -127,7 +127,7 @@ export const ResultLineComponent = ({
               key={reservation.users[1].id}
               lineHeight={1.2}
             >
-              {reservation.users[1].firstName} {reservation.users[1].lastName}
+              {reservation.users[1].firstname} {reservation.users[1].lastname}
             </Text>
             <Text
               variant="body2"
@@ -143,7 +143,7 @@ export const ResultLineComponent = ({
         passengersList = reservation.users.map((u: User) => {
           return (
             <Text variant="body2" key={u.id}>
-              {u.firstName} {u.lastName}
+              {u.firstname} {u.lastname}
             </Text>
           );
         });
@@ -199,7 +199,10 @@ export const ResultLineComponent = ({
                 )
               : emptyValue}
           </Text>
-          <Text variant="body2">{reservation?.location ?? emptyValue}</Text>
+          <Text variant="body2">
+            {`${reservation?.location?.address?.street} ${reservation?.location?.address?.postalCode} ${reservation?.location?.address?.city}` ??
+              emptyValue}
+          </Text>
         </Stack>
       </Cell>
       <Cell className="destination" gridArea={"destination"}>
@@ -214,7 +217,10 @@ export const ResultLineComponent = ({
                 )
               : emptyValue}
           </Text>
-          <Text variant="body2">{reservation?.location ?? emptyValue}</Text>
+          <Text variant="body2">
+            {`${reservation?.location?.address?.street} ${reservation?.location?.address?.postalCode} ${reservation?.location?.address?.city}` ??
+              emptyValue}
+          </Text>
         </Stack>
       </Cell>
       <Cell className="vehicle" gridArea={"vehicle"}>

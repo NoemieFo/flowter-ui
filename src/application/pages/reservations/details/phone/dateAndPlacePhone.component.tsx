@@ -24,7 +24,10 @@ export const DateAndPlacePhoneComponent = ({
         <Typography variant="h4" color="black">
           {reservation.dateOfLoan ?? emptyValue}
         </Typography>
-        <Typography>{reservation.location ?? emptyValue}</Typography>
+        <Typography>
+          {`${reservation?.location?.address?.street} ${reservation?.location?.address?.postalCode} ${reservation?.location?.address?.city}` ??
+            emptyValue}
+        </Typography>
       </>
       <Box
         component="img"
@@ -32,7 +35,7 @@ export const DateAndPlacePhoneComponent = ({
         sx={{ width: "40px", transform: "rotate(90deg)" }}
       />
       <Stack direction={"column"} alignItems={"center"}>
-        {reservation?.destination?.address ?? emptyValue}
+        {reservation?.destination?.street ?? emptyValue}
         <div>
           {reservation?.destination?.postalCode ?? emptyValue}
           {reservation?.destination?.city ?? emptyValue}
@@ -48,7 +51,10 @@ export const DateAndPlacePhoneComponent = ({
         <Typography variant="h4" color="black">
           {reservation.dateOfReturn ?? emptyValue}
         </Typography>
-        <Typography>{reservation.location ?? emptyValue}</Typography>
+        <Typography>
+          {`${reservation?.location?.address?.street} ${reservation?.location?.address?.postalCode} ${reservation?.location?.address?.city}` ??
+            emptyValue}
+        </Typography>
       </>
     </Stack>
   );

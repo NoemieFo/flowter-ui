@@ -1,44 +1,36 @@
-import {
-  QueryData,
-  normalizeData,
-} from "@application/constants/queries.constants";
-import { Motive } from "@application/constants/reservations.constants";
+import { Motive, allMotives } from "@/application/constants/motives.constants";
+import { QueryData } from "@application/constants/queries.constants";
 import { Message } from "@application/elements/messages.component";
 import {
-  CircularProgress,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import React from "react";
 
 interface ReasonFieldProps {
-  updateReason: (reasonId: number) => void;
-  isLoading: boolean;
+  // isLoading: boolean;
+  // isError: boolean;
+  selectedMotive: Motive;
+  updateReason: (reason: Motive) => void;
   data: QueryData;
-  isError: boolean;
 }
 
 export const ReasonField = ({
   updateReason,
-  isLoading,
   data,
-  isError,
-}: ReasonFieldProps) => {
-  const [normalizedData, setNormalizedData] = React.useState<QueryData>(
-    data ? normalizeData(data) : ({} as QueryData)
-  );
-
-  React.useEffect(() => {
-    if (data) {
-      setNormalizedData(normalizeData(data));
-    }
-  }, [data]);
+  selectedMotive,
+}: // isLoading,
+// isError,
+ReasonFieldProps) => {
+  const normalizedData = data;
 
   const reasonContent = () => {
-    if (isError || !normalizedData) {
+    if (
+      // isError ||
+      !data
+    ) {
       return (
         <Message
           type="error"
@@ -48,7 +40,7 @@ export const ReasonField = ({
       );
     }
 
-    if (normalizedData?.totalItems === 0) {
+    if (data?.totalItems === 0) {
       return (
         <Message
           type="warning"
@@ -60,7 +52,8 @@ export const ReasonField = ({
         />
       );
     }
-    return normalizedData?.result.map((m: Motive) => (
+
+    return data?.result.map((m: Motive) => (
       <MenuItem key={m.id} value={m.id}>
         {m.label}
       </MenuItem>
@@ -69,23 +62,28 @@ export const ReasonField = ({
 
   const handleChangeReason = (e: SelectChangeEvent) => {
     const reasonId = Number(e.target.value);
-    updateReason(reasonId);
+    updateReason(allMotives.filter((m: Motive) => m.id === reasonId)[0]);
   };
 
   return (
     <FormControl fullWidth required>
       <InputLabel id="reason-dropdown">Motif</InputLabel>
       <Select
-        endAdornment={
-          isLoading ? (
-            <CircularProgress size={20} sx={{ marginRight: "20px" }} />
-          ) : undefined
-        }
+        // endAdornment={
+        //   isLoading ? (
+        //     <CircularProgress size={20} sx={{ marginRight: "20px" }} />
+        //   ) : undefined
+        // }
+        // disabled={isLoading}
         labelId="reason-dropdown"
-        defaultValue={""}
+        defaultValue=""
         label="Motif"
         onChange={handleChangeReason}
-        disabled={isLoading}
+        value={
+          Object.keys(selectedMotive).length > 0
+            ? String(selectedMotive.id)
+            : ""
+        }
       >
         {reasonContent()}
       </Select>

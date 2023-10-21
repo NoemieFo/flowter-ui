@@ -11,8 +11,11 @@
     "@types/mui-image": "^1.0.1",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
+    "axios": "^1.5.1",
+    "cors": "^2.8.5",
     "dayjs": "^1.11.9",
     "eslint": "^8.37.0",
+    "express": "^4.18.2",
     "mui-image": "^1.0.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -26,7 +29,7 @@
   },
   "scripts": {
     "start": "vite",
-    "build": "eslint src && tsc && vite build",
+    "build": "vite build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

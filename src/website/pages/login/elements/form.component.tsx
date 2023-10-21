@@ -1,6 +1,6 @@
 import {
-  ButtonMainComponent,
   FormButtonGroupComponent,
+  PrimaryFormButton,
   SecondaryFormButton,
 } from "@common/buttons.component";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
@@ -27,8 +27,6 @@ const initLoginData: LoginData = {
 };
 
 export const LoginForm = () => {
-  const onForgotPassword = () => {};
-
   const [data, setData] = React.useState<LoginData>(initLoginData);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,14 +88,16 @@ export const LoginForm = () => {
         <FormButtonGroupComponent
           secondaryButton={
             <SecondaryFormButton
-              onClick={onForgotPassword}
+              // TODO: Reset password
+              onClick={() => undefined}
               text="Mot de passe oublié ?"
             />
           }
           mainButton={
-            <ButtonMainComponent
+            <PrimaryFormButton
               text="Me connecter"
               disabled={!data.mail || !data.password}
+              onValidate={() => undefined}
             />
           }
         />
