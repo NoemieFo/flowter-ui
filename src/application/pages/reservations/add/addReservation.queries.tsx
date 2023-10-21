@@ -9,6 +9,5 @@ export const getCompaniesQuery = async () => {
   const res = await fetch("http://localhost:4000/companies", {
     method: "GET",
   });
-  console.log(res.json());
   return res.json();
 };
