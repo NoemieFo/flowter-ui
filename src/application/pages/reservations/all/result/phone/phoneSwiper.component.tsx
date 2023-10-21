@@ -1,12 +1,13 @@
-import { Pagination } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-
-import { Reservation } from "@application/constants/reservations.constants";
-import { allReservations } from "@application/pages/reservations/details/reservationDetails.page";
+import {
+  Reservation,
+  allReservations,
+} from "@application/constants/reservations.constants";
 import { PageTitle } from "@common/titles.component";
 import { useMediaQuery, useTheme } from "@mui/material";
 import "swiper/css";
 import "swiper/css/pagination";
+import { Pagination } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
 import { ResultCard } from "./resultCard.component";
 
 export const PhoneSwiper = () => {
@@ -31,7 +32,6 @@ export const PhoneSwiper = () => {
         modules={[Pagination]}
         style={{
           width: "100%",
-          height: "100%",
         }}
       >
         {allReservations.map((r: Reservation) => {
@@ -43,6 +43,7 @@ export const PhoneSwiper = () => {
                 alignItems: "center",
                 padding: "20px",
               }}
+              key={r.id}
             >
               <ResultCard reservation={r} />
             </SwiperSlide>

@@ -12,7 +12,7 @@ import {
 } from "../kilometers.component";
 import { InformationAccordion } from "./informationAccordion.component";
 
-export const KilomtersPhoneComponent = () => {
+export const KilometersPhoneComponent = () => {
   const clearForm = () => {};
   const validate = () => {};
 

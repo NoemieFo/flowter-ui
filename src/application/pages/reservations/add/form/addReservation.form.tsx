@@ -1,18 +1,34 @@
 import {
+  Car,
+  GearboxTypes,
+  allCars,
+} from "@/application/constants/cars.constants";
+import { Company } from "@/application/constants/companies.constants";
+import { Motive } from "@/application/constants/motives.constants";
+import {
+  Address,
+  Reservation,
+  allReservations,
+} from "@/application/constants/reservations.constants";
+import { User } from "@/application/constants/user.constants";
+import {
   CarCategories,
   CarOptions,
   carOptionsByCategory,
 } from "@application/constants/categories.constants";
-import { Passenger } from "@application/constants/people.constants";
 import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import OrderRide from "@pictures/order_ride.svg";
 import dayjs, { Dayjs } from "dayjs";
 import React from "react";
-import { AddReservationFormInput } from "../addReservation.constants";
 import { AddReservationButtons } from "./buttons.component";
 import { PassengersComponent } from "./passengers.component";
 import { PickVehicleComponent } from "./pickVehicle.component";
 import { TripDetailsComponent } from "./tripDetails.component";
+
+export interface ValidationError {
+  field: string;
+  description: string;
+}
 
 // FIXME: add destination handling
 export const AddReservationForm = () => {
@@ -40,7 +56,7 @@ export const AddReservationForm = () => {
   );
 
   const [departureDate, setDepartureDate] = React.useState<Dayjs>(dayjs());
-  const [returnDate, setReturnDate] = React.useState<string>(dayjs().format());
+  const [returnDate, setReturnDate] = React.useState<Dayjs>(dayjs());
 
   const updateCategory = (newCategory: CarCategories) => {
     setCategory(newCategory);
@@ -54,29 +70,42 @@ export const AddReservationForm = () => {
     setDepartureDate(newDate);
   };
 
-  const updateReturnDate = (newDate: string) => {
+  const updateReturnDate = (newDate: Dayjs) => {
     setReturnDate(newDate);
   };
 
-  const [reasonId, setReasonId] = React.useState<number>(0);
-  const updateReason = (newReasonId: number) => {
-    setReasonId(newReasonId);
+  const [reason, setReason] = React.useState<Motive>({} as Motive);
+  const updateReason = (newReason: Motive) => {
+    setReason(newReason);
   };
 
-  const [departurePlaceId, setDeparturePlaceId] = React.useState<number>(0);
-  const updateDeparturePlace = (newDeparturePlaceId: number) => {
-    setDeparturePlaceId(newDeparturePlaceId);
+  // Use connected user by default
+  const [departurePlace, setDeparturePlace] = React.useState<Company>(
+    {} as Company
+  );
+  const updateDeparturePlace = (newDeparturePlace: Company) => {
+    setDeparturePlace(newDeparturePlace);
   };
 
-  const [passengers, setPassengers] = React.useState<Passenger[]>([]);
-  const isValid: boolean =
+  const [destination, setDestination] = React.useState<Address>({} as Address);
+  const updateDestination = (newDestination: Address) => {
+    setDestination(newDestination);
+  };
+
+  const [isCarError, setIsCarError] = React.useState<boolean>(false);
+
+  let isValid: boolean = !!(
     category !== CarCategories.DefaultEmpty &&
     departureDate.format() !== "" &&
-    departurePlaceId !== 0 &&
-    returnDate !== "" &&
-    reasonId !== 0;
+    returnDate.format() !== "" &&
+    returnDate > departureDate &&
+    Object.keys(departurePlace).length > 0 &&
+    Object.keys(destination).length > 0 &&
+    Object.keys(reason).length > 0
+  );
 
-  const updatePassengers = (passengers: Passenger[]) => {
+  const [passengers, setPassengers] = React.useState<User[]>([]);
+  const updatePassengers = (passengers: User[]) => {
     setPassengers(passengers);
   };
 
@@ -85,27 +114,62 @@ export const AddReservationForm = () => {
     setCategory(CarCategories.DefaultEmpty);
     setSelectedOptions({} as Record<CarOptions, boolean>);
     setDepartureDate(today);
-    setDeparturePlaceId(0);
-    setReturnDate(today.format());
-    setReasonId(0);
+    setDeparturePlace({} as Company);
+    setDestination({} as Address);
+    setReturnDate(today);
+    setReason({} as Motive);
     setPassengers([]);
   };
 
   const validate = () => {
-    const input: AddReservationFormInput = {
-      category: category,
-      options: selectedOptions,
-      departure: {
-        date: departureDate.format(),
-        departurePlaceId: departurePlaceId,
-      },
-      returnDate,
-      reasonId,
-      passengers,
-    };
+    setIsCarError(false); // cleanup value if not the first try
 
-    if (isValid) {
-      // FIXME:send request
+    // Filter the allCars array
+    const filteredCars = allCars.filter((car) => {
+      // Use the `every` function to check if all specified options match
+      return Object.entries(selectedOptions).every(([option, value]) => {
+        if (value) {
+          return car.options.includes(option as CarOptions);
+        }
+        return true;
+      });
+    });
+
+    if (filteredCars.length === 0) {
+      setIsCarError(true);
+      console.error("No car found matching criteria");
+      isValid = false;
+    }
+
+    const needBoiteAuto = Object.keys(selectedOptions).includes(
+      CarOptions.BoiteAuto
+    );
+
+    let cars = filteredCars;
+    if (needBoiteAuto) {
+      cars = filteredCars.filter((c: Car) => c.gearbox === GearboxTypes.Auto);
+    }
+
+    if (cars.length === 0) {
+      setIsCarError(true);
+      console.error("No car found matching criteria");
+      isValid = false;
+    }
+
+    if (isValid && !isCarError) {
+      const newReservation: Reservation = {
+        id: allReservations[allReservations.length - 1].id + 1,
+        dateOfLoan: departureDate.format(),
+        dateOfReturn: returnDate.format(),
+        users: passengers,
+        location: departurePlace,
+        destination,
+        car: cars[0],
+      };
+
+      allReservations.push(newReservation);
+
+      console.log(allReservations);
     }
   };
 
@@ -117,13 +181,19 @@ export const AddReservationForm = () => {
         selectedOptions={selectedOptions}
         updateOptions={updateOptions}
         updateCategory={updateCategory}
+        isError={isCarError}
       />
       <TripDetailsComponent
         departureDate={departureDate}
+        departurePlace={departurePlace}
+        returnDate={returnDate}
+        destination={destination}
+        motive={reason}
         updateDepartureDate={updateDepartureDate}
         updateDeparturePlace={updateDeparturePlace}
         updateReturnDate={updateReturnDate}
         updateReason={updateReason}
+        updateDestination={updateDestination}
       />
       <Grid container spacing={2}>
         <Grid
@@ -134,7 +204,10 @@ export const AddReservationForm = () => {
             paddingRight: { md: "40px" },
           }}
         >
-          <PassengersComponent updatePassengers={updatePassengers} />
+          <PassengersComponent
+            // passengers={passengers}
+            updatePassengers={updatePassengers}
+          />
           <AddReservationButtons
             validate={validate}
             isValid={isValid}

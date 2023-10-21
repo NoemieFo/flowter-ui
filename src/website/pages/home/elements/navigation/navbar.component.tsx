@@ -47,9 +47,10 @@ export const Navbar = () => {
       >
         <PhoneMenuComponent handleIsOpen={handleIsOpen} />
       </PhoneMenuWrapper>
-      <Link to={websiteRoutes["login"].path}>
-        <ConnectButton variant="contained">Se connecter</ConnectButton>
-      </Link>
+      {/* TODO: add authent */}
+      <ConnectButton onClick={() => undefined} variant="contained">
+        Se connecter
+      </ConnectButton>
     </Toolbar>
   );
 
@@ -68,9 +69,10 @@ export const Navbar = () => {
             </Link>
           ))}
         </LinkWrapper>
-        <Link to={websiteRoutes["login"].path}>
-          <ConnectButton variant="contained">Se connecter</ConnectButton>
-        </Link>
+        {/* TODO: add authent */}
+        <ConnectButton onClick={() => undefined} variant="contained">
+          Se connecter
+        </ConnectButton>
       </DesktopMenuWrapper>
     </Toolbar>
   );

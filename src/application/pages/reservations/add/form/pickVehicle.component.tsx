@@ -9,6 +9,7 @@ import {
   Checkbox,
   FormControl,
   FormControlLabel,
+  FormHelperText,
   Grid,
   InputLabel,
   MenuItem,
@@ -22,6 +23,7 @@ interface Props {
   selectedCategory: CarCategories;
   selectedCarOptions: CarOptions[];
   selectedOptions: Record<CarOptions, boolean>;
+  isError: boolean;
   updateOptions: (newSelectedOptions: Record<CarOptions, boolean>) => void;
   updateCategory: (newCategory: CarCategories) => void;
 }
@@ -30,13 +32,10 @@ export const PickVehicleComponent = ({
   selectedCategory,
   selectedCarOptions,
   selectedOptions,
+  isError,
   updateOptions,
   updateCategory,
 }: Props) => {
-  //   const [category, setCategory] = React.useState<CarCategories>(
-  //     CarCategories.DefaultEmpty
-  //   );
-
   const handleChangeCategory = (e: SelectChangeEvent) => {
     const newCategory = e.target.value as CarCategories;
     updateCategory(newCategory);
@@ -53,7 +52,7 @@ export const PickVehicleComponent = ({
       <FormSectionTitle icon={Car} title={"Sélection du véhicule"} />
       <Grid container spacing={2} alignItems="center">
         <Grid item xs={12} md={3}>
-          <FormControl fullWidth>
+          <FormControl fullWidth error={isError}>
             <InputLabel id="categories-dropdown">Catégorie *</InputLabel>
             <Select
               labelId="categories-dropdown"
@@ -68,6 +67,11 @@ export const PickVehicleComponent = ({
                 </MenuItem>
               ))}
             </Select>
+            {isError && (
+              <FormHelperText>
+                Aucune voiture correspondant aux critères n'est enregistrée.
+              </FormHelperText>
+            )}
           </FormControl>
         </Grid>
         <Grid item xs={12} md={9}>
@@ -79,15 +83,14 @@ export const PickVehicleComponent = ({
                 rowGap: "6px",
               }}
             >
-              {selectedCarOptions.map((option) => (
+              {selectedCarOptions.map((option: CarOptions) => (
                 <FormControlLabel
                   key={option}
                   control={<Checkbox key={`${option}-checkbox`} />}
                   label={capitalize(option)}
                   onChange={handleChangeOptions}
                   name={option}
-                  checked={selectedOptions[option]}
-                  // FIXME: set checkboxes in green when selected
+                  checked={selectedOptions[option] ?? false}
                 />
               ))}
             </Box>

@@ -8,7 +8,7 @@ export const ScrollToTop = () => {
     document.documentElement.scrollTo({
       top: 0,
       left: 0,
-      behavior: "instant", // skip the scrolling animation
+      behavior: "auto", // skip the scrolling animation
     });
   }, [pathname]);
 

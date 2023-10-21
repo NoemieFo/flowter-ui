@@ -1,4 +1,4 @@
-import { User } from "@application/constants/people.constants";
+import { User } from "@/application/constants/user.constants";
 import { Reservation } from "@application/constants/reservations.constants";
 import { convertDateToFrenchFormat } from "@common/helpers/utils";
 import { Box, Stack, Typography, capitalize, useTheme } from "@mui/material";
@@ -30,7 +30,7 @@ export const ResultCard = ({ reservation }: ResultCardProps) => {
   const passengersList = reservation.users.map((u: User) => {
     return (
       <Typography variant="body1" key={u.id}>
-        {u.firstName} {u.lastName}
+        {u.firstname} {u.lastname}
       </Typography>
     );
   });
@@ -55,13 +55,17 @@ export const ResultCard = ({ reservation }: ResultCardProps) => {
             : emptyValue}
         </Typography>
         <Typography variant="body1">
-          {reservation?.location ?? emptyValue}
+          {reservation?.location
+            ? `${reservation.location.address?.street} ${reservation.location.address?.postalCode} ${reservation.location.address?.city}`
+            : emptyValue}
         </Typography>
       </Stack>
       <Stack direction={"column"}>
         <Typography variant="caption2">Destination</Typography>
         <Typography variant="body1">
-          {reservation?.destination?.address ?? emptyValue}
+          {reservation?.destination
+            ? `${reservation.destination.street} ${reservation.destination.postalCode} ${reservation.destination.city}`
+            : emptyValue}
         </Typography>
         <Typography variant="body1">{cpAndCity}</Typography>
       </Stack>
@@ -75,7 +79,9 @@ export const ResultCard = ({ reservation }: ResultCardProps) => {
             : emptyValue}
         </Typography>
         <Typography variant="body1">
-          {reservation?.location ?? emptyValue}
+          {reservation?.location
+            ? `${reservation.location.address?.street} ${reservation.location.address?.postalCode} ${reservation.location.address?.city}`
+            : emptyValue}
         </Typography>
       </Stack>
       <Stack direction={"column"}>

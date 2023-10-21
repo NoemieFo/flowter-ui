@@ -1,34 +1,38 @@
 import {
-  apiDataNode,
-  apiTotalItems,
-} from "@application/constants/queries.constants";
-import { Company } from "@application/constants/reservations.constants";
+  Company,
+  allCompanies,
+} from "@/application/constants/companies.constants";
+import { QueryData } from "@/application/constants/queries.constants";
 import { Message } from "@application/elements/messages.component";
 import {
-  CircularProgress,
   FormControl,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
 } from "@mui/material";
-import { useQuery } from "react-query";
-import { getCompaniesQuery } from "../addReservation.queries";
 
-interface DeparturePlaceField {
-  updateDeparturePlace: (departurePlaceId: number) => void;
+interface DeparturePlaceFieldProps {
+  // isLoading: boolean;
+  // isError: boolean;
+  selectedDeparturePlace: Company;
+  data: QueryData;
+  updateDeparturePlace: (departurePlace: Company) => void;
 }
 
 export const DeparturePlaceField = ({
+  // isLoading,
+  // isError,
+  selectedDeparturePlace,
   updateDeparturePlace,
-}: DeparturePlaceField) => {
-  const { isLoading, data, isError } = useQuery(
-    "getCompanies",
-    getCompaniesQuery
-  );
-
+  data,
+}: DeparturePlaceFieldProps) => {
   const departurePlaceContent = () => {
-    if (isError || !data) {
+    if (
+      // !isLoading &&
+      // (isError || !data)
+      !data
+    ) {
       return (
         <Message
           type="error"
@@ -38,7 +42,7 @@ export const DeparturePlaceField = ({
       );
     }
 
-    if (data[apiTotalItems] === 0) {
+    if (data?.totalItems === 0) {
       return (
         <Message
           type="warning"
@@ -51,9 +55,7 @@ export const DeparturePlaceField = ({
       );
     }
 
-    const res: Company[] = data[apiDataNode];
-
-    return res.map((c: Company) => (
+    return data?.result?.map((c: Company) => (
       <MenuItem key={c.id} value={c.id}>
         {c.name}
       </MenuItem>
@@ -62,23 +64,29 @@ export const DeparturePlaceField = ({
 
   const handleChangeDeparturePlace = (e: SelectChangeEvent) => {
     const departurePlaceId = Number(e.target.value);
-    updateDeparturePlace(departurePlaceId);
+    updateDeparturePlace(
+      allCompanies.filter((c: Company) => c.id === departurePlaceId)[0]
+    );
   };
 
   return (
     <FormControl fullWidth required>
       <InputLabel id="departure-place-dropdown">Lieu de départ</InputLabel>
       <Select
-        endAdornment={
-          isLoading ? (
-            <CircularProgress size={20} sx={{ marginRight: "20px" }} />
-          ) : undefined
-        }
-        // labelId="departure-place-dropdown"
+        // endAdornment={
+        //   isLoading ? (
+        //     <CircularProgress size={20} sx={{ marginRight: "20px" }} />
+        //   ) : undefined
+        // }
+        // disabled={isLoading}
         defaultValue={""}
         label="Lieu de départ"
         onChange={handleChangeDeparturePlace}
-        disabled={isLoading}
+        value={
+          Object.keys(selectedDeparturePlace).length > 0
+            ? String(selectedDeparturePlace.id)
+            : ""
+        }
       >
         {departurePlaceContent()}
       </Select>

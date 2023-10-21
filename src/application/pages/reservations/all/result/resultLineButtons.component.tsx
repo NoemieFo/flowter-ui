@@ -8,6 +8,7 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 interface ActionButtonsProps {
   reservationId: number;
@@ -21,17 +22,17 @@ const ButtonWrapper = styled(Stack)(() => ({
   marginLeft: "2px",
 }));
 
-export const detailsButton = (reservationId: number) => {
+export const DetailsButton = (reservationId: number) => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
 
   return (
     <ButtonWrapper borderRadius={isDesktop ? "0px 8px 8px 0px" : "0"}>
-      <IconButton
-        href={`http://localhost:3000/reservations/${reservationId}/details`}
-      >
-        <SearchIcon color={"primary"} />
-      </IconButton>
+      <Link to={`/reservations/${reservationId}/details`}>
+        <IconButton>
+          <SearchIcon color={"primary"} />
+        </IconButton>
+      </Link>
     </ButtonWrapper>
   );
 };
@@ -71,13 +72,13 @@ export const ReservationActionsButtons = ({
     >
       <CancelButton />
       <EditButton />
-      {detailsButton(reservationId)}
+      {DetailsButton(reservationId)}
     </Stack>
   ) : (
     <Stack width={"100%"}>
       <CancelButton />
       <EditButton />
-      {detailsButton(reservationId)}
+      {DetailsButton(reservationId)}
     </Stack>
   );
 };

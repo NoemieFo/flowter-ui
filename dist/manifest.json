@@ -1,0 +1,8 @@
+{
+  "short_name": "Flowter UI",
+  "name": "The solution for internal vehicle fleet management",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}

@@ -1,4 +1,4 @@
-import { User } from "@application/constants/people.constants";
+import { User } from "@/application/constants/user.constants";
 import { DataCardComponent } from "@application/elements/dataCard.component";
 import { Grid, ListItemText, Stack, Typography } from "@mui/material";
 import Users from "@pictures/icons/users.svg";
@@ -31,7 +31,7 @@ export const PassengersInformationComponent = ({
         return (
           <Grid item md={getColumnSize()} key={p.id}>
             <Stack direction="column" alignItems="start">
-              <ListItemText primary={`${p.firstName} ${p.lastName}`} />
+              <ListItemText primary={`${p.firstname} ${p.lastname}`} />
               <Typography variant="body1">{p.company.name}</Typography>
               <Typography variant="body1">{p.phone}</Typography>
               <Typography variant="body1">{p.email}</Typography>

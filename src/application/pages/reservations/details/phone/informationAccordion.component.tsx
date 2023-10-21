@@ -8,7 +8,7 @@ import AccordionSummary from "@mui/material/AccordionSummary";
 import React from "react";
 import { CarInformationPhoneComponent } from "./carInformationPhone.component";
 import { DateAndPlacePhoneComponent } from "./dateAndPlacePhone.component";
-import { KilomtersPhoneComponent } from "./kilometersPhone.component";
+import { KilometersPhoneComponent } from "./kilometersPhone.component";
 import { PassengersPhoneComponent } from "./passengersPhone.component";
 
 interface InformationAccordionProps extends React.PropsWithChildren {
@@ -71,7 +71,7 @@ export const InformationComponent = ({ reservation }: InformationProps) => {
       <DateAndPlacePhoneComponent reservation={reservation} />
       <CarInformationPhoneComponent car={reservation.car} />
       <PassengersPhoneComponent passengers={reservation?.users} />
-      <KilomtersPhoneComponent />
+      <KilometersPhoneComponent />
     </Box>
   );
 };

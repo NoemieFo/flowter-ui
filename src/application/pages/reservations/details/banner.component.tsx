@@ -30,6 +30,8 @@ export const BannerComponent = ({ reservation }: BannerProps) => {
     </Grid>
   );
 
+  const emptyValue = "-";
+
   return (
     <Box position={"relative"} marginTop={"50px"}>
       <img
@@ -77,13 +79,17 @@ export const BannerComponent = ({ reservation }: BannerProps) => {
               <Typography variant="h4" color="black">
                 {reservation.dateOfLoan}
               </Typography>
-              <Typography>{reservation.location}</Typography>
+              <Typography>
+                {`${reservation?.location?.address?.street} ${reservation?.location?.address?.postalCode} ${reservation?.location?.address?.city}` ??
+                  emptyValue}
+              </Typography>
             </Stack>
           </Grid>
           {chevronColumn}
           <Grid item md={4} padding={"0px"} textAlign={"center"}>
-            {reservation.destination.address}{" "}
-            {reservation.destination.postalCode} {reservation.destination.city}
+            {reservation?.destination?.street}{" "}
+            {reservation?.destination?.postalCode}{" "}
+            {reservation?.destination?.city}
           </Grid>
           {chevronColumn}
           <Grid
@@ -97,7 +103,10 @@ export const BannerComponent = ({ reservation }: BannerProps) => {
               <Typography variant="h4" color="black">
                 {reservation.dateOfReturn}
               </Typography>
-              <Typography>{reservation.location}</Typography>
+              <Typography>
+                {`${reservation?.location?.address?.street} ${reservation?.location?.address?.postalCode} ${reservation?.location?.address?.city}` ??
+                  emptyValue}
+              </Typography>
             </Stack>
           </Grid>
         </Grid>

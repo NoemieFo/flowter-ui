@@ -1,6 +1,8 @@
-import { CarOptions } from "@application/constants/categories.constants";
-import { Roles } from "@application/constants/people.constants";
-import { Reservation } from "@application/constants/reservations.constants";
+import { apps } from "@/application/constants/applications";
+import {
+  Reservation,
+  allReservations,
+} from "@/application/constants/reservations.constants";
 import { AppLayout } from "@application/pages/app.layout";
 import { ErrorLayout } from "@application/pages/error.layout";
 import { PageTitle } from "@common/titles.component";
@@ -8,173 +10,6 @@ import { useMediaQuery, useTheme } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { ReservationDetailsPhoneComponent } from "./phone/reservationDetailsPhone.component";
 import { ReservationDetailsComponent } from "./reservationDetails.component";
-
-export const reservationTest: Reservation = {
-  id: 123456,
-  dateOfLoan: "2023-11-12 09:00",
-  dateOfReturn: "2023-11-12 11:00",
-  location: "ENI Chartres-de-Bretagne",
-  destination: {
-    address: "123 rue de Nantes Appartement 50 Batiment B",
-    postalCode: "35000",
-    city: "Rennes",
-  },
-  car: {
-    id: 1,
-    licensePlate: "AZ-123-ER",
-    model: {
-      brand: "Renault",
-      label: "Megane",
-    },
-    gearbox: "automatique",
-    options: [CarOptions.Bluetooth, CarOptions.GPS],
-  },
-  users: [],
-};
-
-export const reservationTest2: Reservation = {
-  id: 654321,
-  dateOfLoan: "2023-03-12 09:00",
-  dateOfReturn: "2023-03-12 11:00",
-  location: "ENI Nantes",
-  destination: {
-    address: "123 rue de Rennes",
-    postalCode: "44000",
-    city: "Nantes",
-  },
-  car: {
-    id: 1,
-    licensePlate: "AZ-123-ER",
-    model: {
-      brand: "Citroën",
-      label: "C3 Aircross",
-    },
-    gearbox: "manuelle",
-    options: [CarOptions.Bluetooth],
-  },
-  users: [
-    {
-      id: 2,
-      roles: [Roles.admin, Roles.driver, Roles.user],
-      password: "",
-      firstName: "Fournier",
-      lastName: "Pauline",
-      phone: "012345678",
-      email: "pauline.fournier@campus-eni.fr",
-      driverLicenceCheck: false,
-      isDriver: false,
-      company: {
-        id: 1,
-        name: "ENI Chartres-de-Bretagne",
-        address: "123 rue Test 35000 Chartres-de-Bretagne",
-        cars: [],
-        users: [],
-      },
-    },
-    {
-      id: 1,
-      roles: [Roles.admin, Roles.driver, Roles.user],
-      password: "",
-      firstName: "Noémie",
-      lastName: "Foufé",
-      phone: "012345678",
-      email: "noemie.foufe@campus-eni.fr",
-      driverLicenceCheck: true,
-      isDriver: true,
-      company: {
-        id: 1,
-        name: "ENI Nantes",
-        address: "123 rue Test 44000 Nantes",
-        cars: [],
-        users: [],
-      },
-    },
-    {
-      id: 2,
-      roles: [Roles.admin, Roles.driver, Roles.user],
-      password: "",
-      firstName: "Cao-Son",
-      lastName: "Tran",
-      phone: "012345678",
-      email: "cao-son.tran@campus-eni.fr",
-      driverLicenceCheck: true,
-      isDriver: true,
-      company: {
-        id: 1,
-        name: "ENI Chartres-de-Bretagne",
-        address: "123 rue Test 35000 Chartres-de-Bretagne",
-        cars: [],
-        users: [],
-      },
-    },
-    {
-      id: 3,
-      roles: [Roles.admin, Roles.driver, Roles.user],
-      password: "",
-      firstName: "Mattéo",
-      lastName: "Moisan",
-      phone: "012345678",
-      email: "matteo.moisan@campus-eni.fr",
-      driverLicenceCheck: true,
-      isDriver: true,
-      company: {
-        id: 1,
-        name: "ENI Chartres-de-Bretagne",
-        address: "123 rue Test 35000 Chartres-de-Bretagne",
-        cars: [],
-        users: [],
-      },
-    },
-  ],
-};
-
-export const reservationTest3: Reservation = {
-  id: 987654,
-  dateOfLoan: "2023-09-13 12:00",
-  dateOfReturn: "2023-09-15 17:00",
-  location: "ENI Chartres-de-Bretagne",
-  destination: {
-    address: "123 rue de Nantes Appartement 50 Batiment B",
-    postalCode: "35000",
-    city: "Rennes",
-  },
-  car: {
-    id: 1,
-    licensePlate: "AZ-123-ER",
-    model: {
-      brand: "Renault",
-      label: "Clio",
-    },
-    gearbox: "automatique",
-    options: [CarOptions.Bluetooth, CarOptions.GPS],
-  },
-  users: [
-    {
-      id: 1,
-      roles: [Roles.admin, Roles.driver, Roles.user],
-      password: "",
-      firstName: "Noémie",
-      lastName: "Foufé",
-      phone: "012345678",
-      email: "noemie.foufe@campus-eni.fr",
-      driverLicenceCheck: true,
-      isDriver: true,
-      company: {
-        id: 1,
-        name: "ENI Chartres-de-Bretagne",
-        address: "123 rue Test 35000 Chartres-de-Bretagne",
-        cars: [],
-        users: [],
-      },
-    },
-  ],
-};
-
-export const allReservations = [
-  reservationTest,
-  reservationTest2,
-  reservationTest3,
-];
 
 export const ReservationDetailsPage = () => {
   const theme = useTheme();
@@ -188,7 +23,24 @@ export const ReservationDetailsPage = () => {
     return (
       <AppLayout>
         <ErrorLayout
-          description={`L'identifiant de réservation "${id}" est invalide. Veuillez réessayer.`}
+          description={`L'identifiant de réservation #${id} est invalide. Veuillez réessayer.`}
+        />
+      </AppLayout>
+    );
+  }
+
+  const reservation = allReservations.filter(
+    (r: Reservation) => r.id === Number(id)
+  )[0];
+
+  if (!reservation || Object.keys(reservation).length === 0) {
+    return (
+      <AppLayout>
+        <ErrorLayout
+          description={`Aucune réservation correspond à l'ID #${id} enregistrée.`}
+          subtitle="Retour à la liste des réservations..."
+          needRedirection
+          path={apps.reservations.subPages.myReservations.path}
         />
       </AppLayout>
     );
@@ -202,9 +54,9 @@ export const ReservationDetailsPage = () => {
         scribbleVerticalOffset={isPhone ? "-54px" : undefined}
       />
       {isTablet ? (
-        <ReservationDetailsComponent reservation={reservationTest} />
+        <ReservationDetailsComponent reservation={reservation} />
       ) : (
-        <ReservationDetailsPhoneComponent reservation={reservationTest} />
+        <ReservationDetailsPhoneComponent reservation={reservation} />
       )}
     </AppLayout>
   );
