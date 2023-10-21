@@ -6,11 +6,11 @@ import {
   Drawer,
   IconButton,
   Toolbar,
-  Typography,
   styled,
   useMediaQuery,
   useTheme,
 } from "@mui/material";
+import FlowterLogo from "@pictures/flowter_logo_navbar.png";
 import { websiteRoutes } from "@website/constants/routes";
 import React from "react";
 import { Link } from "react-router-dom";
@@ -59,21 +59,29 @@ export const Navbar = () => {
   );
 
   const desktopNavbar = (
-    <Toolbar>
-      <Typography variant="h4">Logo</Typography>
-      <DesktopMenuWrapper>
-        <LinkWrapper>
-          {Object.values(menuItems).map((item, index) => (
-            <Link key={index} to={item.path}>
-              {item.name}
-            </Link>
-          ))}
-        </LinkWrapper>
-        {/* TODO: add authent */}
-        <ConnectButton onClick={() => undefined} variant="contained">
-          Se connecter
-        </ConnectButton>
-      </DesktopMenuWrapper>
+    <Toolbar sx={{ justifyContent: "center" }}>
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        width="100%"
+        maxWidth={"2000px"}
+      >
+        <img src={FlowterLogo} alt="Logo Flowter" style={{ width: "150px" }} />
+        <DesktopMenuWrapper>
+          <LinkWrapper>
+            {Object.values(menuItems).map((item, index) => (
+              <Link key={index} to={item.path}>
+                {item.name}
+              </Link>
+            ))}
+          </LinkWrapper>
+          {/* TODO: add authent */}
+          <ConnectButton onClick={() => undefined} variant="contained">
+            Se connecter
+          </ConnectButton>
+        </DesktopMenuWrapper>
+      </Box>
     </Toolbar>
   );
 

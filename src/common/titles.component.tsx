@@ -10,6 +10,7 @@ interface TitleProps {
   scribbleVerticalOffset?: string;
   compact?: boolean;
   alignItems?: "center" | "right" | "left";
+  alignLeft?: boolean;
 }
 
 export const PageTitle = ({
@@ -19,6 +20,7 @@ export const PageTitle = ({
   scribbleVerticalOffset,
   compact,
   alignItems,
+  alignLeft,
 }: TitleProps) => {
   const theme = useTheme();
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
@@ -28,6 +30,7 @@ export const PageTitle = ({
       justifyContent="center"
       alignItems={alignItems ?? "center"}
       direction="column"
+      width={alignLeft ? "fit-content" : "100%"}
     >
       <Typography variant="h1" zIndex="10" id="page-title">
         {text}

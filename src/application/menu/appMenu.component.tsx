@@ -5,6 +5,7 @@ import ExpandArrowWhite from "@pictures/icons/menu/expand_arrow_white.svg";
 import Image from "mui-image";
 import * as React from "react";
 import { AppMenuContent } from "./appMenuContent.component";
+import { AppMenuPhone } from "./phone/appMenuPhone.component";
 
 const drawerWidth = 340;
 interface AppBarProps extends MuiAppBarProps {
@@ -34,50 +35,8 @@ export const AppMenu = () => {
   const [isDrawerOpened, setIsDrawerOpened] = React.useState<boolean>(false);
   const isPhone = useMediaQuery(theme.breakpoints.down("sm"));
 
-  // if (isPhone) {
-  //   return (
-  //     <React.Fragment>
-  //       <AppBar
-  //         position="fixed"
-  //         color="primary"
-  //         sx={{
-  //           top: "auto",
-  //           bottom: 0,
-  //           backgroundColor: theme.palette.primary.dark,
-  //         }}
-  //       >
-  //         <Toolbar>
-  //           <Box sx={{ width: "100%" }}>
-  //             <Grid
-  //               columns={5}
-  //               container
-  //               rowSpacing={1}
-  //               columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-  //             >
-  //               <Grid xs={1}>
-  //                 <Image src={Calendar} alt="fonctionnalités" />
-  //               </Grid>
-  //               <Grid xs={1}>
-  //                 <Image src={Calendar} alt="fonctionnalités" />
-  //               </Grid>
-  //               <Grid xs={1}>
-  //                 <Image src={Calendar} alt="fonctionnalités" />
-  //               </Grid>
-  //               <Grid xs={1}>
-  //                 <Paper>4</Paper>
-  //               </Grid>
-  //               <Grid xs={1}>
-  //                 <Paper>5</Paper>
-  //               </Grid>
-  //             </Grid>
-  //           </Box>
-  //         </Toolbar>
-  //       </AppBar>
-  //     </React.Fragment>
-  //   );
-  // }
   return isPhone ? (
-    <></>
+    <AppMenuPhone />
   ) : (
     <>
       <AppBar

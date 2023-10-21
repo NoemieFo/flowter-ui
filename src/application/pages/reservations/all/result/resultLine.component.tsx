@@ -13,6 +13,7 @@ import { ReservationActionsButtons } from "./resultLineButtons.component";
 
 interface ResultLineComponentProps {
   reservation: Reservation;
+  deleteReservation: (id: number) => void
 }
 
 export const lineHeight = "62px";
@@ -70,6 +71,7 @@ export const ResultLineHeader = () => {
 
 export const ResultLineComponent = ({
   reservation,
+  deleteReservation
 }: ResultLineComponentProps) => {
   const theme = useTheme();
   const emptyValue = <Typography>-</Typography>;
@@ -241,7 +243,7 @@ export const ResultLineComponent = ({
         padding={"2px"}
         borderRadius={"0px 8px 8px 0px"}
       >
-        <ReservationActionsButtons reservationId={reservation?.id} />
+        <ReservationActionsButtons reservationId={reservation?.id} deleteReservation={deleteReservation} />
       </Box>
     </GridPattern>
   );

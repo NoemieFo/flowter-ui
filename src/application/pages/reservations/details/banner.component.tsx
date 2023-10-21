@@ -1,14 +1,6 @@
 import { Reservation } from "@application/constants/reservations.constants";
-import {
-  Box,
-  Grid,
-  IconButton,
-  Stack,
-  Typography,
-  useTheme,
-} from "@mui/material";
+import { Box, Grid, Stack, Typography, useTheme } from "@mui/material";
 import Car from "@pictures/car.svg";
-import EditBtn from "@pictures/edit_btn.svg";
 import Chevron from "@pictures/icons/chevron_right.svg";
 import Pin from "@pictures/icons/pin.svg";
 import Sign from "@pictures/icons/sign.svg";
@@ -44,11 +36,6 @@ export const BannerComponent = ({ reservation }: BannerProps) => {
         }}
         alt="Pin"
       />
-      <IconButton
-        style={{ position: "absolute", right: "-14px", top: "-14px" }}
-      >
-        <img src={EditBtn} alt="Button edition" />
-      </IconButton>
       <Box
         sx={{
           backgroundColor: theme.palette.lightGrey.main,

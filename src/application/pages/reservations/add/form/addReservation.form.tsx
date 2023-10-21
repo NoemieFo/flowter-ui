@@ -20,6 +20,7 @@ import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import OrderRide from "@pictures/order_ride.svg";
 import dayjs, { Dayjs } from "dayjs";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { AddReservationButtons } from "./buttons.component";
 import { PassengersComponent } from "./passengers.component";
 import { PickVehicleComponent } from "./pickVehicle.component";
@@ -109,6 +110,19 @@ export const AddReservationForm = () => {
     setPassengers(passengers);
   };
 
+  const [isSent, setIsSent] = React.useState<boolean>(false);
+  const navigate = useNavigate();
+
+  React.useEffect(() => {
+    if (isSent) {
+      const timer = setTimeout(() => {
+        setIsSent(false);
+        return navigate("/reservations");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isSent]);
+
   const clearForm = () => {
     const today = dayjs();
     setCategory(CarCategories.DefaultEmpty);
@@ -167,11 +181,12 @@ export const AddReservationForm = () => {
         car: cars[0],
       };
 
+      setIsSent(true);
       allReservations.push(newReservation);
-
-      console.log(allReservations);
     }
   };
+
+  console.log(isSent);
 
   return (
     <>
