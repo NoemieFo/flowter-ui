@@ -186,8 +186,6 @@ export const AddReservationForm = () => {
     }
   };
 
-  console.log(isSent);
-
   return (
     <>
       <PickVehicleComponent

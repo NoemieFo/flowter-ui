@@ -1,10 +1,15 @@
 import { Company, company1, company2, company3 } from "./companies.constants";
 
 export enum Roles {
-  superAdmin = "SUPER_ADMIN",
-  admin = "ADMIN",
-  user = "USER",
-  driver = "DRIVER",
+  SuperAdmin = "SUPER_ADMIN",
+  Admin = "ADMIN",
+  User = "USER",
+  Driver = "DRIVER",
+}
+
+export enum Rights {
+  Read = "READ",
+  Write = "WRITE",
 }
 
 export interface User {
@@ -22,8 +27,8 @@ export interface User {
 
 export const user1: User = {
   id: 1,
-  roles: [Roles.admin, Roles.driver, Roles.user],
-  password: "",
+  roles: [Roles.Admin, Roles.Driver, Roles.User],
+  password: "password",
   firstname: "Noémie",
   lastname: "Foufé",
   phone: "012345678",
@@ -35,8 +40,8 @@ export const user1: User = {
 
 export const user2: User = {
   id: 2,
-  roles: [Roles.admin, Roles.driver, Roles.user],
-  password: "",
+  roles: [Roles.Admin, Roles.Driver, Roles.User],
+  password: "password",
   firstname: "Fournier",
   lastname: "Pauline",
   phone: "012345678",
@@ -48,8 +53,8 @@ export const user2: User = {
 
 export const user3: User = {
   id: 3,
-  roles: [Roles.admin, Roles.driver, Roles.user],
-  password: "",
+  roles: [Roles.Admin, Roles.Driver, Roles.User],
+  password: "password",
   firstname: "Cao-Son",
   lastname: "Tran",
   phone: "012345678",
@@ -58,3 +63,21 @@ export const user3: User = {
   isDriver: true,
   company: company3,
 };
+
+export const user4: User = {
+  id: 4,
+  roles: [Roles.User],
+  password: "password",
+  lastname: "Bonsaké",
+  firstname: "Bill",
+  phone: "012345678",
+  email: "bill-bonsake@campus-eni.fr",
+  driverLicenceCheck: true,
+  isDriver: false,
+  company: company3,
+};
+
+export const allUsers = [user1, user2, user3, user4];
+
+export const hasWriteRight =
+  localStorage.getItem("userRights") === Rights.Write;

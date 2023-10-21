@@ -16,12 +16,24 @@ import { FeaturesPage } from "@website/pages/features/features.page";
 import { HomePage } from "@website/pages/home/home.page";
 import { LoginPage } from "@website/pages/login/login.page";
 import { PricesPage } from "@website/pages/prices/prices.page";
+import React from "react";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, Routes } from "react-router-dom";
+import { hasWriteRight } from "./application/constants/user.constants";
+import { Page403 } from "./application/pages/403.page";
 import { theme } from "./theme";
 
 const App = () => {
   const queryClient = new QueryClient();
+  const [isConnected, setIsConnected] = React.useState<boolean>(false);
+
+  React.useEffect(() => {
+    if (localStorage?.getItem("userLastname")) {
+      setIsConnected(true);
+    } else {
+      setIsConnected(false);
+    }
+  }, [localStorage]);
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -39,41 +51,45 @@ const App = () => {
           <Route path="/dashboard" element={<DashboardPage />} />
           <Route
             path={apps.planning.subPages["myPlanning"].path}
-            element={<PlanningPage />}
+            element={isConnected ? <PlanningPage /> : <Page403 />}
           />
           {/* Profile */}
           <Route
             path={apps.profile.subPages["myProfile"].path}
-            element={<ProfileDetailsPage />}
+            element={isConnected ? <ProfileDetailsPage /> : <Page403 />}
           />
           <Route
             path={apps.profile.subPages["editProfile"].path}
-            element={<EditProfilePage />}
+            element={isConnected ? <EditProfilePage /> : <Page403 />}
           />
           <Route
             path={apps.profile.subPages["editPassword"].path}
-            element={<EditPasswordPage />}
+            element={isConnected ? <EditPasswordPage /> : <Page403 />}
           />
           {/* Reservations */}
           <Route
             path={apps.reservations.subPages["myReservations"].path}
-            element={<AllReservationsPage />}
+            element={isConnected ? <AllReservationsPage /> : <Page403 />}
           />
           <Route
             path={apps.reservations.subPages["addReservation"].path}
-            element={<AddReservationPage />}
+            element={
+              isConnected && hasWriteRight ? (
+                <AddReservationPage />
+              ) : (
+                <Page403 />
+              )
+            }
           />
           <Route
             path={apps.reservations.subPages["reservationDetails"].path}
-            element={<ReservationDetailsPage />}
+            element={isConnected ? <ReservationDetailsPage /> : <Page403 />}
           />
-          {/* <Route
-            path={apps.reservations.subPages["editReservation"].path}
-            element={<EditReservationPage />}
-          /> */}
           <Route
             path={apps.crash.subPages["addCrash"].path}
-            element={<AddCrashPage />}
+            element={
+              isConnected && hasWriteRight ? <AddCrashPage /> : <Page403 />
+            }
           />
         </Routes>
       </ThemeProvider>

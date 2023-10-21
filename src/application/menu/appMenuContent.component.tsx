@@ -1,8 +1,9 @@
-import { CSSObject, Theme, styled } from "@mui/material";
+import { CSSObject, Theme, Typography, styled } from "@mui/material";
 import MuiDrawer from "@mui/material/Drawer";
 import Bear from "@pictures/bear.png";
 import Image from "mui-image";
 import { apps } from "../constants/applications";
+import { hasWriteRight } from "../constants/user.constants";
 import { DrawerAccordionList } from "./elements/drawerAccordionList.component";
 import { DrawerListItem } from "./elements/drawerListItem.component";
 
@@ -68,19 +69,25 @@ export const AppMenuContent = ({ opened }: DesktopMenuProps) => {
     <>
       <Drawer variant="permanent" open={opened}>
         <DrawerHeader
-          sx={{ borderBottom: "1px solid #6D828C", height: "70px" }}
+          sx={{
+            borderBottom: "1px solid #6D828C",
+            height: "70px",
+            justifyContent: "center",
+            columnGap: "10px",
+          }}
         >
           <Image
             src={Bear}
             alt="profile picture"
             style={{ width: "50px", height: "50px" }}
+            wrapperStyle={{ width: "50px", height: "50px" }}
             duration={0}
-            wrapperStyle={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-            }}
           />
+          {opened && (
+            <Typography variant="h4">
+              {`Bonjour ${localStorage.getItem("userFirstname")} !`}
+            </Typography>
+          )}
         </DrawerHeader>
         <DrawerAccordionList
           isMenuOpened={opened}
@@ -98,16 +105,22 @@ export const AppMenuContent = ({ opened }: DesktopMenuProps) => {
           appName={apps.reservations.name}
           appIcon={apps.reservations.icon}
           subPages={Object.fromEntries(
-            Object.entries(apps.reservations.subPages).filter(
-              ([k, _]) => k !== "editReservation" && k !== "reservationDetails"
-            )
+            Object.entries(apps.reservations.subPages).filter(([k, _]) => {
+              if (hasWriteRight) {
+                return k === "addReservation" || k === "myReservations";
+              } else {
+                return k === "myReservations";
+              }
+            })
           )}
         />
-        <DrawerListItem
-          appName={apps.crash.name}
-          appIcon={apps.crash.icon}
-          appPath={apps.crash.subPages["addCrash"].path}
-        />
+        {hasWriteRight && (
+          <DrawerListItem
+            appName={apps.crash.name}
+            appIcon={apps.crash.icon}
+            appPath={apps.crash.subPages["addCrash"].path}
+          />
+        )}
       </Drawer>
     </>
   );

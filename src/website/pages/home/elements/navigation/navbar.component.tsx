@@ -13,12 +13,13 @@ import {
 import FlowterLogo from "@pictures/flowter_logo_navbar.png";
 import { websiteRoutes } from "@website/constants/routes";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PhoneMenuComponent } from "./phoneMenu.component";
 
 export const Navbar = () => {
   const theme = useTheme();
   const isDesktop = useMediaQuery(theme.breakpoints.up("lg"));
+  const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
   const handleIsOpen = (value: boolean) => setIsOpen(value);
@@ -48,7 +49,10 @@ export const Navbar = () => {
         <PhoneMenuComponent handleIsOpen={handleIsOpen} />
       </PhoneMenuWrapper>
       {/* TODO: add authent */}
-      <ConnectButton onClick={() => undefined} variant="contained">
+      <ConnectButton
+        onClick={() => navigate(websiteRoutes.login.path)}
+        variant="contained"
+      >
         Se connecter
       </ConnectButton>
     </Toolbar>
@@ -77,7 +81,10 @@ export const Navbar = () => {
             ))}
           </LinkWrapper>
           {/* TODO: add authent */}
-          <ConnectButton onClick={() => undefined} variant="contained">
+          <ConnectButton
+            onClick={() => navigate(websiteRoutes.login.path)}
+            variant="contained"
+          >
             Se connecter
           </ConnectButton>
         </DesktopMenuWrapper>

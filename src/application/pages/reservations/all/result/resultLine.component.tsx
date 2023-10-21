@@ -1,4 +1,4 @@
-import { User } from "@/application/constants/user.constants";
+import { Rights, User } from "@/application/constants/user.constants";
 import { Reservation } from "@application/constants/reservations.constants";
 import { convertDateToFrenchFormat } from "@common/helpers/utils";
 import {
@@ -13,7 +13,7 @@ import { ReservationActionsButtons } from "./resultLineButtons.component";
 
 interface ResultLineComponentProps {
   reservation: Reservation;
-  deleteReservation: (id: number) => void
+  deleteReservation: (id: number) => void;
 }
 
 export const lineHeight = "62px";
@@ -71,7 +71,7 @@ export const ResultLineHeader = () => {
 
 export const ResultLineComponent = ({
   reservation,
-  deleteReservation
+  deleteReservation,
 }: ResultLineComponentProps) => {
   const theme = useTheme();
   const emptyValue = <Typography>-</Typography>;
@@ -242,8 +242,14 @@ export const ResultLineComponent = ({
         gridArea={"actions"}
         padding={"2px"}
         borderRadius={"0px 8px 8px 0px"}
+        width={
+          localStorage.getItem("userRights") === Rights.Write ? "100%" : "auto"
+        }
       >
-        <ReservationActionsButtons reservationId={reservation?.id} deleteReservation={deleteReservation} />
+        <ReservationActionsButtons
+          reservationId={reservation?.id}
+          deleteReservation={deleteReservation}
+        />
       </Box>
     </GridPattern>
   );

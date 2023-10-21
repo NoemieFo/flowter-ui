@@ -1,3 +1,4 @@
+import { Rights } from "@/application/constants/user.constants";
 import {
   Reservation,
   allReservations,
@@ -8,6 +9,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { CreateReservationButton } from "../createReservationButton.component";
 import { ResultCard } from "./resultCard.component";
 
 export const PhoneSwiper = () => {
@@ -22,6 +24,9 @@ export const PhoneSwiper = () => {
         scribbleColor={theme.palette.orange.light}
         scribbleVerticalOffset={isPhone ? "-54px" : undefined}
       />
+      {localStorage.getItem("userRights") === Rights.Write && (
+        <CreateReservationButton />
+      )}
       <Typography variant="h3">Total: ({allReservations.length})</Typography>
       <Swiper
         slidesPerView={isTablet ? 2 : "auto"}
