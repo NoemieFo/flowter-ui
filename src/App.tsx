@@ -17,6 +17,7 @@ import { HomePage } from "@website/pages/home/home.page";
 import { LoginPage } from "@website/pages/login/login.page";
 import { PricesPage } from "@website/pages/prices/prices.page";
 import React from "react";
+import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, Routes } from "react-router-dom";
 import { hasWriteRight } from "./application/constants/user.constants";
@@ -39,6 +40,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={theme}>
         <CssBaseline />
+        <Toaster />
         <Routes>
           {/* Website */}
           <Route path="" element={<HomePage />} />

@@ -20,6 +20,7 @@ import { Box, Grid, useMediaQuery, useTheme } from "@mui/material";
 import OrderRide from "@pictures/order_ride.svg";
 import dayjs, { Dayjs } from "dayjs";
 import React from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { AddReservationButtons } from "./buttons.component";
 import { PassengersComponent } from "./passengers.component";
@@ -57,7 +58,9 @@ export const AddReservationForm = () => {
   );
 
   const [departureDate, setDepartureDate] = React.useState<Dayjs>(dayjs());
-  const [returnDate, setReturnDate] = React.useState<Dayjs>(dayjs());
+  const [returnDate, setReturnDate] = React.useState<Dayjs>(
+    dayjs().add(1, "hour")
+  );
 
   const updateCategory = (newCategory: CarCategories) => {
     setCategory(newCategory);
@@ -117,6 +120,7 @@ export const AddReservationForm = () => {
     if (isSent) {
       const timer = setTimeout(() => {
         setIsSent(false);
+        toast.success("Réservation enregistrée !");
         return navigate("/reservations");
       }, 2000);
       return () => clearTimeout(timer);

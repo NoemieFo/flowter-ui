@@ -103,6 +103,7 @@ export const TripDetailsComponent = ({
   };
 
   const companies = { result: [company1, company2, company3] };
+  const todayPlus1Hour = today.add(1, "hour");
 
   return (
     <>
@@ -168,7 +169,7 @@ export const TripDetailsComponent = ({
               sx={{
                 width: "100%",
               }}
-              defaultValue={today}
+              defaultValue={todayPlus1Hour}
               value={returnDate}
               label="Date et heure de retour *"
               onChange={(newDate) => handleReturnDate(newDate ?? today)}

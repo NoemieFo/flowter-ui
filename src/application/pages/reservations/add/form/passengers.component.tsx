@@ -1,9 +1,4 @@
-import {
-  User,
-  user1,
-  user2,
-  user3,
-} from "@/application/constants/user.constants";
+import { User, allUsers } from "@/application/constants/user.constants";
 import { FormSectionTitle } from "@application/elements/formSectionTitle.component";
 import Box from "@mui/material/Box";
 import Chip from "@mui/material/Chip";
@@ -87,7 +82,7 @@ export const PassengersComponent = ({
             </Box>
           )}
         >
-          {[user1, user2, user3].map((p: User) => {
+          {allUsers.map((p: User) => {
             const pString = JSON.stringify(p);
             return (
               <MenuItem key={pString} value={pString}>
