@@ -22,11 +22,12 @@ export const WhatIsFlowter = (): JSX.Element => {
         scribbleVerticalOffset={isPhone ? "-52px" : undefined}
       />
       <Typography variant="subtitle2">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim
-        sit amet tortor ullamcorper, vel tincidunt metus feugiat. Sed elementum
-        nunc at neque feugiat porta. Phasellus rutrum efficitur tempus. Cras id
-        ex at erat porta lacinia. Etiam sem velit, ultricies at lacinia ac,
-        congue sit amet urna.
+        Flowter est une solution web qui permet aux entreprises de gérer la
+        réservation de leurs véhicules internes.
+        <br />
+        Simple, intuitive et accessible à tous les collaborateurs, c'est la
+        solution idéale pour les entreprises de toutes tailles qui souhaitent
+        gagner du temps et de l'efficacité dans leur gestion de flotte.
       </Typography>
       <MoreInformationButton path={websiteRoutes["about"].path} />
     </WhatIsFlowterSection>

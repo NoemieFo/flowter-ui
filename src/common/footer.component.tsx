@@ -1,3 +1,4 @@
+import { FooterButton } from "@common/buttons.component";
 import {
   Grid,
   Typography,
@@ -5,13 +6,12 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { FooterButton } from "~/common/buttons.component";
 import {
   FacebookIcon,
   InstagramIcon,
   TwitterIcon,
-} from "~/pictures/icons/logo_social_network.component";
-import { RouteDetails, websiteRoutes } from "~/website/constants/routes";
+} from "@pictures/icons/logo_social_network.component";
+import { RouteDetails, websiteRoutes } from "@website/constants/routes";
 
 interface FooterProps {
   isHome: boolean;

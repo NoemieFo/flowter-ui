@@ -36,10 +36,10 @@ export const PricesSection = (): JSX.Element => {
             compact
           />
           <Typography variant="body1">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia
-            enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Lorem
-            ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim
-            sit amet tortor ullamcorper, vel tincidunt metus feugiat.
+            Nous proposons des tarifs flexibles adaptés à tous les
+            besoins.Choisissez l'offre qui vous convient le mieux en fonction du
+            nombre de véhicules et des fonctionnalités dont vous avez besoin
+            pour votre entreprise.
           </Typography>
           <ButtonSecondaryComponent
             text={isPhone ? "Voir les tarifs" : "Découvrir les tarifs"}

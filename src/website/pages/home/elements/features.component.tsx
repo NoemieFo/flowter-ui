@@ -50,11 +50,13 @@ export const FeaturesSection = (): JSX.Element => {
           scribbleWidth={isPhone ? "230px" : "300px"}
         />
         <Typography variant="subtitle2" paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia
-          enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Sed
-          elementum nunc at neque feugiat porta. Phasellus rutrum efficitur
-          tempus. Cras id ex at erat porta lacinia. Etiam sem velit, ultricies
-          at lacinia ac, congue sit amet urna.
+          Flowter fonctionne en quelques clics seulement. Pour réserver un
+          véhicule, il suffit de se connecter à l'application, de choisir les
+          options de véhicule souhaitées, la date et l'heure de la réservation
+          ainsi que son motif.
+          <br />
+          L'application indiquera alors si un véhicule est disponible et
+          permettra de confirmer votre réservation.
         </Typography>
         <Grid
           container
