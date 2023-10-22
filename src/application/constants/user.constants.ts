@@ -78,6 +78,3 @@ export const user4: User = {
 };
 
 export const allUsers = [user1, user2, user3, user4];
-
-export const hasWriteRight =
-  localStorage.getItem("userRights") === Rights.Write;

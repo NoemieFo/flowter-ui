@@ -93,7 +93,7 @@ const Pages = (): JSX.Element => {
   return (
     <GridRoutes>
       {Object.values(items).map((item, index) => (
-        <FooterButton text={item.name} path={item.path} />
+        <FooterButton key={item.name} text={item.name} path={item.path} />
       ))}
     </GridRoutes>
   );
