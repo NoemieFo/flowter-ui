@@ -1,4 +1,4 @@
-import { hasWriteRight } from "@/application/constants/user.constants";
+import { Rights } from "@/application/constants/user.constants";
 import { Reservation } from "@application/constants/reservations.constants";
 import { Box, Grid } from "@mui/material";
 import ReservationDetails from "@pictures/reservation_details.svg";
@@ -15,6 +15,8 @@ interface ReservationDetailsProps {
 export const ReservationDetailsComponent = ({
   reservation,
 }: ReservationDetailsProps) => {
+  const hasWriteRight = localStorage.getItem("userRights") === Rights.Write;
+
   return (
     <Box>
       <BannerComponent reservation={reservation} />

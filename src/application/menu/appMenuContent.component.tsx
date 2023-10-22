@@ -3,7 +3,7 @@ import MuiDrawer from "@mui/material/Drawer";
 import Bear from "@pictures/bear.png";
 import Image from "mui-image";
 import { apps } from "../constants/applications";
-import { hasWriteRight } from "../constants/user.constants";
+import { Rights } from "../constants/user.constants";
 import { DrawerAccordionList } from "./elements/drawerAccordionList.component";
 import { DrawerListItem } from "./elements/drawerListItem.component";
 
@@ -65,6 +65,8 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export const AppMenuContent = ({ opened }: DesktopMenuProps) => {
+  const hasWriteRight = localStorage.getItem("userRights") === Rights.Write;
+
   return (
     <>
       <Drawer variant="permanent" open={opened}>

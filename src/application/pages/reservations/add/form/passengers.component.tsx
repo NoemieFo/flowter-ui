@@ -11,12 +11,10 @@ import People from "@pictures/icons/people.svg";
 import * as React from "react";
 
 interface PassengersComponentProps {
-  selectedPassengers?: User[];
   updatePassengers: (passengers: User[]) => void;
 }
 
 export const PassengersComponent = ({
-  selectedPassengers,
   updatePassengers,
 }: PassengersComponentProps) => {
   const [passengers, setPassengers] = React.useState<string[]>([]);
@@ -82,14 +80,20 @@ export const PassengersComponent = ({
             </Box>
           )}
         >
-          {allUsers.map((p: User) => {
-            const pString = JSON.stringify(p);
-            return (
-              <MenuItem key={pString} value={pString}>
-                {`${p.firstname} ${p.lastname} - ${p.company.name}`}
-              </MenuItem>
-            );
-          })}
+          {allUsers
+            .filter(
+              (u: User) =>
+                u.firstname !== localStorage.getItem("userFirstname") &&
+                u.lastname !== localStorage.getItem("userLastname")
+            )
+            .map((p: User) => {
+              const pString = JSON.stringify(p);
+              return (
+                <MenuItem key={pString} value={pString}>
+                  {`${p.firstname} ${p.lastname} - ${p.company.name}`}
+                </MenuItem>
+              );
+            })}
         </Select>
       </FormControl>
       {isError && (

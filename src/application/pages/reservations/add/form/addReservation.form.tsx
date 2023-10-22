@@ -129,12 +129,12 @@ export const AddReservationForm = () => {
 
   const clearForm = () => {
     const today = dayjs();
-    setCategory(CarCategories.DefaultEmpty);
+    setCategory(CarCategories.All);
     setSelectedOptions({} as Record<CarOptions, boolean>);
     setDepartureDate(today);
     setDeparturePlace({} as Company);
     setDestination({} as Address);
-    setReturnDate(today);
+    setReturnDate(today.add(1, "hour"));
     setReason({} as Motive);
     setPassengers([]);
   };
@@ -176,7 +176,7 @@ export const AddReservationForm = () => {
 
     if (isValid && !isCarError) {
       const newReservation: Reservation = {
-        id: allReservations[allReservations.length - 1].id + 1,
+        id: (allReservations[allReservations.length - 1]?.id || 0) + 1,
         dateOfLoan: departureDate.format(),
         dateOfReturn: returnDate.format(),
         users: passengers,
@@ -221,10 +221,7 @@ export const AddReservationForm = () => {
             paddingRight: { md: "40px" },
           }}
         >
-          <PassengersComponent
-            // passengers={passengers}
-            updatePassengers={updatePassengers}
-          />
+          <PassengersComponent updatePassengers={updatePassengers} />
           <AddReservationButtons
             validate={validate}
             isValid={isValid}

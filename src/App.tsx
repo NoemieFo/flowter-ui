@@ -20,13 +20,14 @@ import React from "react";
 import { Toaster } from "react-hot-toast";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { Route, Routes } from "react-router-dom";
-import { hasWriteRight } from "./application/constants/user.constants";
+import { Rights } from "./application/constants/user.constants";
 import { Page403 } from "./application/pages/403.page";
 import { theme } from "./theme";
 
 const App = () => {
   const queryClient = new QueryClient();
   const [isConnected, setIsConnected] = React.useState<boolean>(false);
+  const hasWriteRight = localStorage.getItem("userRights") === Rights.Write;
 
   React.useEffect(() => {
     if (localStorage?.getItem("userLastname")) {
