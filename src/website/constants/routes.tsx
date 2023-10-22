@@ -11,7 +11,14 @@ export interface RouteDetails {
   path: string;
 }
 
-type RouteKey = "home" | "about" | "features" | "contact" | "prices" | "login";
+type RouteKey =
+  | "home"
+  | "about"
+  | "features"
+  | "contact"
+  | "prices"
+  | "login"
+  | "cgv";
 
 export const websiteRoutes: Record<RouteKey, RouteDetails> = {
   home: {
@@ -43,5 +50,10 @@ export const websiteRoutes: Record<RouteKey, RouteDetails> = {
     name: "Se connecter",
     icon: <PersonIcon style={{ color: "white" }} />,
     path: "/se-connecter",
+  },
+  cgv: {
+    name: "CGV",
+    icon: <></>,
+    path: "/nous-contacter",
   },
 };

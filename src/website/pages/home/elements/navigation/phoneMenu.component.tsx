@@ -16,9 +16,13 @@ interface Props {
 export const PhoneMenuComponent = ({ handleIsOpen }: Props): JSX.Element => {
   const handleClick = () => handleIsOpen(false);
 
+  const menuItems = Object.fromEntries(
+    Object.entries(websiteRoutes).filter(([key, _]) => key !== "cgv")
+  );
+
   return (
     <PhoneMenu onClick={() => handleClick()}>
-      {Object.values(websiteRoutes).map((item, index) => (
+      {Object.values(menuItems).map((item, index) => (
         <ListItem disablePadding key={index}>
           <ListItemButton>
             <ListItemIcon>{item.icon}</ListItemIcon>

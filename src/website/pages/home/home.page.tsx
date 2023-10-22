@@ -1,8 +1,8 @@
+import { Footer } from "@/common/footer.component";
 import { Box, useMediaQuery, useTheme } from "@mui/material";
-import PricesMobile from "@pictures/prices_mobile.svg";
+import PricesMobile from "~/pictures/prices_mobile.svg";
 import { WebsiteLayout } from "../website.layout";
 import { FeaturesSection } from "./elements/features.component";
-import { Footer } from "./elements/footer.component";
 import { HeroComponent } from "./elements/hero.component";
 import { PricesSection } from "./elements/prices.component";
 import { WhatIsFlowter } from "./elements/whatIsFlowter.component";
@@ -13,7 +13,7 @@ export const HomePage = (): JSX.Element => {
   const isDesktop = useMediaQuery(theme.breakpoints.up("md"));
 
   return (
-    <WebsiteLayout>
+    <WebsiteLayout isHome={true}>
       <Box
         height={isDesktop ? "calc(100vh - 64px)" : "auto"}
         width="100%"
@@ -33,11 +33,12 @@ export const HomePage = (): JSX.Element => {
             width: "245px",
             position: "absolute",
             right: "0",
-            marginTop: "-60px",
+            marginTop: "-50px",
+            marginBottom: "-45px",
+            marginRight: "10px",
           }}
         />
       )}
-      <Footer />
     </WebsiteLayout>
   );
 };
