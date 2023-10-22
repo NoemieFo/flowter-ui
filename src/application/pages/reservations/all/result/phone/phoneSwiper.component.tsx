@@ -4,7 +4,7 @@ import {
   allReservations,
 } from "@application/constants/reservations.constants";
 import { PageTitle } from "@common/titles.component";
-import { Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, Typography, useMediaQuery, useTheme } from "@mui/material";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
@@ -24,10 +24,17 @@ export const PhoneSwiper = () => {
         scribbleColor={theme.palette.orange.light}
         scribbleVerticalOffset={isPhone ? "-54px" : undefined}
       />
-      {localStorage.getItem("userRights") === Rights.Write && (
-        <CreateReservationButton />
-      )}
-      <Typography variant="h3">Total: ({allReservations.length})</Typography>
+      <Stack
+        direction={"column"}
+        rowGap={"10px"}
+        alignItems={"center"}
+        paddingTop={"20px"}
+      >
+        {localStorage.getItem("userRights") === Rights.Write && (
+          <CreateReservationButton />
+        )}
+        <Typography variant="h3">Total: ({allReservations.length})</Typography>
+      </Stack>
       <Swiper
         slidesPerView={isTablet ? 2 : "auto"}
         centeredSlides={true}

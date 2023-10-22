@@ -18,11 +18,9 @@ export const ContactUsPage = () => {
           scribbleVerticalOffset={isPhone ? "-54px" : undefined}
         />
         <Typography variant="subtitle2">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia
-          enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Sed
-          elementum nunc at neque feugiat porta. Phasellus rutrum efficitur
-          tempus. Cras id ex at erat porta lacinia. Etiam sem velit, ultricies
-          at lacinia ac, congue sit amet urna.
+          Vous avez des questions? Besoin d'aide ? N'hésitez pas à nous
+          contacter. Nous sommes là pour vous aider. Remplissez notre formulaire
+          de contact et nous vous répondrons dans les meilleurs délais
         </Typography>
       </PageHeaderContainer>
       <Box sx={{ maxWidth: Breakpoints.lg }}>

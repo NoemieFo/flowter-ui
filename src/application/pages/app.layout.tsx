@@ -17,6 +17,7 @@ export const AppLayout = ({
         component="main"
         flexGrow={1}
         padding={isPhone ? `20px ${phoneMarginHorizontal}` : "50px"}
+        paddingBottom={isPhone ? "80px" : "auto"}
         maxWidth={"100%"}
       >
         {children}

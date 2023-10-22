@@ -33,7 +33,7 @@ export const features: Feature[] = [
     avatar: { path: PlanRidesAvatar, description: "planification de trajets" },
     img: { path: PlanRides, description: "planification de trajets" },
     descriptionShorten:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
+      "Vos collaborateurs peuvent désormais planifier leurs déplacements professionnels en quelques clics.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
     path: websiteRoutes["features"].path,
@@ -44,7 +44,7 @@ export const features: Feature[] = [
     avatar: { path: ManageFleetAvatar, description: "gestion de parc" },
     img: { path: ManageFleetAvatar, description: "gestion de parc" },
     descriptionShorten:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
+      "Optimisez vos dépenses, vous avez accès au suivi de l'état de vos véhicules de manière simple et efficace.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
     path: websiteRoutes["features"].path,
@@ -61,7 +61,7 @@ export const features: Feature[] = [
       description: "visualisation de statistiques",
     },
     descriptionShorten:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
+      "Prenez des décisions stratégiques en suivant l'utilisation de votre flotte en temps réel.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
     path: websiteRoutes["features"].path,
@@ -75,7 +75,7 @@ export const features: Feature[] = [
     },
     img: { path: FollowMaintenance, description: "suivi de l'entretien" },
     descriptionShorten:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
+      "L'entretien de vos véhicules est maintenant assisté et planifié à vue d'oeil.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
     path: websiteRoutes["features"].path,
@@ -89,7 +89,7 @@ export const features: Feature[] = [
     },
     img: { path: HandleUsers, description: "gestion des utilisateurs" },
     descriptionShorten:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
+      "Attribuez les droits d'accès à vos collaborateurs et révoquez les à n'importe quel moment.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
     path: websiteRoutes["features"].path,
@@ -100,7 +100,7 @@ export const features: Feature[] = [
     avatar: { path: MultipleDevicesAvatar, description: "plusieurs supports" },
     img: { path: MultipleDevices, description: "plusieurs supports" },
     descriptionShorten:
-      "Retrouvez Flowter sur votre ordinateur, votre smartphone ou votre tablette et effectuez vos réservations n'importe où, n'importe quand !",
+      "Gardez tout à portée de main. La solution est adaptée aux ordinateurs et aux smartphones.",
     description:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut lacinia enim sit amet tortor ullamcorper, vel tincidunt metus feugiat.",
     path: websiteRoutes["features"].path,
