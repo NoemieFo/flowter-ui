@@ -137,7 +137,7 @@ export const ContactUsForm = () => {
                 }}
               />
             }
-            label="En cochant cette case, je reconnais avoir lu et accepté blablablablablablabla."
+            label="En cochant cette case, je reconnais avoir lu et accepté les conditions générales d'utilisation."
           />
           <FormButtonGroupComponent
             secondaryButton={
