@@ -151,7 +151,9 @@ export const TripDetailsComponent = ({
             variant="outlined"
             required
             helperText={
-              isDestinationError ? "L'adresse de destination est invalide." : ""
+              isDestinationError
+                ? "L'adresse de destination est invalide : elle doit contenir une rue, un code postal et une ville"
+                : ""
             }
             onChange={handleDestination}
             value={
