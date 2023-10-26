@@ -25,7 +25,6 @@ export const Footer = ({ isHome }: FooterProps): JSX.Element => {
   return (
     <Grid
       sx={{
-        // position: "fixed",
         height: "250px",
         display: "flex",
         rowGap: "20px",

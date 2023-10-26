@@ -102,7 +102,17 @@ export const TripDetailsComponent = ({
     }
   };
 
-  const companies = { result: [company1, company2, company3] };
+  const companies = {
+    result: [company1, company2, company3].sort(
+      (companyA: Company, companyB: Company) => {
+        // Sort companies
+        const companyComparison = companyA.name.localeCompare(companyB.name);
+
+        return companyComparison;
+      }
+    ),
+  };
+
   const todayPlus1Hour = today.add(1, "hour");
 
   return (
@@ -151,7 +161,9 @@ export const TripDetailsComponent = ({
             variant="outlined"
             required
             helperText={
-              isDestinationError ? "L'adresse de destination est invalide." : ""
+              isDestinationError
+                ? "L'adresse de destination est invalide : elle doit contenir une rue, un code postal et une ville"
+                : ""
             }
             onChange={handleDestination}
             value={
