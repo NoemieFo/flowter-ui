@@ -86,11 +86,24 @@ export const PassengersComponent = ({
                 u.firstname !== localStorage.getItem("userFirstname") &&
                 u.lastname !== localStorage.getItem("userLastname")
             )
+            .sort((userA: User, userB: User) => {
+              // Compare last names
+              const lastNameComparison = userA.lastname.localeCompare(
+                userB.lastname
+              );
+
+              // If the last names are the same, compare the first names
+              if (lastNameComparison === 0) {
+                return userA.firstname.localeCompare(userB.firstname);
+              }
+
+              return lastNameComparison;
+            })
             .map((p: User) => {
               const pString = JSON.stringify(p);
               return (
                 <MenuItem key={pString} value={pString}>
-                  {`${p.firstname} ${p.lastname} - ${p.company.name}`}
+                  {`${p.lastname} ${p.firstname} - ${p.company.name}`}
                 </MenuItem>
               );
             })}
